@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Image_Reconstruction_Classifier</id>
+    <version>1.0.0</version>
+    <authors>Image_Reconstruction_Classifier</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="7600582d92b78f48f40a467ba73b2f625a20824a" />
+    <dependencies>
+      <group targetFramework="net9.0">
+        <dependency id="HtmImageEncoder" version="1.0.1" exclude="Build,Analyzers" />
+        <dependency id="ImageBinarizer" version="1.6.0" exclude="Build,Analyzers" />
+        <dependency id="LearningApi" version="1.3.1" exclude="Build,Analyzers" />
+        <dependency id="NeoCortexApi" version="1.1.5" exclude="Build,Analyzers" />
+        <dependency id="SkiaSharp" version="3.116.1" exclude="Build,Analyzers" />
+        <dependency id="SkiaSharp.NativeAssets.Linux.NoDependencies" version="3.116.1" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="9.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\Image_Reconstruction_Classifier.runtimeconfig.json" target="lib\net9.0\Image_Reconstruction_Classifier.runtimeconfig.json" />
+    <file src="D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\Image_Reconstruction_Classifier.dll" target="lib\net9.0\Image_Reconstruction_Classifier.dll" />
+  </files>
+</package>

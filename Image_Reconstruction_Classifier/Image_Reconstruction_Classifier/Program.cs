@@ -3,6 +3,7 @@ using System.Linq; // Make sure to include this for the .Take method
 using System.IO;
 using ImageProcessing;
 using NeoCortexApi;
+using Image_Reconstruction_Classifier;
 
 class Program
 {
@@ -14,6 +15,15 @@ class Program
 
         // Step 2: Define the folder path where the binary image text files are located
         string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary")!;
+
+        // Ensure that you get the path for the output folder 
+        if (string.IsNullOrEmpty(folderPath))
+        {
+            Console.WriteLine("Environment variables not set. Using default paths.");
+            // Replace with default path
+            folderPath = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Binary";
+        }
+
         DirectoryInfo directoryInfo = Directory.CreateDirectory(folderPath);
 
         // Step 3: Define how many files to load (you can change this number as needed)
@@ -39,6 +49,14 @@ class Program
         // Get the output folder path from the environment variable
         string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Loader")!;
 
+        // Ensure that you get the path for the output folder 
+        if (string.IsNullOrEmpty(outputFolder))
+        {
+            Console.WriteLine("Environment variables not set for Output Folder. Using default paths.");
+            // Replace with default path
+            outputFolder = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Loader";
+        }
+
         // Create the directory if it doesn't exist
         DirectoryInfo outputDirectoryInfo = Directory.CreateDirectory(outputFolder);
 
@@ -51,19 +69,23 @@ class Program
             Console.WriteLine($"Saved image data to: {outputFilePath}");
         }
 
+        // Step 9: SpatialPooler Output 
+        ImageSpartial.SaveImagesinSpartialPooler();
+        Console.WriteLine("SpartialPooler completed.");
+
         // Step 9: Initialize the SpatialPooler
         //SpatialPooler spatialPooler = new SpatialPooler();
 
         // Step 10: Process each image data as input vector
-        foreach (var inputVector in imageData)
-        {
-            //Ensure the input vector is in the expected format (0s and 1s)
-            // Classify or process the input vector
-            //int[] activeColumns = spatialPooler.Compute(inputVector, true); // Set learn to true if you want to learn
+        //foreach (var inputVector in imageData)
+        //{
+        //    //Ensure the input vector is in the expected format (0s and 1s)
+        //    // Classify or process the input vector
+        //    int[] activeColumns = spatialPooler.Compute(inputVector, true); // Set learn to true if you want to learn
 
-            //Output or further process the result as needed
-            //Console.WriteLine($"Active Columns: {string.Join(", ", activeColumns)}");
-        }
+        //    //Output or further process the result as needed
+        //    Console.WriteLine($"Active Columns: {string.Join(", ", activeColumns)}");
+        //}
 
         Console.WriteLine("Processing completed.");
     }

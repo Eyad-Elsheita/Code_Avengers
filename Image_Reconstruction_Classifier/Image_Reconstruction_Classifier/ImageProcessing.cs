@@ -11,10 +11,28 @@ namespace ImageProcessing
         {
             // Get the input folder path and create the directory if it doesn't exist
             string inputFolder = Environment.GetEnvironmentVariable("Training_Image_Sample")!;
+
+            // Ensure that you get the Path for the inputfolder 
+            if (string.IsNullOrEmpty(inputFolder) )
+            {
+                Console.WriteLine("Environment variables not set. Using default paths.");
+                // Replace with your default path
+                inputFolder = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Sample";  
+                
+            }
+
+            // Create the input directory if it doesn't exist
             DirectoryInfo inputDirectoryInfo = Directory.CreateDirectory(inputFolder);
 
             // Get the output folder path and create the directory if it doesn't exist
             string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Binary")!;
+            // Ensure that you get the path for the output folder 
+            if ( string.IsNullOrEmpty(outputFolder))
+            {
+                Console.WriteLine("Environment variables not set. Using default paths.");
+                // Replace with default path
+                outputFolder = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Binary";  
+            }
             DirectoryInfo outputDirectoryInfo = Directory.CreateDirectory(outputFolder);
 
             // Get all image files in the input folder
