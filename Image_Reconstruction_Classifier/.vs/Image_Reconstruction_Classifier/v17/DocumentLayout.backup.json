@@ -30,12 +30,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -44,7 +40,7 @@
               "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\Classifier.cs",
               "ToolTip": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Classifier.cs",
               "RelativeToolTip": "Image_Reconstruction_Classifier\\Classifier.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBUAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBUAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-21T12:54:50.854Z",
               "EditorCaption": ""
@@ -59,8 +55,7 @@
               "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageProcessing.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:50:22.227Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T19:50:22.227Z"
             },
             {
               "$type": "Document",
@@ -84,8 +79,7 @@
               "RelativeToolTip": "Image_Reconstruction_Classifier\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T00:14:17.568Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T00:14:17.568Z"
             },
             {
               "$type": "Document",
@@ -97,8 +91,7 @@
               "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageSpartial.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAswA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T00:13:21.344Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T00:13:21.344Z"
             }
           ]
         }
