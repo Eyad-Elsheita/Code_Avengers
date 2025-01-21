@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Image_Reconstruction_Classifier")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7600582d92b78f48f40a467ba73b2f625a20824a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e06cd0d7c817da13c540b96f2f47142349ae6ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("Image_Reconstruction_Classifier")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Image_Reconstruction_Classifier")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
