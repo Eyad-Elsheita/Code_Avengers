@@ -61,13 +61,28 @@ class Program
         DirectoryInfo outputDirectoryInfo = Directory.CreateDirectory(outputFolder);
 
         // Save the image data
+        // Get all the binarized image file paths
+        var binarizedFiles = Directory.GetFiles(folderPath, "*.txt").Take(numberOfFiles).ToArray();
+
+        // Save the image data
         for (int i = 0; i < imageData.Length; i++)
         {
-            // Combine the output folder path with the file name
-            string outputFilePath = Path.Combine(outputFolder, $"train_image_{i}_vectorized.txt");
+            // Get the original file name without extension
+            string originalFileName = Path.GetFileNameWithoutExtension(binarizedFiles[i]);
+
+            // Split the original file name into code and label (assuming you want the code_label format)
+            string[] nameParts = originalFileName.Split('_');
+            string code = nameParts.Length > 0 ? nameParts[0] : "unknown";
+            string label = nameParts.Length > 1 ? nameParts[1] : "unknown";
+
+            // Combine the output folder path with the new vectorized file name
+            string outputFilePath = Path.Combine(outputFolder, $"{code}_{label}_vectorized.txt");
+
+            // Save the image data to the output path
             ImageLoader.SaveImageDataToFile(imageData[i], outputFilePath);
-            Console.WriteLine($"Saved image data to: {outputFilePath}");
+            Console.WriteLine($"Saved vectorized image data to: {outputFilePath}");
         }
+
 
         // Step 9: SpatialPooler Output 
         ImageSpartial.SaveImagesinSpartialPooler();

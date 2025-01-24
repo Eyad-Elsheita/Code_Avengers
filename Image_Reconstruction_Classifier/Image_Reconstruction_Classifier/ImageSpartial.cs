@@ -37,7 +37,7 @@ namespace Image_Reconstruction_Classifier
             {
                 Console.WriteLine("Environment variables not set. Using default paths.");
                 // Replace with default path
-                outputFolder = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Spartial";
+                outputFolder = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Training_Image_Spartial";
             }
 
             //create the directory if it doesn't exist
@@ -79,11 +79,16 @@ namespace Image_Reconstruction_Classifier
                     // Step 3.2: Pass the input vector to the Spatial Pooler
                     int[] activeColumns = spatialPooler.Compute(inputVector, learn: true);
 
-                    // Step 3.3: Save the Spatial Pooler's output to a new text file
-                    string spatialOutputFile = Path.Combine(outputFolder, fileNameWithoutExtension + "_spatial.txt");
+                    // Get the original file name and split it into code and label
+                    string[] nameParts = fileNameWithoutExtension.Split('_');
+                    string code = nameParts.Length > 0 ? nameParts[0] : "unknown";
+                    string label = nameParts.Length > 1 ? nameParts[1] : "unknown";
+
+                    // Save the Spatial Pooler's output to a new text file with the format code_label_spatial.txt
+                    string spatialOutputFile = Path.Combine(outputFolder, $"{code}_{label}_spatial.txt");
                     File.WriteAllText(spatialOutputFile, string.Join(",", activeColumns));
 
-                    Console.WriteLine($"Processed and saved output for: {fileNameWithoutExtension}");
+                    Console.WriteLine($"Processed and saved spatial output for: {fileNameWithoutExtension}");
                 }
                 catch (Exception ex)
                 {
