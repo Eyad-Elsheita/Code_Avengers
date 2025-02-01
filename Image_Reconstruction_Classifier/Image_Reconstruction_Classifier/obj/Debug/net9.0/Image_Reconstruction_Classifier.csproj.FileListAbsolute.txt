@@ -141,3 +141,11 @@ D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruc
 D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\Image_Reconstruction_Classifier.pdb
 D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\Image_Reconstruction_Classifier.genruntimeconfig.cache
 D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\ref\Image_Reconstruction_Classifier.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\ClosedXML.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\ClosedXML.Parser.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\DocumentFormat.OpenXml.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\ExcelNumberFormat.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\RBush.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\SixLabors.Fonts.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\System.IO.Packaging.dll

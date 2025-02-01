@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq; // Make sure to include this for the .Take method
-using System.IO;
+﻿using Image_Reconstruction_Classifier;
 using ImageProcessing;
-using NeoCortexApi;
-using Image_Reconstruction_Classifier;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 class Program
 {
@@ -13,95 +13,139 @@ class Program
         ImageProcessor.ConvertImagesToBinary();
         Console.WriteLine("Image binarization completed.");
 
-        // Step 2: Define the folder path where the binary image text files are located
+        // Step 2: Load binarized images
         string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary")!;
-
-        // Ensure that you get the path for the output folder 
         if (string.IsNullOrEmpty(folderPath))
         {
-            Console.WriteLine("Environment variables not set. Using default paths.");
-            // Replace with default path
             folderPath = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Binary";
         }
-
-        DirectoryInfo directoryInfo = Directory.CreateDirectory(folderPath);
-
-        // Step 3: Define how many files to load (you can change this number as needed)
         int numberOfFiles = 2000;
-
-        // Step 4: Initialize the ImageLoader
-        // ImageLoader imageLoader = new ImageLoader(); // No need to initialize since we're using static methods
-
-        // Step 5: Load the binarized image data from the folder
         int[][] imageData = ImageLoader.LoadImageData(folderPath, numberOfFiles);
 
-        // Step 6: Check if images are loaded successfully
         if (imageData.Length == 0)
         {
             Console.WriteLine("No images were loaded.");
             return;
         }
-
-        // Step 7: Example processing using the loaded data
         Console.WriteLine($"Loaded {imageData.Length} images.");
 
-        // Step 8: Save each image data to a separate file
-        // Get the output folder path from the environment variable
-        string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Loader")!;
-
-        // Ensure that you get the path for the output folder 
-        if (string.IsNullOrEmpty(outputFolder))
-        {
-            Console.WriteLine("Environment variables not set for Output Folder. Using default paths.");
-            // Replace with default path
-            outputFolder = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Loader";
-        }
-
-        // Create the directory if it doesn't exist
-        DirectoryInfo outputDirectoryInfo = Directory.CreateDirectory(outputFolder);
-
-        // Save the image data
-        // Get all the binarized image file paths
-        var binarizedFiles = Directory.GetFiles(folderPath, "*.txt").Take(numberOfFiles).ToArray();
-
-        // Save the image data
-        for (int i = 0; i < imageData.Length; i++)
-        {
-            // Get the original file name without extension
-            string originalFileName = Path.GetFileNameWithoutExtension(binarizedFiles[i]);
-
-            // Split the original file name into code and label (assuming you want the code_label format)
-            string[] nameParts = originalFileName.Split('_');
-            string code = nameParts.Length > 0 ? nameParts[0] : "unknown";
-            string label = nameParts.Length > 1 ? nameParts[1] : "unknown";
-
-            // Combine the output folder path with the new vectorized file name
-            string outputFilePath = Path.Combine(outputFolder, $"{code}_{label}_vectorized.txt");
-
-            // Save the image data to the output path
-            ImageLoader.SaveImageDataToFile(imageData[i], outputFilePath);
-            Console.WriteLine($"Saved vectorized image data to: {outputFilePath}");
-        }
-
-
-        // Step 9: SpatialPooler Output 
+        // Step 3: Process images through Spatial Pooler
         ImageSpartial.SaveImagesinSpartialPooler();
-        Console.WriteLine("SpartialPooler completed.");
+        Console.WriteLine("Spatial Pooler processing completed.");
 
-        // Step 9: Initialize the SpatialPooler
-        //SpatialPooler spatialPooler = new SpatialPooler();
+        // Step 4: Initialize our custom HTM Classifier
+        var classifier = new MyHtmClassifier();
 
-        // Step 10: Process each image data as input vector
-        //foreach (var inputVector in imageData)
-        //{
-        //    //Ensure the input vector is in the expected format (0s and 1s)
-        //    // Classify or process the input vector
-        //    int[] activeColumns = spatialPooler.Compute(inputVector, true); // Set learn to true if you want to learn
+        // Step 5: Train the classifier with spatial pooler outputs
+        string spatialFolder = Environment.GetEnvironmentVariable("Training_Image_Spartial")!;
+        if (string.IsNullOrEmpty(spatialFolder))
+        {
+            spatialFolder = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Training_Image_Spartial";
+        }
 
-        //    //Output or further process the result as needed
-        //    Console.WriteLine($"Active Columns: {string.Join(", ", activeColumns)}");
-        //}
+        string[] spatialFiles = Directory.GetFiles(spatialFolder, "*.txt");
 
-        Console.WriteLine("Processing completed.");
+        for (int i = 0; i < spatialFiles.Length && i < imageData.Length; i++)
+        {
+            try
+            {
+                // Read SDR from file
+                string sdrData = File.ReadAllText(spatialFiles[i]);
+
+                string[] sdrStrings = sdrData
+                    .Split(',')
+                    .Select(line => line.Trim())
+                    .Where(line => !string.IsNullOrEmpty(line))
+                    .ToArray();
+
+                if (sdrStrings.All(line => int.TryParse(line, out _)))
+                {
+                    int[] sdr = sdrStrings.Select(int.Parse).ToArray();
+                    classifier.Learn(i, sdr, imageData[i]);
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid SDR data in file: {spatialFiles[i]}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing file {spatialFiles[i]}: {ex.Message}");
+            }
+        }
+
+        Console.WriteLine("HTM Classifier training completed.");
+
+        // Step 6: Initialize a list to store similarity data
+        List<SimilarityData> similarityDataList = new List<SimilarityData>();
+
+        // Step 7: Process all images and calculate similarities
+        string reconstructedBinaryFolderPath = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Reconstructed_Binary_Image";
+        string reconstructedVectorFolderPath = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Reconstructed_vector_Images";
+
+        for (int i = 0; i < spatialFiles.Length && i < imageData.Length; i++)
+        {
+            string[] sdrStrings = File.ReadAllText(spatialFiles[i])
+                                      .Split(',')
+                                      .Select(line => line.Trim())
+                                      .Where(line => !string.IsNullOrEmpty(line))
+                                      .ToArray();
+
+            if (sdrStrings.All(line => int.TryParse(line, out _)))
+            {
+                int[] testSDR = sdrStrings.Select(int.Parse).ToArray();
+                int[] reconstructedImage = classifier.GetPredictedInputValues(testSDR, 3);
+
+                double vectorSimilarity = ImageSimilarity.CalculateCosineSimilarity(imageData[i], reconstructedImage);
+                double binarizedSimilarity = CalculateBinarizedImageSimilarity(imageData[i], reconstructedImage);
+
+                // Save the reconstructed vectorized image
+                string originalFileName = Path.GetFileNameWithoutExtension(spatialFiles[i]);
+
+                // Remove the "_spatial" part from the original file name
+                string cleanedFileName = originalFileName.Replace("_spatial", "");
+
+                // Save the vector file
+                string reconstructedVectorFileName = $"{cleanedFileName}_Reconstructed_Vector.txt";
+                string reconstructedVectorFilePath = Path.Combine(reconstructedVectorFolderPath, reconstructedVectorFileName);
+                File.WriteAllText(reconstructedVectorFilePath, string.Join(",", reconstructedImage));
+
+                // Save the reconstructed binary image as a 28x28 matrix (without spaces between pixels)
+                string reconstructedBinary = ImageSimilarity.ConvertToBinaryMatrix(reconstructedImage, 28);  // Use the proper function for formatting
+
+                // Save to file in the binary image folder
+                string reconstructedBinaryFileName = $"{cleanedFileName}_Reconstructed_binary.txt";
+                string reconstructedBinaryFilePath = Path.Combine(reconstructedBinaryFolderPath, reconstructedBinaryFileName);
+                File.WriteAllText(reconstructedBinaryFilePath, reconstructedBinary);
+
+                // Add the similarity data to the list with rounded percentages
+                similarityDataList.Add(new SimilarityData
+                {
+                    PictureName = cleanedFileName, // Using the cleaned name here
+                    VectorSimilarityPercentage = Math.Round(vectorSimilarity * 100, 2), // Rounded to 2 decimals
+                    BinarySimilarityPercentage = Math.Round(binarizedSimilarity * 100, 2) // Rounded to 2 decimals
+                });
+            }
+            else
+            {
+                Console.WriteLine($"Invalid SDR data in test file: {spatialFiles[i]}");
+            }
+        }
+
+
+
+        // Step 8: Save the similarity statistics to an Excel sheet
+        string excelFilePath = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Similarity statistics\Similarity_Statistics.xlsx";
+        ExcelHelper.SaveSimilarityStatistics(similarityDataList, excelFilePath);
+        Console.WriteLine($"Similarity statistics saved to {excelFilePath}");
+    }
+
+    static double CalculateBinarizedImageSimilarity(int[] originalImage, int[] reconstructedImage)
+    {
+        if (originalImage.Length != reconstructedImage.Length)
+            throw new ArgumentException("Original and reconstructed images must have the same size.");
+
+        int matchingPixels = originalImage.Zip(reconstructedImage, (orig, recon) => orig == recon ? 1 : 0).Sum();
+        return (double)matchingPixels / originalImage.Length;
     }
 }
