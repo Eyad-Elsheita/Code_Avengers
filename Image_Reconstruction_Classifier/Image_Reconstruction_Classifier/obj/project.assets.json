@@ -5949,23 +5949,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\1907f\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
+      "projectUniqueName": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
       "projectName": "Image_Reconstruction_Classifier",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\obj\\",
+      "projectPath": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
+      "packagesPath": "C:\\Users\\1907f\\.nuget\\packages\\",
+      "outputPath": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\1907f\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5974,7 +5974,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\temp\\Test Packages": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\software engineering\\2024-2025\\files\\New Folder\\se-cloud-2024-2025\\MyWork\\Ex10\\ClassLibrary1\\bin\\Release": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5991,7 +5992,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -6048,8 +6049,40 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json' 10.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Net.Http' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
+      "libraryId": "System.Net.Http",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Text.RegularExpressions' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-cmhx-cq75-c4mj",
+      "libraryId": "System.Text.RegularExpressions",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

@@ -9,17 +9,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Step 1: Convert the original images to binarized text files
-        ImageProcessor.ConvertImagesToBinary();
-        Console.WriteLine("Image binarization completed.");
-
-        // Step 2: Load binarized images
-        string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary")!;
-        if (string.IsNullOrEmpty(folderPath))
-        {
-            folderPath = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Binary";
-        }
-        int numberOfFiles = 2000;
+        // Step 1: Load binarized images from the specified folder
+        string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary");
+        int numberOfFiles = 2000; // Define the number of images to load
         int[][] imageData = ImageLoader.LoadImageData(folderPath, numberOfFiles);
 
         if (imageData.Length == 0)
@@ -29,123 +21,152 @@ class Program
         }
         Console.WriteLine($"Loaded {imageData.Length} images.");
 
-        // Step 3: Process images through Spatial Pooler
+        // Step 2: Process images through Spatial Pooler to generate SDR representations
         ImageSpartial.SaveImagesinSpartialPooler();
         Console.WriteLine("Spatial Pooler processing completed.");
 
-        // Step 4: Initialize our custom HTM Classifier
-        var classifier = new MyHtmClassifier();
+        // Step 3: Train HTM Classifier using the processed spatial data
+        string spatialFolder = Environment.GetEnvironmentVariable("Training_Image_Spatial") ?? "C:\\try\\Code_Avengers\\Training_Image_Spartial";
 
-        // Step 5: Train the classifier with spatial pooler outputs
-        string spatialFolder = Environment.GetEnvironmentVariable("Training_Image_Spartial")!;
-        if (string.IsNullOrEmpty(spatialFolder))
+        if (!Directory.Exists(spatialFolder))
         {
-            spatialFolder = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Training_Image_Spartial";
+            Console.WriteLine($"Error: Spatial folder not found: {spatialFolder}");
+            return;
         }
 
         string[] spatialFiles = Directory.GetFiles(spatialFolder, "*.txt");
 
+        var htmClassifier = new MyHtmClassifier();
         for (int i = 0; i < spatialFiles.Length && i < imageData.Length; i++)
         {
+            string originalFileName = Path.GetFileNameWithoutExtension(spatialFiles[i]);
+
             try
             {
-                // Read SDR from file
-                string sdrData = File.ReadAllText(spatialFiles[i]);
+                // Read and parse the SDR data
+                string sdrData = File.ReadAllText(spatialFiles[i]).Trim();
+                if (string.IsNullOrWhiteSpace(sdrData)) continue;
 
-                string[] sdrStrings = sdrData
-                    .Split(',')
-                    .Select(line => line.Trim())
-                    .Where(line => !string.IsNullOrEmpty(line))
+                int[] sdr = sdrData.Split(',')
+                    .Select(s => s.Trim())
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .Select(int.Parse)
                     .ToArray();
 
-                if (sdrStrings.All(line => int.TryParse(line, out _)))
-                {
-                    int[] sdr = sdrStrings.Select(int.Parse).ToArray();
-                    classifier.Learn(i, sdr, imageData[i]);
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid SDR data in file: {spatialFiles[i]}");
-                }
+                // Train HTM classifier with the SDR data and corresponding image index
+                htmClassifier.Learn(i, sdr, imageData[i]);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error processing file {spatialFiles[i]}: {ex.Message}");
             }
         }
-
         Console.WriteLine("HTM Classifier training completed.");
 
-        // Step 6: Initialize a list to store similarity data
-        List<SimilarityData> similarityDataList = new List<SimilarityData>();
+        // Step 4: Train KNN Classifier using the same spatial data
+        var knnClassifier = new KnnClassifier();
+        for (int i = 0; i < spatialFiles.Length && i < imageData.Length; i++)
+        {
+            string originalFileName = Path.GetFileNameWithoutExtension(spatialFiles[i]);
 
-        // Step 7: Process all images and calculate similarities
-        string reconstructedBinaryFolderPath = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Reconstructed_Binary_Image";
-        string reconstructedVectorFolderPath = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Reconstructed_vector_Images";
+            try
+            {
+                // Read and parse the SDR data
+                string sdrData = File.ReadAllText(spatialFiles[i]).Trim();
+                if (string.IsNullOrWhiteSpace(sdrData)) continue;
+
+                int[] sdr = sdrData.Split(',')
+                    .Select(s => s.Trim())
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .Select(int.Parse)
+                    .ToArray();
+
+                // Train KNN classifier with the SDR data and corresponding image index
+                knnClassifier.Train(sdr, i);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing file {spatialFiles[i]}: {ex.Message}");
+            }
+        }
+        Console.WriteLine("KNN Classifier training completed.");
+
+        // Define paths for saving results
+        string htmBinaryFolder = Environment.GetEnvironmentVariable("HTM_Binary_Output_Path");
+        string htmVectorFolder = Environment.GetEnvironmentVariable("HTM_Vector_Output_Path");
+        string knnBinaryFolder = Environment.GetEnvironmentVariable("KNN_Binary_Output_Path");
+        string knnVectorFolder = Environment.GetEnvironmentVariable("KNN_Vector_Output_Path");
+        string similarityStatisticsFolder = Environment.GetEnvironmentVariable("Similarity_Statistics");
+
+        // Lists to store similarity results for HTM and KNN classifiers
+        List<SimilarityData> htmSimilarityList = new List<SimilarityData>();
+        List<SimilarityData> knnSimilarityList = new List<SimilarityData>();
 
         for (int i = 0; i < spatialFiles.Length && i < imageData.Length; i++)
         {
-            string[] sdrStrings = File.ReadAllText(spatialFiles[i])
-                                      .Split(',')
-                                      .Select(line => line.Trim())
-                                      .Where(line => !string.IsNullOrEmpty(line))
-                                      .ToArray();
+            string originalFileName = Path.GetFileNameWithoutExtension(spatialFiles[i]);
 
-            if (sdrStrings.All(line => int.TryParse(line, out _)))
-            {
-                int[] testSDR = sdrStrings.Select(int.Parse).ToArray();
-                int[] reconstructedImage = classifier.GetPredictedInputValues(testSDR, 3);
+            // Read SDR data for testing
+            int[] testSDR = File.ReadAllText(spatialFiles[i])
+                     .Split(',')
+                     .Select(s => s.Trim())
+                     .Where(s => !string.IsNullOrEmpty(s) && int.TryParse(s, out _))
+                     .Select(int.Parse)
+                     .ToArray();
 
-                double vectorSimilarity = ImageSimilarity.CalculateCosineSimilarity(imageData[i], reconstructedImage);
-                double binarizedSimilarity = CalculateBinarizedImageSimilarity(imageData[i], reconstructedImage);
+            // HTM Reconstruction process
+            int[] htmReconstructed = htmClassifier.GetPredictedInputValues(testSDR, 3);
+            SaveReconstructedImages(htmReconstructed, originalFileName, htmBinaryFolder, htmVectorFolder);
 
-                // Save the reconstructed vectorized image
-                string originalFileName = Path.GetFileNameWithoutExtension(spatialFiles[i]);
+            // Calculate similarity metrics for HTM classifier
+            double htmVectorSimilarity = ImageSimilarity.CalculateCosineSimilarity(imageData[i], htmReconstructed);
+            double htmBinarySimilarity = CalculateBinarizedImageSimilarity(imageData[i], htmReconstructed);
+            htmSimilarityList.Add(new SimilarityData { PictureName = originalFileName, VectorSimilarityPercentage = htmVectorSimilarity * 100, BinarySimilarityPercentage = htmBinarySimilarity * 100 });
 
-                // Remove the "_spatial" part from the original file name
-                string cleanedFileName = originalFileName.Replace("_spatial", "");
+            // KNN Classification and Reconstruction process
+            int predictedLabel = knnClassifier.Classify(testSDR, 5); // Using K=5 for nearest neighbors
+            int[] knnReconstructed = imageData[predictedLabel]; // Retrieve the original image corresponding to the predicted label
+            SaveReconstructedImages(knnReconstructed, originalFileName, knnBinaryFolder, knnVectorFolder);
 
-                // Save the vector file
-                string reconstructedVectorFileName = $"{cleanedFileName}_Reconstructed_Vector.txt";
-                string reconstructedVectorFilePath = Path.Combine(reconstructedVectorFolderPath, reconstructedVectorFileName);
-                File.WriteAllText(reconstructedVectorFilePath, string.Join(",", reconstructedImage));
-
-                // Save the reconstructed binary image as a 28x28 matrix (without spaces between pixels)
-                string reconstructedBinary = ImageSimilarity.ConvertToBinaryMatrix(reconstructedImage, 28);  // Use the proper function for formatting
-
-                // Save to file in the binary image folder
-                string reconstructedBinaryFileName = $"{cleanedFileName}_Reconstructed_binary.txt";
-                string reconstructedBinaryFilePath = Path.Combine(reconstructedBinaryFolderPath, reconstructedBinaryFileName);
-                File.WriteAllText(reconstructedBinaryFilePath, reconstructedBinary);
-
-                // Add the similarity data to the list with rounded percentages
-                similarityDataList.Add(new SimilarityData
-                {
-                    PictureName = cleanedFileName, // Using the cleaned name here
-                    VectorSimilarityPercentage = Math.Round(vectorSimilarity * 100, 2), // Rounded to 2 decimals
-                    BinarySimilarityPercentage = Math.Round(binarizedSimilarity * 100, 2) // Rounded to 2 decimals
-                });
-            }
-            else
-            {
-                Console.WriteLine($"Invalid SDR data in test file: {spatialFiles[i]}");
-            }
+            // Calculate similarity metrics for KNN classifier
+            double knnVectorSimilarity = ImageSimilarity.CalculateCosineSimilarity(imageData[i], knnReconstructed);
+            double knnBinarySimilarity = CalculateBinarizedImageSimilarity(imageData[i], knnReconstructed);
+            knnSimilarityList.Add(new SimilarityData { PictureName = originalFileName, VectorSimilarityPercentage = knnVectorSimilarity * 100, BinarySimilarityPercentage = knnBinarySimilarity * 100 });
         }
 
-
-
-        // Step 8: Save the similarity statistics to an Excel sheet
-        string excelFilePath = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Similarity statistics\Similarity_Statistics.xlsx";
-        ExcelHelper.SaveSimilarityStatistics(similarityDataList, excelFilePath);
-        Console.WriteLine($"Similarity statistics saved to {excelFilePath}");
+        // Save similarity statistics results in Excel format
+        ExcelHelper.SaveSimilarityStatistics(htmSimilarityList, Path.Combine(similarityStatisticsFolder, "HTM_Similarity_Statistics.xlsx"));
+        ExcelHelper.SaveSimilarityStatistics(knnSimilarityList, Path.Combine(similarityStatisticsFolder, "KNN_Similarity_Statistics.xlsx"));
+        Console.WriteLine("Similarity statistics saved.");
     }
 
-    static double CalculateBinarizedImageSimilarity(int[] originalImage, int[] reconstructedImage)
+    /// <summary>
+    /// Saves reconstructed images in both vectorized and binary formats.
+    /// </summary>
+    /// <param name="image">Reconstructed image data</param>
+    /// <param name="originalFileName">Original image name</param>
+    /// <param name="binaryFolder">Path to save binary images</param>
+    /// <param name="vectorFolder">Path to save vectorized images</param>
+    static void SaveReconstructedImages(int[] image, string originalFileName, string binaryFolder, string vectorFolder)
     {
-        if (originalImage.Length != reconstructedImage.Length)
-            throw new ArgumentException("Original and reconstructed images must have the same size.");
+        string vectorFile = Path.Combine(vectorFolder, $"{originalFileName}_Reconstructed_Vector.txt");
+        string binaryFile = Path.Combine(binaryFolder, $"{originalFileName}_Reconstructed_Binary.txt");
 
-        int matchingPixels = originalImage.Zip(reconstructedImage, (orig, recon) => orig == recon ? 1 : 0).Sum();
-        return (double)matchingPixels / originalImage.Length;
+        // Save vector representation of the reconstructed image
+        File.WriteAllText(vectorFile, string.Join(",", image));
+
+        // Convert and save the reconstructed image in binary format
+        File.WriteAllText(binaryFile, ImageSimilarity.ConvertToBinaryMatrix(image, 28));
+    }
+
+    /// <summary>
+    /// Calculates similarity between original and reconstructed binarized images.
+    /// </summary>
+    /// <param name="original">Original binarized image</param>
+    /// <param name="reconstructed">Reconstructed binarized image</param>
+    /// <returns>Similarity percentage</returns>
+    static double CalculateBinarizedImageSimilarity(int[] original, int[] reconstructed)
+    {
+        return original.Zip(reconstructed, (o, r) => o == r ? 1 : 0).Sum() / (double)original.Length;
     }
 }

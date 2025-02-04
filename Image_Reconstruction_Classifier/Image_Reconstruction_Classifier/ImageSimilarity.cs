@@ -19,8 +19,13 @@ public class ImageSimilarity
             reconstructedNorm += Math.Pow(reconstructed[i], 2);
         }
 
+        // Check if norms are zero to avoid division by zero
+        if (originalNorm == 0 || reconstructedNorm == 0)
+            return 0; // If either vector is all zeros, similarity is 0
+
         return dotProduct / (Math.Sqrt(originalNorm) * Math.Sqrt(reconstructedNorm));
     }
+
 
     // Add the ConvertToBinaryMatrix method to the same class
     public static string ConvertToBinaryMatrix(int[] imageArray, int rowSize)

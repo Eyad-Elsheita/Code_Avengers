@@ -31,13 +31,13 @@ namespace Image_Reconstruction_Classifier
             DirectoryInfo inputDirectoryInfo = Directory.CreateDirectory(inputFolder);
 
             // Get the output folder path and 
-            string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Spartial")!;
+            string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Spatial")!;
             // Ensure that you get the path for the output folder 
             if (string.IsNullOrEmpty(outputFolder))
             {
                 Console.WriteLine("Environment variables not set. Using default paths.");
                 // Replace with default path
-                outputFolder = @"C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project-\Training_Image_Spartial";
+                outputFolder = @"C:\try\Code_Avengers\Training_Image_Spartial";
             }
 
             //create the directory if it doesn't exist
