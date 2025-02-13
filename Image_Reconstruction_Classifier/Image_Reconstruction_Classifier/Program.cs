@@ -9,7 +9,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Step 1: Load binarized images from the specified folder
+        // Step 1: Convert the original images to binarized text files and load them
+        ImageProcessor.ConvertImagesToBinary();
+        Console.WriteLine("Image binarization completed.");
         string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary");
         int numberOfFiles = 2000; // Define the number of images to load
         int[][] imageData = ImageLoader.LoadImageData(folderPath, numberOfFiles);
@@ -138,6 +140,132 @@ class Program
         ExcelHelper.SaveSimilarityStatistics(htmSimilarityList, Path.Combine(similarityStatisticsFolder, "HTM_Similarity_Statistics.xlsx"));
         ExcelHelper.SaveSimilarityStatistics(knnSimilarityList, Path.Combine(similarityStatisticsFolder, "KNN_Similarity_Statistics.xlsx"));
         Console.WriteLine("Similarity statistics saved.");
+
+        // Process Test Images
+        string testImagesFolder = Environment.GetEnvironmentVariable("Test_Images") ?? "Test_Images";
+        string testBinaryFolder = Environment.GetEnvironmentVariable("Test_Image_Binary") ?? "Test_Image_Binary";
+        string testSpatialFolder = Environment.GetEnvironmentVariable("Test_Image_Spatial") ?? "Test_Image_Spatial";
+
+        // Binarize Test Images
+        Environment.SetEnvironmentVariable("Training_Image_Sample", testImagesFolder);
+        Environment.SetEnvironmentVariable("Training_Image_Binary", testBinaryFolder);
+        ImageProcessor.ConvertImagesToBinary();
+
+        //Vectorize test images
+        string testLoaderFolder = Environment.GetEnvironmentVariable("Test_Image_Loader") ?? "Test_Image_Loader";
+        Directory.CreateDirectory(testLoaderFolder);
+
+        string[] testBinaryFiles = Directory.GetFiles(testBinaryFolder, "*.txt");
+        foreach (var file in testBinaryFiles)
+        {
+            // Load binary grid and vectorize
+            int[] vectorized = ImageLoader.LoadImage(file);
+
+            // Extract code and label from filename (e.g., "0_1169_binarized.txt")
+            string fileName = Path.GetFileNameWithoutExtension(file);
+            string[] nameParts = fileName.Split('_');
+            if (nameParts.Length < 3)
+            {
+                Console.WriteLine($"Invalid filename format: {fileName}");
+                continue;
+            }
+            string code = nameParts[0];
+            string label = nameParts[1];
+
+            // Save as "Image_Name_vectorized.txt"
+            string vectorizedFileName = $"{code}_{label}_vectorized.txt";
+            ImageLoader.SaveImageDataToFile(
+                vectorized,
+                Path.Combine(testLoaderFolder, vectorizedFileName)
+            );
+        }
+        Console.WriteLine($"Vectorized test images saved to {testLoaderFolder}");
+
+        // Process Test Images through Spatial Pooler (no learning)
+        Environment.SetEnvironmentVariable("Test_Image_Binary", testBinaryFolder);
+        Environment.SetEnvironmentVariable("Test_Image_Spatial", testSpatialFolder);
+        ImageSpartial.ProcessTestImagesSpatial();
+
+        Console.WriteLine("Test dataset processing completed.");
+
+        ImageSpartial.ProcessTestImagesSpatial();
+
+        // =============================================
+        // ========== TEST IMAGE PREDICTION ===========
+        // =============================================
+
+        // 1. Load test SDRs and original test images
+        string[] testSpatialFiles = Directory.GetFiles(testSpatialFolder, "*.txt");
+        int[][] testImageData = ImageLoader.LoadImageData(testBinaryFolder, testSpatialFiles.Length);
+
+        // 2. Define test reconstruction folders
+        string htmTestBinaryFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Binary_HTM") ?? "Test_Images_Reconstructed_Binary_HTM";
+        string htmTestVectorFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Vector_HTM") ?? "Test_Images_Reconstructed_Vector_HTM";
+        string knnTestBinaryFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Binary_KNN") ?? "Test_Images_Reconstructed_Binary_KNN";
+        string knnTestVectorFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Vector_KNN") ?? "Test_Images_Reconstructed_Vector_KNN";
+
+        Directory.CreateDirectory(htmTestBinaryFolder);
+        Directory.CreateDirectory(htmTestVectorFolder);
+        Directory.CreateDirectory(knnTestBinaryFolder);
+        Directory.CreateDirectory(knnTestVectorFolder);
+
+        List<SimilarityData> htmTestSimilarities = new List<SimilarityData>();
+        List<SimilarityData> knnTestSimilarities = new List<SimilarityData>();
+
+        for (int i = 0; i < testSpatialFiles.Length; i++)
+        {
+            string originalFileName = Path.GetFileNameWithoutExtension(testSpatialFiles[i]);
+
+            try
+            {
+                // Read test SDR
+                int[] testSdr = File.ReadAllText(testSpatialFiles[i])
+                             .Split(',')
+                             .Select(int.Parse)
+                             .ToArray();
+
+                // HTM Test Reconstruction
+                int[] htmTestReconstructed = htmClassifier.GetPredictedInputValues(testSdr, 3);
+                SaveReconstructedImages(htmTestReconstructed, originalFileName, htmTestBinaryFolder, htmTestVectorFolder);
+
+                // HTM Similarity
+                double htmVectorSim = ImageSimilarity.CalculateCosineSimilarity(testImageData[i], htmTestReconstructed);
+                double htmBinarySim = CalculateBinarizedImageSimilarity(testImageData[i], htmTestReconstructed);
+                htmTestSimilarities.Add(new SimilarityData
+                {
+                    PictureName = originalFileName,
+                    VectorSimilarityPercentage = htmVectorSim * 100,
+                    BinarySimilarityPercentage = htmBinarySim * 100
+                });
+
+                // KNN Test Reconstruction
+                int predictedLabel = knnClassifier.Classify(testSdr, 5);
+                int[] knnTestReconstructed = imageData[predictedLabel];
+                SaveReconstructedImages(knnTestReconstructed, originalFileName, knnTestBinaryFolder, knnTestVectorFolder);
+
+                // KNN Similarity
+                double knnVectorSim = ImageSimilarity.CalculateCosineSimilarity(testImageData[i], knnTestReconstructed);
+                double knnBinarySim = CalculateBinarizedImageSimilarity(testImageData[i], knnTestReconstructed);
+                knnTestSimilarities.Add(new SimilarityData
+                {
+                    PictureName = originalFileName,
+                    VectorSimilarityPercentage = knnVectorSim * 100,
+                    BinarySimilarityPercentage = knnBinarySim * 100
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing test image {originalFileName}: {ex.Message}");
+            }
+        }
+
+        // Save test results
+        ExcelHelper.SaveSimilarityStatistics(htmTestSimilarities,
+            Path.Combine(similarityStatisticsFolder, "HTM_Test_Similarity_Statistics.xlsx"));
+        ExcelHelper.SaveSimilarityStatistics(knnTestSimilarities,
+            Path.Combine(similarityStatisticsFolder, "KNN_Test_Similarity_Statistics.xlsx"));
+
+        Console.WriteLine("Test dataset processing completed.");
     }
 
     /// <summary>

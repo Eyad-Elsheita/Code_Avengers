@@ -12,7 +12,7 @@ namespace ImageProcessing
             // Get the input folder path and create the directory if it doesn't exist
             string inputFolder = Environment.GetEnvironmentVariable("Training_Image_Sample")!;
 
-            // Ensure that you get the Path for the inputfolder 
+            // Get the Path for the inputfolder 
             if (string.IsNullOrEmpty(inputFolder))
             {
                 Console.WriteLine("Environment variables not set. Using default paths.");
@@ -71,7 +71,7 @@ namespace ImageProcessing
                         InputImagePath = filePath,
                         OutputImagePath = outputFilePath,
                         GreyScale = true, // or RGB scale depending on your need
-                        CreateCode = false, // Set to true if you want to create code file
+                        CreateCode = false, // Set to true to create code file
                     };
 
                     // Run the binarizer to generate the .txt file

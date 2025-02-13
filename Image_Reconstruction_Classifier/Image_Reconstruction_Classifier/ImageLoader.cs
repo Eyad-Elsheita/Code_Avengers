@@ -33,7 +33,7 @@ namespace ImageProcessing
         }
 
         // Method to load an individual image from a file and flatten it
-        private static int[] LoadImage(string filePath)
+        public static int[] LoadImage(string filePath)
         {
             try
             {
