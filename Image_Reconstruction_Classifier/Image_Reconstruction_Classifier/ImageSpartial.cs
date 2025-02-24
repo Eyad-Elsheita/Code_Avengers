@@ -110,14 +110,15 @@ namespace Image_Reconstruction_Classifier
 
             // Same SP configuration as before
             connections.HtmConfig.InputDimensions = new int[] { 784 };
-            connections.HtmConfig.ColumnDimensions = new int[] { 1024 };
-            connections.HtmConfig.LocalAreaDensity = 0.02;
-            connections.HtmConfig.NumActiveColumnsPerInhArea = 40;
+            connections.HtmConfig.ColumnDimensions = new int[] { 2048 };
+            connections.HtmConfig.PotentialRadius = 12;
+            connections.HtmConfig.PotentialPct = 0.8;
+            connections.HtmConfig.GlobalInhibition = true;
+            connections.HtmConfig.LocalAreaDensity = 0.03;
             connections.HtmConfig.StimulusThreshold = 5;
-            connections.HtmConfig.SynPermConnected = 0.2;
+            connections.HtmConfig.SynPermInactiveDec = 0.008;
             connections.HtmConfig.SynPermActiveInc = 0.05;
-            connections.HtmConfig.SynPermInactiveDec = 0.01;
-            connections.HtmConfig.PotentialRadius = 16;
+            connections.HtmConfig.SynPermConnected = 0.2;
 
             spatialPooler.Init(connections);
 

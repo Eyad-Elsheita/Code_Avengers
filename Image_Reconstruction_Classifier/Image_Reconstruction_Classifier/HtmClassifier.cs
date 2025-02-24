@@ -76,19 +76,23 @@ namespace Image_Reconstruction_Classifier
                 throw new InvalidOperationException("Training examples do not contain original image data.");
 
             double[] pixelSums = new double[imageLength];
-
             foreach (var scored in scoredExamples)
             {
+                // Get the overlap score as the weight
+                double weight = scored.Overlap;
+
                 for (int i = 0; i < imageLength; i++)
                 {
-                    pixelSums[i] += scored.Example.OriginalInput[i];
+                    // Weight each pixel by the overlap
+                    pixelSums[i] += scored.Example.OriginalInput[i] * weight;
                 }
             }
 
             int[] reconstructedImage = new int[imageLength];
             for (int i = 0; i < imageLength; i++)
             {
-                double avg = pixelSums[i] / scoredExamples.Count;
+                double totalWeight = scoredExamples.Sum(s => s.Overlap);
+                double avg = totalWeight > 0 ? pixelSums[i] / totalWeight : 0;
                 reconstructedImage[i] = avg >= 0.5 ? 1 : 0;
             }
 

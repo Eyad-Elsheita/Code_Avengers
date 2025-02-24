@@ -23,7 +23,36 @@ class Program
         }
         Console.WriteLine($"Loaded {imageData.Length} images.");
 
-        // Step 2: Process images through Spatial Pooler to generate SDR representations
+        // Step 2: Vectorize and Process images through Spatial Pooler to generate SDR representations
+        string trainingLoaderFolder = Environment.GetEnvironmentVariable("Training_Image_Loader") ?? "Training_Image_Loader";
+        Directory.CreateDirectory(trainingLoaderFolder);
+
+        string[] trainingBinaryFiles = Directory.GetFiles(folderPath, "*.txt");
+        foreach (var file in trainingBinaryFiles)
+        {
+            // Load binary grid and vectorize
+            int[] vectorized = ImageLoader.LoadImage(file);
+
+            // Extract code and label from filename (e.g., "0_1169_binarized.txt")
+            string fileName = Path.GetFileNameWithoutExtension(file);
+            string[] nameParts = fileName.Split('_');
+            if (nameParts.Length < 3)
+            {
+                Console.WriteLine($"Invalid filename format: {fileName}");
+                continue;
+            }
+            string code = nameParts[0];
+            string label = nameParts[1];
+
+            // Save as "Image_Name_vectorized.txt"
+            string vectorizedFileName = $"{code}_{label}_vectorized.txt";
+            ImageLoader.SaveImageDataToFile(
+                vectorized,
+                Path.Combine(trainingLoaderFolder, vectorizedFileName)
+            );
+        }
+        Console.WriteLine($"Vectorized training images saved to {trainingLoaderFolder}");
+
         ImageSpartial.SaveImagesinSpartialPooler();
         Console.WriteLine("Spatial Pooler processing completed.");
 

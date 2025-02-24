@@ -20,8 +20,8 @@ public class KnnClassifier
 
         // Find the nearest neighbors by comparing the test SDR with training SDRs using Hamming distance
         var nearestNeighbors = trainingData
-            .Select(td => new { Label = td.Label, Distance = HammingDistance(testSDR, td.SDR) }) // Calculate Hamming distance
-            .OrderBy(td => td.Distance)  // Sort by ascending distance (nearest first)
+            .Select(td => new { Label = td.Label, Overlap = Overlap(testSDR, td.SDR) })
+            .OrderByDescending(td => td.Overlap)// Sort by ascending distance (nearest first)
             .Take(k) // Take the 'k' nearest neighbors
             .ToList();
 
@@ -32,8 +32,10 @@ public class KnnClassifier
     }
 
     // Function to calculate the Hamming distance between two SDRs (measuring similarity)
-    private static int HammingDistance(int[] sdr1, int[] sdr2)
+    private static int Overlap(int[] sdr1, int[] sdr2)
     {
-        return sdr1.Zip(sdr2, (a, b) => a == b ? 0 : 1).Sum(); // Calculate the number of different positions between SDRs
+        var set1 = new HashSet<int>(sdr1);
+        var set2 = new HashSet<int>(sdr2);
+        return set1.Intersect(set2).Count();
     }
 }
