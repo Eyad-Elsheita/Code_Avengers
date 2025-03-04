@@ -49,14 +49,16 @@ namespace Image_Reconstruction_Classifier
             Connections connections = new Connections();
 
             // Configure the existing HtmConfig instance
-            connections.HtmConfig.InputDimensions = new int[] { 784 }; // Adjust to match encoder output length
-            connections.HtmConfig.ColumnDimensions = new int[] { 1024 }; // Number of columns in the Spatial Pooler
-            connections.HtmConfig.LocalAreaDensity = 0.02;
-            connections.HtmConfig.NumActiveColumnsPerInhArea = 40;
-            connections.HtmConfig.StimulusThreshold = 10;
+            connections.HtmConfig.InputDimensions = new int[] { 784 };
+            connections.HtmConfig.ColumnDimensions = new int[] { 2048 };
+            connections.HtmConfig.PotentialRadius = 12;
+            connections.HtmConfig.PotentialPct = 0.8;
+            connections.HtmConfig.GlobalInhibition = true;
+            connections.HtmConfig.LocalAreaDensity = 0.03;
+            connections.HtmConfig.StimulusThreshold = 5;
+            connections.HtmConfig.SynPermInactiveDec = 0.008;
+            connections.HtmConfig.SynPermActiveInc = 0.05;
             connections.HtmConfig.SynPermConnected = 0.2;
-            connections.HtmConfig.SynPermActiveInc = 0.03;
-            connections.HtmConfig.SynPermInactiveDec = 0.01;
 
             spatialPooler.Init(connections);
 

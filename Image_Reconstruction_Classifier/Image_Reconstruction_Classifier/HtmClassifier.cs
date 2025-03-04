@@ -78,12 +78,12 @@ namespace Image_Reconstruction_Classifier
             double[] pixelSums = new double[imageLength];
             foreach (var scored in scoredExamples)
             {
-                // Get the overlap score as the weight
-                double weight = scored.Overlap;
+                // Get the overlap score as the weight - now squared to emphasize higher overlaps more
+                double weight = Math.Pow(scored.Overlap, 2); // Squared weight
 
                 for (int i = 0; i < imageLength; i++)
                 {
-                    // Weight each pixel by the overlap
+                    // Weight each pixel by the squared overlap
                     pixelSums[i] += scored.Example.OriginalInput[i] * weight;
                 }
             }
