@@ -252,10 +252,15 @@ class Program
                         BinarySimilarityPercentage = knnBinarySim * 100
                     });
 
+                    // Combined Reconstruction: Weighted Combination of HTM and KNN outputs
+                    double htmWeight = 0.5;
+                    double knnWeight = 0.5;
                     int[] combinedReconstructed = new int[htmTestReconstructed.Length];
+
                     for (int j = 0; j < htmTestReconstructed.Length; j++)
                     {
-                        combinedReconstructed[j] = (htmTestReconstructed[j] + knnTestReconstructed[j]) >= 1 ? 1 : 0;
+                        double combinedValue = htmWeight * htmTestReconstructed[j] + knnWeight * knnTestReconstructed[j];
+                        combinedReconstructed[j] = combinedValue >= 0.5 ? 1 : 0; // Binary decision (0 or 1)
                     }
 
                     // Save the combined binary image as PNG in the specified environment variable path
