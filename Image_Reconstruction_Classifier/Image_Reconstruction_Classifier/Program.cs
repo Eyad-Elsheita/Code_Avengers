@@ -252,15 +252,99 @@ class Program
                         BinarySimilarityPercentage = knnBinarySim * 100
                     });
 
-                    // Combined Reconstruction: Weighted Combination of HTM and KNN outputs
-                    double htmWeight = 0.5;
-                    double knnWeight = 0.5;
+                    // Assume the image dimensions are defined as:
+                    int width = 28;  // adjust if needed
+                    int height = 28; // adjust if needed
+
+                    // Combined Reconstruction using confidence weighting and Gaussian weighted local voting
+                    double totalConfidence = htmVectorSim + knnVectorSim;
+                    if (totalConfidence == 0)
+                        totalConfidence = 1; // avoid division by zero
+
                     int[] combinedReconstructed = new int[htmTestReconstructed.Length];
 
                     for (int j = 0; j < htmTestReconstructed.Length; j++)
                     {
-                        double combinedValue = htmWeight * htmTestReconstructed[j] + knnWeight * knnTestReconstructed[j];
-                        combinedReconstructed[j] = combinedValue >= 0.5 ? 1 : 0; // Binary decision (0 or 1)
+                        // Compute confidence weighted probability for this pixel
+                        double confWeightedProb = (htmVectorSim * htmTestReconstructed[j] + knnVectorSim * knnTestReconstructed[j]) / totalConfidence;
+
+                        if (htmTestReconstructed[j] != knnTestReconstructed[j])
+                        {
+                            // Use Gaussian weighted local vote from both reconstructions
+                            double htmLocalVote = GetGaussianWeightedLocalVote(htmTestReconstructed, j, width, height);
+                            double knnLocalVote = GetGaussianWeightedLocalVote(knnTestReconstructed, j, width, height);
+                            double localMajority = (htmLocalVote + knnLocalVote) / 2.0;
+
+                            // Combine the confidence weighted probability with the Gaussian weighted local decision
+                            double combinedDecision = (confWeightedProb + localMajority) / 2.0;
+                            combinedReconstructed[j] = combinedDecision >= 0.5 ? 1 : 0;
+                        }
+                        else
+                        {
+                            combinedReconstructed[j] = confWeightedProb >= 0.5 ? 1 : 0;
+                        }
+                    }
+
+                    // ===== Apply the Median Filter =====
+                    // Use the median filter to post-process the combined reconstruction
+                    int[] postProcessedImage = ImageFilter.ApplyMedianFilter(combinedReconstructed, width, height);
+
+                    // --- Helper Method: GetPixelValueFromNeighborhood ---
+                    // This method examines the 3x3 neighborhood around the given pixel (j)
+                    // in a flat array representing an image of dimensions width x height.
+                    //static int GetPixelValueFromNeighborhood(int[] image, int pixelIndex, int width, int height)
+                    //{
+                    //  int row = pixelIndex / width;
+                    //int col = pixelIndex % width;
+                    //int onesCount = 0;
+                    //int count = 0;
+
+                    // Loop over a 3x3 window (handling boundaries)
+                    //for (int i = Math.Max(0, row - 1); i <= Math.Min(height - 1, row + 1); i++)
+                    //{
+                    //  for (int j = Math.Max(0, col - 1); j <= Math.Min(width - 1, col + 1); j++)
+                    //{
+                    //  onesCount += image[i * width + j];
+                    //count++;
+                    //}
+                    //}
+                    // Return 1 if the majority in the window are 1's; otherwise 0.
+                    //return (onesCount > count / 2) ? 1 : 0;
+                    //}
+
+                    static double GetGaussianWeightedLocalVote(int[] image, int pixelIndex, int width, int height)
+                    {
+                        // Gaussian kernel for a 3x3 window (you can adjust these weights if needed)
+                        double[,] kernel = new double[,]
+                        {
+                            { 0.075, 0.124, 0.075 },
+                            { 0.124, 0.204, 0.124 },
+                            { 0.075, 0.124, 0.075 }
+                        };
+
+                        int row = pixelIndex / width;
+                        int col = pixelIndex % width;
+                        double weightedSum = 0;
+                        double totalWeight = 0;
+
+                        // Loop over the 3x3 window, applying the Gaussian weights
+                        for (int i = -1; i <= 1; i++)
+                        {
+                            for (int j = -1; j <= 1; j++)
+                            {
+                                int r = row + i;
+                                int c = col + j;
+                                if (r >= 0 && r < height && c >= 0 && c < width)
+                                {
+                                    double weight = kernel[i + 1, j + 1];
+                                    weightedSum += weight * image[r * width + c];
+                                    totalWeight += weight;
+                                }
+                            }
+                        }
+
+                        // Return a weighted average as a double between 0 and 1.
+                        return weightedSum / totalWeight;
                     }
 
                     // Save the combined binary image as PNG in the specified environment variable path
@@ -272,18 +356,20 @@ class Program
                     }
                     else
                     {
-                        int width = 28;  // Example width (adjust based on your dataset)
-                        int height = 28; // Example height (adjust based on your dataset)
+                        int imageWidth = 28;  // Example width (adjust based on your dataset)
+                        int imageHeight = 28; // Example height (adjust based on your dataset)
                         string outputCombinedFilePath = Path.Combine(combinedImagesFolder, originalFileName + "_Combined.png");
 
-                        // Save the combined binary image using BinaryToImageConverter
-                        BinaryToImageConverter.SaveBinaryAsPng(combinedReconstructed, width, height, outputCombinedFilePath);
+                        // Save the post-processed image using BinaryToImageConverter
+                        BinaryToImageConverter.SaveBinaryAsPng(postProcessedImage, imageWidth, imageHeight, outputCombinedFilePath);
                     }
 
-                    // Save the reconstructed binary and vector images (your current code remains unchanged)
-                    SaveReconstructedImages(combinedReconstructed, originalFileName + "_Combined", combinedTestBinaryFolder, combinedTestVectorFolder);
-                    double combinedVectorSim = ImageSimilarity.CalculateCosineSimilarity(testImageData[item.index], combinedReconstructed);
-                    double combinedBinarySim = CalculateBinarizedImageSimilarity(testImageData[item.index], combinedReconstructed);
+                    // Save the reconstructed binary and vector images (using the post-processed image)
+                    SaveReconstructedImages(postProcessedImage, originalFileName + "_Combined", combinedTestBinaryFolder, combinedTestVectorFolder);
+
+                    // Calculate similarity using the post-processed image
+                    double combinedVectorSim = ImageSimilarity.CalculateCosineSimilarity(testImageData[item.index], postProcessedImage);
+                    double combinedBinarySim = CalculateBinarizedImageSimilarity(testImageData[item.index], postProcessedImage);
                     combinedTestSimilarities.Add(new SimilarityData
                     {
                         PictureName = originalFileName,
