@@ -15,12 +15,13 @@ namespace Image_Reconstruction_Classifier
     // This implementation uses int for both input and output.
     public class MyHtmClassifier : IClassifier<int, int>
     {
-        private class TrainingExample
+        public class TrainingExample
         {
             public int Key { get; set; }
-            public HashSet<int> SDR { get; set; }
-            public int[] OriginalInput { get; set; }
+            public required HashSet<int> SDR { get; set; }
+            public required int[] OriginalInput { get; set; }
         }
+
 
         private readonly List<TrainingExample> trainingExamples = new List<TrainingExample>();
 

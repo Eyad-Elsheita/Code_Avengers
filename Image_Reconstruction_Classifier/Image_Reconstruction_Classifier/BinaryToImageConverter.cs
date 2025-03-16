@@ -1,13 +1,13 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using System;
 
 public class BinaryToImageConverter
 {
     public static void SaveBinaryAsPng(int[] binaryImage, int width, int height, string outputPath)
     {
-        // Create a Bitmap with the specified width and height
-        using (Bitmap bitmap = new Bitmap(width, height))
+        // Create an image with the specified width and height
+        using (Image<Rgba32> image = new Image<Rgba32>(width, height))
         {
             // Loop through the binary array and set the corresponding pixel value
             for (int i = 0; i < binaryImage.Length; i++)
@@ -16,12 +16,12 @@ public class BinaryToImageConverter
                 int y = i / width;  // Calculate the Y coordinate
 
                 // Set the pixel to either black or white based on the binary value
-                Color color = binaryImage[i] == 1 ? Color.White : Color.Black;
-                bitmap.SetPixel(x, y, color);
+                Rgba32 color = binaryImage[i] == 1 ? new Rgba32(255, 255, 255, 255) : new Rgba32(0, 0, 0, 255); // Manually specify white and black
+                image[x, y] = color;
             }
 
-            // Save the Bitmap as a PNG file
-            bitmap.Save(outputPath, System.Drawing.Imaging.ImageFormat.Png);
+            // Save the image as a PNG file
+            image.Save(outputPath); // No need for specifying image format
         }
     }
 }

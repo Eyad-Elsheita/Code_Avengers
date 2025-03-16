@@ -239,3 +239,4 @@ C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstructi
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\Image_Reconstruction_Classifier.pdb
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\Image_Reconstruction_Classifier.genruntimeconfig.cache
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\ref\Image_Reconstruction_Classifier.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\SixLabors.ImageSharp.dll

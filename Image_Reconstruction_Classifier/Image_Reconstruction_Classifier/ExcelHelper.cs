@@ -40,7 +40,7 @@ public class ExcelHelper
 
 public class SimilarityData
 {
-    public string PictureName { get; set; }
+    public string PictureName { get; set; } = string.Empty;  // Default value to avoid nullability issues.
     public double VectorSimilarityPercentage { get; set; }
     public double BinarySimilarityPercentage { get; set; }
 }

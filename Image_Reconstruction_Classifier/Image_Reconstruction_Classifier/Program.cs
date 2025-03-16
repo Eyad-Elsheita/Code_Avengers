@@ -16,7 +16,12 @@ class Program
         // Step 1: Convert the original images to binarized text files and load them
         ImageProcessor.ConvertImagesToBinary();
         Console.WriteLine("Image binarization completed.");
-        string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary");
+        string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary") ?? "Default_Training_Path";
+        if (!Directory.Exists(folderPath))
+        {
+            Console.WriteLine($"Error: Folder path {folderPath} does not exist.");
+            return;
+        }
         int numberOfFiles = 10000; // training dataset size
         int[][] imageData = ImageLoader.LoadImageData(folderPath, numberOfFiles);
 
@@ -348,7 +353,13 @@ class Program
                     }
 
                     // Save the combined binary image as PNG in the specified environment variable path
-                    string combinedImagesFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Combined");
+                    string combinedImagesFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Combined") ?? "";
+                    if (string.IsNullOrEmpty(combinedImagesFolder))
+                    {
+                        Console.WriteLine("Error: Environment variable 'Test_Images_Reconstructed_Combined' is not set.");
+                        return;
+                    }
+
 
                     if (string.IsNullOrEmpty(combinedImagesFolder))
                     {
@@ -385,9 +396,19 @@ class Program
         }
 
         // Save test similarity statistics
-        string similarityStatisticsFolder = Environment.GetEnvironmentVariable("Similarity_Statistics");
-        ExcelHelper.SaveSimilarityStatistics(htmTestSimilarities,
-            Path.Combine(similarityStatisticsFolder, "HTM_Test_Similarity_Statistics.xlsx"));
+        string similarityStatisticsFolder = Environment.GetEnvironmentVariable("Similarity_Statistics") ?? "Default_Similarity_Statistics_Path";
+
+        if (!Directory.Exists(similarityStatisticsFolder))
+        {
+            Console.WriteLine($"Error: Folder path {similarityStatisticsFolder} does not exist.");
+            return;
+        }
+
+        ExcelHelper.SaveSimilarityStatistics(
+            htmTestSimilarities,
+            Path.Combine(similarityStatisticsFolder, "HTM_Test_Similarity_Statistics.xlsx")
+        );
+
         ExcelHelper.SaveSimilarityStatistics(knnTestSimilarities,
             Path.Combine(similarityStatisticsFolder, "KNN_Test_Similarity_Statistics.xlsx"));
         ExcelHelper.SaveSimilarityStatistics(combinedTestSimilarities,
