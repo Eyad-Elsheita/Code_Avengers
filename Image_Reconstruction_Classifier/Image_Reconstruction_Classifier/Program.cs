@@ -55,7 +55,7 @@ class Program
         Console.WriteLine($"Vectorized training images saved to {trainingLoaderFolder}");
 
         // Process images through Spatial Pooler
-        ImageSpartial.SaveImagesinSpartialPooler();
+        ImageSpatial.SaveImagesinSpartialPooler();
         Console.WriteLine("Spatial Pooler processing completed.");
 
         // ==================================================
@@ -169,7 +169,7 @@ class Program
 
         Environment.SetEnvironmentVariable("Test_Image_Binary", testBinaryFolder);
         Environment.SetEnvironmentVariable("Test_Image_Spatial", testSpatialFolder);
-        ImageSpartial.ProcessTestImagesSpatial();
+        ImageSpatial.ProcessTestImagesSpatial();
         Console.WriteLine("Test dataset processing completed.");
 
         // Get test spatial files with indices

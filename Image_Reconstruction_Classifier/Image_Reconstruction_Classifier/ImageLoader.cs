@@ -53,32 +53,66 @@ namespace ImageProcessing
         }
 
         // Method to save the image data to a file (flattened in one row)
+        //public static void SaveImageDataToFile(int[] imageData, string filePath)
+        //{
+        //    try
+        //    {
+        //        // Check if filePath is null or empty before proceeding
+        //        if (string.IsNullOrEmpty(filePath))
+        //        {
+        //            Console.WriteLine("Error: File path is null or empty.");
+        //            return;
+        //        }
+
+        //        // Get the directory path; ensure it's not null by using the null-coalescing operator
+        //        string directoryPath = Path.GetDirectoryName(filePath) ?? string.Empty;
+
+        //        // Ensure the directory exists (it won't if directoryPath is empty)
+        //        if (!string.IsNullOrEmpty(directoryPath))
+        //        {
+        //            Directory.CreateDirectory(directoryPath);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Error: Invalid directory path.");
+        //            return;
+        //        }
+
+        //        // Save the binary image data to a text file (flattened in one row)
+        //        File.WriteAllText(filePath, string.Join(",", imageData.Select(i => i.ToString())));
+
+        //        Console.WriteLine($"Image data successfully saved to {filePath}");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error saving image data: {ex.Message}");
+        //    }
+        //}
+
         public static void SaveImageDataToFile(int[] imageData, string filePath)
         {
             try
             {
-                // Check if filePath is null or empty before proceeding
+                // Check if filePath is null or empty
                 if (string.IsNullOrEmpty(filePath))
                 {
                     Console.WriteLine("Error: File path is null or empty.");
                     return;
                 }
 
-                // Get the directory path; ensure it's not null by using the null-coalescing operator
+                // Get the directory path
                 string directoryPath = Path.GetDirectoryName(filePath) ?? string.Empty;
 
-                // Ensure the directory exists (it won't if directoryPath is empty)
+                // Ensure the directory exists if the directory path is not null or empty
                 if (!string.IsNullOrEmpty(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
-                else
-                {
-                    Console.WriteLine("Error: Invalid directory path.");
-                    return;
-                }
 
-                // Save the binary image data to a text file (flattened in one row)
+                // Display the full file path ** 
+                Console.WriteLine($"Saving file to: {Path.GetFullPath(filePath)}");
+
+                // Save the binary image data to the file (flattened in one row)
                 File.WriteAllText(filePath, string.Join(",", imageData.Select(i => i.ToString())));
 
                 Console.WriteLine($"Image data successfully saved to {filePath}");
@@ -88,5 +122,9 @@ namespace ImageProcessing
                 Console.WriteLine($"Error saving image data: {ex.Message}");
             }
         }
+
+
+
+
     }
 }

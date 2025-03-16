@@ -42,7 +42,7 @@ public class ImageSimilarity
             // Every 'rowSize' pixels, go to the next line to format as a matrix
             if ((i + 1) % rowSize == 0)
             {
-                sb.AppendLine(); // Adds a newline after each row
+                sb.Append("\n"); // Adds a newline after each row
             }
         }
 

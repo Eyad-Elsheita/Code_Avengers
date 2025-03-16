@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = Image_Reconstruction_Classifier
+build_property.ProjectDir = D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
