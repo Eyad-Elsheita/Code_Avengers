@@ -32,7 +32,7 @@ Follow these steps to reproduce the project:
   - NeoCortexApi
   - ImageBinarizer
   - SkiaSharp
-  - System.Drawing.Common
+  - SixLabors.ImageSharp
 - **Development Environment**:
   - Visual Studio / JetBrains Rider
   - .NET SDK Installed
