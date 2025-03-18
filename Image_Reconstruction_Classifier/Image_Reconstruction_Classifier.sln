@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImgSimilarity.UnitTest", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSpatial.UnitTest", "ImageSpatial.UnitTest\ImageSpatial.UnitTest.csproj", "{46911F95-74EE-4292-BEE1-F1DF8FFEFC86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binary2Image.UnitTest", "Binary2Image.UnitTest\Binary2Image.UnitTest.csproj", "{5176A2C6-25A9-49B0-B521-74898B6458B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{46911F95-74EE-4292-BEE1-F1DF8FFEFC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46911F95-74EE-4292-BEE1-F1DF8FFEFC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46911F95-74EE-4292-BEE1-F1DF8FFEFC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5176A2C6-25A9-49B0-B521-74898B6458B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5176A2C6-25A9-49B0-B521-74898B6458B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5176A2C6-25A9-49B0-B521-74898B6458B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5176A2C6-25A9-49B0-B521-74898B6458B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,7 +14,7 @@ class Program
         // ==================================================
 
         // Step 1: Convert the original images to binarized text files and load them
-        ImageProcessor.ConvertImagesToBinary();
+        ImageProcessor.ConvertImagesToBinary("Training_Image_Sample", "Training_Image_Binary");
         Console.WriteLine("Image binarization completed.");
         string folderPath = Environment.GetEnvironmentVariable("Training_Image_Binary") ?? "Default_Training_Path";
         if (!Directory.Exists(folderPath))
@@ -145,7 +145,7 @@ class Program
 
         Environment.SetEnvironmentVariable("Training_Image_Sample", testImagesFolder);
         Environment.SetEnvironmentVariable("Training_Image_Binary", testBinaryFolder);
-        ImageProcessor.ConvertImagesToBinary();
+        ImageProcessor.ConvertImagesToBinary("Test_Image_Sample", "Test_Image_Binary");
 
         string testLoaderFolder = Environment.GetEnvironmentVariable("Test_Image_Loader") ?? "Test_Image_Loader";
         Directory.CreateDirectory(testLoaderFolder);
