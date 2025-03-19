@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj": {}
   },
   "projects": {
-    "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj",
         "projectName": "ImageProcess.UnitTest",
-        "projectPath": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj",
-        "packagesPath": "C:\\Users\\Eyad_\\.nuget\\packages\\",
-        "outputPath": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Eyad_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\temp\\Test Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
-                "projectPath": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj"
+              "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj"
               }
             }
           }
@@ -95,20 +96,20 @@
         }
       }
     },
-    "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
         "projectName": "Image_Reconstruction_Classifier",
-        "projectPath": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
-        "packagesPath": "C:\\Users\\Eyad_\\.nuget\\packages\\",
-        "outputPath": "D:\\University\\Software Engineering\\se-cloud-2024-2025\\MyProject\\Image-Reconstruction-Project-\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Eyad_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -117,6 +118,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\temp\\Test Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

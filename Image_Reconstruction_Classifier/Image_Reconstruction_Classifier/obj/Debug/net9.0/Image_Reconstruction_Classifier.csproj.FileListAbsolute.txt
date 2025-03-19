@@ -179,9 +179,7 @@ C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstructi
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\SixLabors.Fonts.dll
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\SkiaSharp.dll
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\System.Drawing.Common.dll
-C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\System.Private.Windows.Core.dll
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\System.IO.Packaging.dll
-C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\runtimes\win\lib\net9.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\runtimes\linux-arm\native\libSkiaSharp.so
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\runtimes\linux-arm64\native\libSkiaSharp.so
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\runtimes\linux-musl-x64\native\libSkiaSharp.so
@@ -248,3 +246,4 @@ D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruc
 D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\Image_Reconstruction_Classifier.pdb
 D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\Image_Reconstruction_Classifier.genruntimeconfig.cache
 D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\obj\Debug\net9.0\ref\Image_Reconstruction_Classifier.dll
+C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\Image_Reconstruction_Classifier\bin\Debug\net9.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
