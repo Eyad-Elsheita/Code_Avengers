@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImgSimilarity.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9f41e47281633dfc7c368572b275fc20280a4a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+427e28a477404040e0946902d2335c19b9c4fa3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImgSimilarity.UnitTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImgSimilarity.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

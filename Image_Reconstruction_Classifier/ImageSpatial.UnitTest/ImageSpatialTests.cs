@@ -18,8 +18,12 @@ namespace ImageReconstructionTests
             if (Directory.Exists(inputFolder)) Directory.Delete(inputFolder, true);
             if (Directory.Exists(outputFolder)) Directory.Delete(outputFolder, true);
 
-            Directory.CreateDirectory(inputFolder);
-            Directory.CreateDirectory(outputFolder);
+            Directory.CreateDirectory(inputFolder);  // Ensure the input folder is created
+            Directory.CreateDirectory(outputFolder); // Ensure the output folder is created
+
+            // Log folder creation status
+            Console.WriteLine($"Input folder exists: {Directory.Exists(inputFolder)}");
+            Console.WriteLine($"Output folder exists: {Directory.Exists(outputFolder)}");
         }
 
         [TestMethod]
@@ -84,6 +88,7 @@ namespace ImageReconstructionTests
             var inputFolder = @"C:\MockTestInput_Valid";
             var outputFolder = @"C:\MockTestOutput_Valid";
 
+            // Ensure directories are cleaned and prepared
             PrepareTestFolders(inputFolder, outputFolder);
 
             Environment.SetEnvironmentVariable(TestImageLoader, inputFolder);
@@ -95,11 +100,20 @@ namespace ImageReconstructionTests
             File.WriteAllText(validFile, imageData); // Create the mock file
             // =====================================================
 
+            // Ensure the file is created
+            Console.WriteLine($"File created at: {validFile}");
+            Assert.IsTrue(File.Exists(validFile), "Test file was not created!");
+
             // Act
             ImageSpatial.ProcessTestImagesSpatial();
 
-            // Assert
+            // Log the output folder contents before the assertion
             var outputFiles = Directory.GetFiles(outputFolder, "*_spatial.txt");
+
+            // Log output files found
+            Console.WriteLine($"Found {outputFiles.Length} spatial files in the output directory.");
+
+            // Assert: Ensure exactly 1 spatial file exists
             Assert.AreEqual(1, outputFiles.Length, "Valid input should produce one spatial file.");
             Assert.IsTrue(File.Exists(outputFiles[0]), "Spatial file is missing.");
 

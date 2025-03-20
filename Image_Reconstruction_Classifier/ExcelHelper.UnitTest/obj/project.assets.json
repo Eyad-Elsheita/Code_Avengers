@@ -1010,6 +1010,7 @@
           "ImageBinarizer": "1.6.0",
           "LearningApi": "1.3.1",
           "NeoCortexApi": "1.1.5",
+          "Newtonsoft.Json": "13.0.1",
           "SixLabors.ImageSharp": "3.1.7",
           "SkiaSharp": "3.116.1",
           "SkiaSharp.NativeAssets.Linux.NoDependencies": "3.116.1"
@@ -2583,23 +2584,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\1907f\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ExcelHelper.UnitTest\\ExcelHelper.UnitTest.csproj",
+      "projectUniqueName": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\ExcelHelper.UnitTest\\ExcelHelper.UnitTest.csproj",
       "projectName": "ExcelHelper.UnitTest",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ExcelHelper.UnitTest\\ExcelHelper.UnitTest.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ExcelHelper.UnitTest\\obj\\",
+      "projectPath": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\ExcelHelper.UnitTest\\ExcelHelper.UnitTest.csproj",
+      "packagesPath": "C:\\Users\\1907f\\.nuget\\packages\\",
+      "outputPath": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\ExcelHelper.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\1907f\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2608,15 +2609,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\temp\\Test Packages": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\software engineering\\2024-2025\\files\\New Folder\\se-cloud-2024-2025\\MyWork\\Ex10\\ClassLibrary1\\bin\\Release": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
-              "projectPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj"
+            "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
+              "projectPath": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj"
             }
           }
         }
@@ -2629,7 +2631,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -2674,7 +2676,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
