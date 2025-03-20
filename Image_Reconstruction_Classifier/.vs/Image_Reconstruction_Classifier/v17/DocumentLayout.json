@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF1E15A5-9AE0-412D-BFF5-1DD5B3E1F096}|Binary2Image.UnitTest\\Binary2Image.UnitTest.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\binary2image.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EF1E15A5-9AE0-412D-BFF5-1DD5B3E1F096}|Binary2Image.UnitTest\\Binary2Image.UnitTest.csproj|solutionrelative:binary2image.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\binarytoimage.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:binarytoimage.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\binarytoimage.unittest\\binarytoimage.unittest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:binarytoimage.unittest\\binarytoimage.unittest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\image_reconstruction_classifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTest.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\knn_unittests\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTest.csproj|solutionrelative:knn_unittests\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\binarytoimage.unittest\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:binarytoimage.unittest\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTests.csproj|c:\\try\\code_avengers\\image_reconstruction_classifier\\knn_unittests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTests.csproj|solutionrelative:knn_unittests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Program.cs",
               "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\Program.cs",
@@ -31,7 +47,73 @@
               "ViewState": "AgIAAEsAAAAAAAAAAAAnwFkAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-18T18:56:17.073Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BinaryToImage.UnitTest",
+              "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
+              "RelativeDocumentMoniker": "BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
+              "ToolTip": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
+              "RelativeToolTip": "BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-20T15:39:31.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BinaryToImageConverterTests.cs",
+              "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "RelativeDocumentMoniker": "BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "ToolTip": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "RelativeToolTip": "BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAYwJIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T15:39:51.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MSTestSettings.cs",
+              "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\MSTestSettings.cs",
+              "RelativeDocumentMoniker": "BinaryToImage.UnitTest\\MSTestSettings.cs",
+              "ToolTip": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\MSTestSettings.cs",
+              "RelativeToolTip": "BinaryToImage.UnitTest\\MSTestSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T15:39:25.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Knn.cs",
+              "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Knn_UnitTests\\Knn.cs",
+              "RelativeDocumentMoniker": "Knn_UnitTests\\Knn.cs",
+              "ToolTip": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Knn_UnitTests\\Knn.cs",
+              "RelativeToolTip": "Knn_UnitTests\\Knn.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAgwIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T15:37:55.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MSTestSettings.cs",
+              "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Knn_UnitTests\\MSTestSettings.cs",
+              "RelativeDocumentMoniker": "Knn_UnitTests\\MSTestSettings.cs",
+              "ToolTip": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Knn_UnitTests\\MSTestSettings.cs",
+              "RelativeToolTip": "Knn_UnitTests\\MSTestSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T15:37:19.962Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -44,19 +126,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BinaryToImageConverterTests.cs",
-              "DocumentMoniker": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Binary2Image.UnitTest\\BinaryToImageConverterTests.cs",
-              "RelativeDocumentMoniker": "Binary2Image.UnitTest\\BinaryToImageConverterTests.cs",
-              "ToolTip": "C:\\try\\Code_Avengers\\Image_Reconstruction_Classifier\\Binary2Image.UnitTest\\BinaryToImageConverterTests.cs",
-              "RelativeToolTip": "Binary2Image.UnitTest\\BinaryToImageConverterTests.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAYwIEAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T12:37:23.364Z",
-              "EditorCaption": ""
             }
           ]
         }
