@@ -101,86 +101,6 @@ namespace Image_Reconstruction_Classifier
             Console.WriteLine("Spartial Poler Completed.");
         }
 
-        //public static void ProcessTestImagesSpatial()
-        //{
-        //    string inputFolder = Environment.GetEnvironmentVariable("Test_Image_Loader") ?? "Test_Image_Loader";
-        //    string outputFolder = Environment.GetEnvironmentVariable("Test_Image_Spatial") ?? "Test_Image_Spatial";
-
-        //    Directory.CreateDirectory(outputFolder);
-
-        //    SpatialPooler spatialPooler = new SpatialPooler();
-        //    Connections connections = new Connections();
-
-        //    // Same SP configuration as before
-        //    connections.HtmConfig.InputDimensions = new int[] { 784 };
-        //    connections.HtmConfig.ColumnDimensions = new int[] { 2048 };
-        //    connections.HtmConfig.PotentialRadius = 12;
-        //    connections.HtmConfig.PotentialPct = 0.8;
-        //    connections.HtmConfig.GlobalInhibition = true;
-        //    connections.HtmConfig.LocalAreaDensity = 0.03;
-        //    connections.HtmConfig.StimulusThreshold = 5;
-        //    connections.HtmConfig.SynPermInactiveDec = 0.008;
-        //    connections.HtmConfig.SynPermActiveInc = 0.05;
-        //    connections.HtmConfig.SynPermConnected = 0.2;
-
-        //    spatialPooler.Init(connections);
-
-        //    string[] testFiles = Directory.GetFiles(inputFolder, "*.txt");
-        //    foreach (var file in testFiles)
-        //    {
-        //        try
-        //        {
-        //            // ========== NEW VALIDATION CODE START ========
-        //            string fileName = Path.GetFileNameWithoutExtension(file);
-        //            string rawData = File.ReadAllText(file).Trim();
-
-        //            // Check for empty files
-        //            if (string.IsNullOrWhiteSpace(rawData))
-        //            {
-        //                Console.WriteLine($"⚠️ Empty SDR file: {fileName}");
-        //                continue;
-        //            }
-
-        //            // Parse with validation
-        //            int[] inputVector = rawData.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-        //                .Select(s => int.TryParse(s.Trim(), out int num) ? num : -1)
-        //                .Where(n => n >= 0)
-        //                .ToArray();
-
-        //            // Validate SDR size
-        //            if (inputVector.Length < 10)
-        //            {
-        //                Console.WriteLine($"⚠️ Invalid SDR in {fileName} (only {inputVector.Length} columns)");
-        //                continue;
-        //            }
-
-        //            // Existing processing code
-        //            int[] activeColumns = spatialPooler.Compute(inputVector, learn: false);
-
-        //            // Additional output validation
-        //            if (activeColumns.Length == 0)
-        //            {
-        //                Console.WriteLine($"⚠️ No active columns for: {fileName}");
-        //                continue;
-        //            }
-
-        //            // Existing filename parsing and saving
-        //            string[] nameParts = fileName.Split('_');
-        //            string spatialFileName = $"{nameParts[0]}_{nameParts[1]}_spatial.txt";
-        //            string outputFile = Path.Combine(outputFolder, spatialFileName);
-        //            File.WriteAllText(outputFile, string.Join(",", activeColumns));
-
-        //            Console.WriteLine($"Processed: {spatialFileName}");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine($"❌ Failed to process {Path.GetFileName(file)}: {ex.Message}");
-        //        }
-
-        //    }
-        //    Console.WriteLine("Test images processed through Spatial Pooler.");
-        //}
-
         public static void ProcessTestImagesSpatial()
         {
             string inputFolder = Environment.GetEnvironmentVariable("Test_Image_Loader") ?? "Test_Image_Loader";
@@ -191,7 +111,7 @@ namespace Image_Reconstruction_Classifier
             SpatialPooler spatialPooler = new SpatialPooler();
             Connections connections = new Connections();
 
-            // Spatial Pooler Configuration
+            // Same SP configuration as before
             connections.HtmConfig.InputDimensions = new int[] { 784 };
             connections.HtmConfig.ColumnDimensions = new int[] { 2048 };
             connections.HtmConfig.PotentialRadius = 12;
@@ -210,16 +130,16 @@ namespace Image_Reconstruction_Classifier
             {
                 try
                 {
+                    // ========== NEW VALIDATION CODE START ========
                     string fileName = Path.GetFileNameWithoutExtension(file);
                     string rawData = File.ReadAllText(file).Trim();
 
-                    //**** Added check for empty or whitespace-only file content ****
-                    if (string.IsNullOrWhiteSpace(rawData)) 
+                    // Check for empty files
+                    if (string.IsNullOrWhiteSpace(rawData))
                     {
                         Console.WriteLine($"⚠️ Empty SDR file: {fileName}");
-                        continue; // Skip processing for empty files
+                        continue;
                     }
-                    
 
                     // Parse with validation
                     int[] inputVector = rawData.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -234,7 +154,7 @@ namespace Image_Reconstruction_Classifier
                         continue;
                     }
 
-                    // Process using Spatial Pooler
+                    // Existing processing code
                     int[] activeColumns = spatialPooler.Compute(inputVector, learn: false);
 
                     // Additional output validation
@@ -244,7 +164,7 @@ namespace Image_Reconstruction_Classifier
                         continue;
                     }
 
-                    // Save spatial output
+                    // Existing filename parsing and saving
                     string[] nameParts = fileName.Split('_');
                     string spatialFileName = $"{nameParts[0]}_{nameParts[1]}_spatial.txt";
                     string outputFile = Path.Combine(outputFolder, spatialFileName);
@@ -256,9 +176,9 @@ namespace Image_Reconstruction_Classifier
                 {
                     Console.WriteLine($"❌ Failed to process {Path.GetFileName(file)}: {ex.Message}");
                 }
+
             }
             Console.WriteLine("Test images processed through Spatial Pooler.");
         }
-
     }
 }

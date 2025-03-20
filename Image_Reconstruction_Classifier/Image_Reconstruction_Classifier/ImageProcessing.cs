@@ -74,8 +74,8 @@ namespace ImageProcessing
 
         public static void ConvertImagesToBinary(string inputFolderPath, string outputFolderPath)
         {
-            string inputFolder = Environment.GetEnvironmentVariable(inputFolderPath)!;
-            string outputFolder = Environment.GetEnvironmentVariable(outputFolderPath)!;
+            string inputFolder = Environment.GetEnvironmentVariable("Training_Image_Sample")!;
+            string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Binary")!;
 
             Directory.CreateDirectory(inputFolder);
             Directory.CreateDirectory(outputFolder);

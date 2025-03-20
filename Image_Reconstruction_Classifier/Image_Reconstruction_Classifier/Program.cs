@@ -297,25 +297,25 @@ class Program
                     // --- Helper Method: GetPixelValueFromNeighborhood ---
                     // This method examines the 3x3 neighborhood around the given pixel (j)
                     // in a flat array representing an image of dimensions width x height.
-                    //static int GetPixelValueFromNeighborhood(int[] image, int pixelIndex, int width, int height)
-                    //{
-                    //  int row = pixelIndex / width;
-                    //int col = pixelIndex % width;
-                    //int onesCount = 0;
-                    //int count = 0;
+                    static int GetPixelValueFromNeighborhood(int[] image, int pixelIndex, int width, int height)
+                    {
+                        int row = pixelIndex / width;
+                        int col = pixelIndex % width;
+                        int onesCount = 0;
+                        int count = 0;
 
-                    // Loop over a 3x3 window (handling boundaries)
-                    //for (int i = Math.Max(0, row - 1); i <= Math.Min(height - 1, row + 1); i++)
-                    //{
-                    //  for (int j = Math.Max(0, col - 1); j <= Math.Min(width - 1, col + 1); j++)
-                    //{
-                    //  onesCount += image[i * width + j];
-                    //count++;
-                    //}
-                    //}
-                    // Return 1 if the majority in the window are 1's; otherwise 0.
-                    //return (onesCount > count / 2) ? 1 : 0;
-                    //}
+                        // Loop over a 3x3 window (handling boundaries)
+                        for (int i = Math.Max(0, row - 1); i <= Math.Min(height - 1, row + 1); i++)
+                        {
+                            for (int j = Math.Max(0, col - 1); j <= Math.Min(width - 1, col + 1); j++)
+                            {
+                                onesCount += image[i * width + j];
+                                count++;
+                            }
+                        }
+                        // Return 1 if the majority in the window are 1's; otherwise 0.
+                        return (onesCount > count / 2) ? 1 : 0;
+                    }
 
                     static double GetGaussianWeightedLocalVote(int[] image, int pixelIndex, int width, int height)
                     {
@@ -350,6 +350,25 @@ class Program
 
                         // Return a weighted average as a double between 0 and 1.
                         return weightedSum / totalWeight;
+                    }
+
+                    // Returns 0 or 1 based on a weighted combination of Gaussian smoothing and majority vote.
+                    static int GetCombinedLocalVote(int[] image, int pixelIndex, int width, int height)
+                    {
+                        // Get the Gaussian-weighted average (a value between 0 and 1)
+                        double gaussianVote = GetGaussianWeightedLocalVote(image, pixelIndex, width, height);
+
+                        // Get the strict majority vote (returns either 0 or 1)
+                        int majorityVote = GetPixelValueFromNeighborhood(image, pixelIndex, width, height);
+
+                        // Combine both values using weights.
+                        // Adjust weightGaussian and weightMajority to see which combination gives better results.
+                        double weightGaussian = 0.7;
+                        double weightMajority = 0.3;
+                        double combinedScore = weightGaussian * gaussianVote + weightMajority * majorityVote;
+
+                        // Threshold the combined score to return a binary result.
+                        return combinedScore >= 0.5 ? 1 : 0;
                     }
 
                     // Save the combined binary image as PNG in the specified environment variable path

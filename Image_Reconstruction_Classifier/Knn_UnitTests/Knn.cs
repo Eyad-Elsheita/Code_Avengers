@@ -8,7 +8,7 @@ namespace ImageReconstructionTests
     [TestClass]
     public class KnnClassifierTests
     {
-        private KnnClassifier classifier;
+        private KnnClassifier classifier = new KnnClassifier();
 
         // This method runs before each test to initialize the classifier instance.
         [TestInitialize]
