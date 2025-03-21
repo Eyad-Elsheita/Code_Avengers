@@ -292,7 +292,8 @@ class Program
 
                     // ===== Apply the Median Filter =====
                     // Use the median filter to post-process the combined reconstruction
-                    int[] postProcessedImage = ImageFilter.ApplyMedianFilter(combinedReconstructed, width, height);
+                    //int[] postProcessedImage = ImageFilter.ApplyMedianFilter(combinedReconstructed, width, height);
+
 
                     // --- Helper Method: GetPixelValueFromNeighborhood ---
                     // This method examines the 3x3 neighborhood around the given pixel (j)
@@ -370,6 +371,18 @@ class Program
                         // Threshold the combined score to return a binary result.
                         return combinedScore >= 0.5 ? 1 : 0;
                     }
+                    // ==================================================
+                    // ======== POST-PROCESSING: FILTER ORDER ===========
+                    // ==================================================
+                    // Step 1: Apply GetCombinedLocalVote FIRST to smooth edges and reduce noise
+                    int[] locallyVoted = new int[combinedReconstructed.Length];
+                    for (int j = 0; j < combinedReconstructed.Length; j++)
+                    {
+                        locallyVoted[j] = GetCombinedLocalVote(combinedReconstructed, j, width, height);
+                    }
+
+                    // Step 2: Apply Median Filter AFTER to clean residual salt-and-pepper noise
+                    int[] postProcessedImage = ImageFilter.ApplyMedianFilter(locallyVoted, width, height);
 
                     // Save the combined binary image as PNG in the specified environment variable path
                     string combinedImagesFolder = Environment.GetEnvironmentVariable("Test_Images_Reconstructed_Combined") ?? "";
@@ -379,12 +392,6 @@ class Program
                         return;
                     }
 
-
-                    if (string.IsNullOrEmpty(combinedImagesFolder))
-                    {
-                        Console.WriteLine("Environment variable 'Test_Images_Reconstructed_Combined' is not set.");
-                    }
-                    else
                     {
                         int imageWidth = 28;  // Example width (adjust based on your dataset)
                         int imageHeight = 28; // Example height (adjust based on your dataset)
