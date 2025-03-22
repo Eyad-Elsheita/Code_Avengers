@@ -3,88 +3,88 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imagefilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imagefilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imageprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imageprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\arrayextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\arrayextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\knn_unittests\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTest.csproj|solutionrelative:knn_unittests\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF8E94C4-B0C4-4234-AED2-4AE7B8CE2C54}|ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\imageprocess.unittest\\imageprocesstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF8E94C4-B0C4-4234-AED2-4AE7B8CE2C54}|ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj|solutionrelative:imageprocess.unittest\\imageprocesstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imagespatial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imagespatial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\binarytoimageconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\binarytoimageconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imagesimilarity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imagesimilarity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\binarytoimage.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:binarytoimage.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\excelhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\excelhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\htmclassifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\htmclassifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imageloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imageloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\knnclassifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\knnclassifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{263B9CEB-641E-4328-B615-9F728DE0763D}|ImgSimilarity.UnitTest\\ImgSimilarity.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\imgsimilarity.unittest\\imagesimilaritytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{263B9CEB-641E-4328-B615-9F728DE0763D}|ImgSimilarity.UnitTest\\ImgSimilarity.UnitTest.csproj|solutionrelative:imgsimilarity.unittest\\imagesimilaritytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imagespatial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imagespatial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{46911F95-74EE-4292-BEE1-F1DF8FFEFC86}|ImageSpatial.UnitTest\\ImageSpatial.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\imagespatial.unittest\\imagespatialtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{46911F95-74EE-4292-BEE1-F1DF8FFEFC86}|ImageSpatial.UnitTest\\ImageSpatial.UnitTest.csproj|solutionrelative:imagespatial.unittest\\imagespatialtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imagesimilarity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imagesimilarity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6537CC0-95FC-4D46-81BA-FA151E4FE791}|ImageLoader.UnitTest\\ImageLoader.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\imageloader.unittest\\imageloadertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6537CC0-95FC-4D46-81BA-FA151E4FE791}|ImageLoader.UnitTest\\ImageLoader.UnitTest.csproj|solutionrelative:imageloader.unittest\\imageloadertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imageloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imageloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F049DD77-78E0-476A-B479-10B496FEF16D}|ImageFilter.UnitTest\\ImageFilter.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\imagefilter.unittest\\imagefilterunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F049DD77-78E0-476A-B479-10B496FEF16D}|ImageFilter.UnitTest\\ImageFilter.UnitTest.csproj|solutionrelative:imagefilter.unittest\\imagefilterunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\imagefilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\imagefilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\binarytoimage.unittest\\binarytoimage.unittest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:binarytoimage.unittest\\binarytoimage.unittest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\htmclassifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\htmclassifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\binarytoimage.unittest\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D15A0FDE-27AE-4253-8539-A5E28D01A256}|BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:binarytoimage.unittest\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\excelhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\excelhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\knn_unittests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CEF7349-705C-4D99-8672-7C14288D0A35}|Knn_UnitTests\\Knn_UnitTest.csproj|solutionrelative:knn_unittests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\binarytoimageconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\binarytoimageconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\image_reconstruction_classifier\\arrayextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A4E709-DE9D-4CFE-9BF5-3BFFC7F26BE6}|Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj|solutionrelative:image_reconstruction_classifier\\arrayextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F82A3A-8846-496D-A62D-F657769B707E}|UnitTests\\Knn_UnitTests\\Knn_UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\knn_unittests\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F82A3A-8846-496D-A62D-F657769B707E}|UnitTests\\Knn_UnitTests\\Knn_UnitTest.csproj|solutionrelative:unittests\\knn_unittests\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB17495-45F5-4EBE-A8E1-3868E116ADD6}|UnitTests\\ImgSimilarity.UnitTest\\ImgSimilarity.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\imgsimilarity.unittest\\imagesimilaritytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB17495-45F5-4EBE-A8E1-3868E116ADD6}|UnitTests\\ImgSimilarity.UnitTest\\ImgSimilarity.UnitTest.csproj|solutionrelative:unittests\\imgsimilarity.unittest\\imagesimilaritytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26C020B1-C521-4DDD-97CC-D86B06EE7372}|UnitTests\\ImageSpatial.UnitTest\\ImageSpatial.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\imagespatial.unittest\\imagespatialtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26C020B1-C521-4DDD-97CC-D86B06EE7372}|UnitTests\\ImageSpatial.UnitTest\\ImageSpatial.UnitTest.csproj|solutionrelative:unittests\\imagespatial.unittest\\imagespatialtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4061064A-4F01-4C33-90A0-128AAAF4E092}|UnitTests\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\imageprocess.unittest\\imageprocesstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4061064A-4F01-4C33-90A0-128AAAF4E092}|UnitTests\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj|solutionrelative:unittests\\imageprocess.unittest\\imageprocesstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD8934EA-E133-436B-AAE2-192374ACD772}|UnitTests\\ImageLoader.UnitTest\\ImageLoader.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\imageloader.unittest\\imageloadertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD8934EA-E133-436B-AAE2-192374ACD772}|UnitTests\\ImageLoader.UnitTest\\ImageLoader.UnitTest.csproj|solutionrelative:unittests\\imageloader.unittest\\imageloadertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5133EBB-C3FA-4CD2-84F4-8EA4BFB4811E}|UnitTests\\ImageFilter.UnitTest\\ImageFilter.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\imagefilter.unittest\\imagefilterunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5133EBB-C3FA-4CD2-84F4-8EA4BFB4811E}|UnitTests\\ImageFilter.UnitTest\\ImageFilter.UnitTest.csproj|solutionrelative:unittests\\imagefilter.unittest\\imagefilterunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9EB666D-E90C-4912-9087-F93BDC5E87EE}|UnitTests\\HTM.UnitTest\\HTM.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\htm.unittest\\myhtmclassifiertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9EB666D-E90C-4912-9087-F93BDC5E87EE}|UnitTests\\HTM.UnitTest\\HTM.UnitTest.csproj|solutionrelative:unittests\\htm.unittest\\myhtmclassifiertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{741A005E-DFE4-4366-B193-887F668E8F7D}|UnitTests\\ExcelHelper.UnitTest\\ExcelHelper.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\excelhelper.unittest\\excelhelperunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{741A005E-DFE4-4366-B193-887F668E8F7D}|UnitTests\\ExcelHelper.UnitTest\\ExcelHelper.UnitTest.csproj|solutionrelative:unittests\\excelhelper.unittest\\excelhelperunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41CAE2C1-1FCE-4737-A6D1-091611FDF134}|UnitTests\\BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\binarytoimage.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41CAE2C1-1FCE-4737-A6D1-091611FDF134}|UnitTests\\BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj|solutionrelative:unittests\\binarytoimage.unittest\\binarytoimageconvertertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C849F7B-260D-4388-9FEE-0A945C14B608}|UnitTests\\ArrayExten.UnitTest\\ArrayExten.UnitTest.csproj|c:\\users\\admin\\source\\repos\\se-cloud-2024-2025\\mywork\\project\\image-reconstruction-project\\image_reconstruction_classifier\\unittests\\arrayexten.unittest\\arrayextensionstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C849F7B-260D-4388-9FEE-0A945C14B608}|UnitTests\\ArrayExten.UnitTest\\ArrayExten.UnitTest.csproj|solutionrelative:unittests\\arrayexten.unittest\\arrayextensionstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -94,22 +94,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Program.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\Program.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Program.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\Program.cs",
-              "ViewState": "AgIAAGYBAAAAAAAAAAAnwJABAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T18:56:17.073Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -121,116 +107,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ImageFilter.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageFilter.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageFilter.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageFilter.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageFilter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAAYAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Program.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Program.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:45.563Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ArrayExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ArrayExtensions.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ArrayExtensions.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ArrayExtensions.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ArrayExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:48.117Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BinaryToImageConverter.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:47.425Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ExcelHelper.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ExcelHelper.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ExcelHelper.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ExcelHelper.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ExcelHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:46.813Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "HtmClassifier.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\HtmClassifier.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\HtmClassifier.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\HtmClassifier.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\HtmClassifier.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:46.193Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ImageLoader.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageLoader.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageLoader.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageLoader.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:44.972Z"
+              "WhenOpened": "2025-03-22T21:45:57.716Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ImageProcessing.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageProcessing.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageProcessing.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageProcessing.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageProcessing.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:44.347Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ImageSimilarity.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSimilarity.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageSimilarity.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSimilarity.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageSimilarity.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:43.736Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ImageSpatial.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSpatial.cs",
-              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageSpatial.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSpatial.cs",
-              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageSpatial.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:43.143Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
               "Title": "KnnClassifier.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\KnnClassifier.cs",
               "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\KnnClassifier.cs",
@@ -238,127 +126,236 @@
               "RelativeToolTip": "Image_Reconstruction_Classifier\\KnnClassifier.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:18:42.358Z"
+              "WhenOpened": "2025-03-22T21:45:56.992Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ImageFilterUnitTests.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
-              "RelativeDocumentMoniker": "ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
-              "RelativeToolTip": "ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
+              "DocumentIndex": 3,
+              "Title": "ImageSpatial.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSpatial.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageSpatial.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSpatial.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageSpatial.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:15:41.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ImageLoaderTests.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageLoader.UnitTest\\ImageLoaderTests.cs",
-              "RelativeDocumentMoniker": "ImageLoader.UnitTest\\ImageLoaderTests.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageLoader.UnitTest\\ImageLoaderTests.cs",
-              "RelativeToolTip": "ImageLoader.UnitTest\\ImageLoaderTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:15:40.041Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ImageProcessTests.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcessTests.cs",
-              "RelativeDocumentMoniker": "ImageProcess.UnitTest\\ImageProcessTests.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageProcess.UnitTest\\ImageProcessTests.cs",
-              "RelativeToolTip": "ImageProcess.UnitTest\\ImageProcessTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:15:38.245Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ImageSpatialTests.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageSpatial.UnitTest\\ImageSpatialTests.cs",
-              "RelativeDocumentMoniker": "ImageSpatial.UnitTest\\ImageSpatialTests.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImageSpatial.UnitTest\\ImageSpatialTests.cs",
-              "RelativeToolTip": "ImageSpatial.UnitTest\\ImageSpatialTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:15:36.391Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ImageSimilarityTests.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
-              "RelativeDocumentMoniker": "ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
-              "RelativeToolTip": "ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T18:15:14.895Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BinaryToImage.UnitTest.csproj",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
-              "RelativeDocumentMoniker": "BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
-              "RelativeToolTip": "BinaryToImage.UnitTest\\BinaryToImage.UnitTest.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-20T15:39:31.867Z"
+              "WhenOpened": "2025-03-22T21:45:56.266Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Knn.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Knn_UnitTests\\Knn.cs",
-              "RelativeDocumentMoniker": "Knn_UnitTests\\Knn.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Knn_UnitTests\\Knn.cs",
-              "RelativeToolTip": "Knn_UnitTests\\Knn.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA8AAAAAAAAAA==",
+              "Title": "ImageSimilarity.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSimilarity.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageSimilarity.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageSimilarity.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageSimilarity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T15:37:55.98Z"
+              "WhenOpened": "2025-03-22T21:45:55.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ImageProcessing.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageProcessing.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageProcessing.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageProcessing.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageProcessing.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:53.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ImageLoader.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageLoader.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageLoader.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageLoader.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:52.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ImageFilter.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageFilter.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ImageFilter.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ImageFilter.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ImageFilter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:52.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HtmClassifier.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\HtmClassifier.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\HtmClassifier.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\HtmClassifier.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\HtmClassifier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:51.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ExcelHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ExcelHelper.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ExcelHelper.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ExcelHelper.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ExcelHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:50.747Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "BinaryToImageConverterTests.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
-              "RelativeDocumentMoniker": "BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
-              "RelativeToolTip": "BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAjAAAAAAAAAA==",
+              "Title": "BinaryToImageConverter.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\BinaryToImageConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T15:39:51.684Z"
+              "WhenOpened": "2025-03-22T21:45:49.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ArrayExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ArrayExtensions.cs",
+              "RelativeDocumentMoniker": "Image_Reconstruction_Classifier\\ArrayExtensions.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\ArrayExtensions.cs",
+              "RelativeToolTip": "Image_Reconstruction_Classifier\\ArrayExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:48.511Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Knn.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\Knn_UnitTests\\Knn.cs",
+              "RelativeDocumentMoniker": "UnitTests\\Knn_UnitTests\\Knn.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\Knn_UnitTests\\Knn.cs",
+              "RelativeToolTip": "UnitTests\\Knn_UnitTests\\Knn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:46.312Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ImageSimilarityTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
+              "RelativeToolTip": "UnitTests\\ImgSimilarity.UnitTest\\ImageSimilarityTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:43.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ImageSpatialTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageSpatial.UnitTest\\ImageSpatialTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ImageSpatial.UnitTest\\ImageSpatialTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageSpatial.UnitTest\\ImageSpatialTests.cs",
+              "RelativeToolTip": "UnitTests\\ImageSpatial.UnitTest\\ImageSpatialTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:41.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ImageProcessTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageProcess.UnitTest\\ImageProcessTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ImageProcess.UnitTest\\ImageProcessTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageProcess.UnitTest\\ImageProcessTests.cs",
+              "RelativeToolTip": "UnitTests\\ImageProcess.UnitTest\\ImageProcessTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:38.749Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ImageLoaderTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageLoader.UnitTest\\ImageLoaderTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ImageLoader.UnitTest\\ImageLoaderTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageLoader.UnitTest\\ImageLoaderTests.cs",
+              "RelativeToolTip": "UnitTests\\ImageLoader.UnitTest\\ImageLoaderTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:33.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ImageFilterUnitTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
+              "RelativeToolTip": "UnitTests\\ImageFilter.UnitTest\\ImageFilterUnitTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:29.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MyHtmClassifierTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\HTM.UnitTest\\MyHtmClassifierTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\HTM.UnitTest\\MyHtmClassifierTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\HTM.UnitTest\\MyHtmClassifierTests.cs",
+              "RelativeToolTip": "UnitTests\\HTM.UnitTest\\MyHtmClassifierTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:27.024Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ExcelHelperUnitTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ExcelHelper.UnitTest\\ExcelHelperUnitTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ExcelHelper.UnitTest\\ExcelHelperUnitTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ExcelHelper.UnitTest\\ExcelHelperUnitTests.cs",
+              "RelativeToolTip": "UnitTests\\ExcelHelper.UnitTest\\ExcelHelperUnitTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T21:45:24.892Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "MSTestSettings.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\MSTestSettings.cs",
-              "RelativeDocumentMoniker": "BinaryToImage.UnitTest\\MSTestSettings.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\BinaryToImage.UnitTest\\MSTestSettings.cs",
-              "RelativeToolTip": "BinaryToImage.UnitTest\\MSTestSettings.cs",
+              "Title": "BinaryToImageConverterTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
+              "RelativeToolTip": "UnitTests\\BinaryToImage.UnitTest\\BinaryToImageConverterTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T15:39:25.979Z"
+              "WhenOpened": "2025-03-22T21:45:22.797Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 20,
-              "Title": "MSTestSettings.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Knn_UnitTests\\MSTestSettings.cs",
-              "RelativeDocumentMoniker": "Knn_UnitTests\\MSTestSettings.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\Knn_UnitTests\\MSTestSettings.cs",
-              "RelativeToolTip": "Knn_UnitTests\\MSTestSettings.cs",
+              "Title": "ArrayExtensionsTests.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ArrayExten.UnitTest\\ArrayExtensionsTests.cs",
+              "RelativeDocumentMoniker": "UnitTests\\ArrayExten.UnitTest\\ArrayExtensionsTests.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\se-cloud-2024-2025\\MyWork\\Project\\Image-Reconstruction-Project\\Image_Reconstruction_Classifier\\UnitTests\\ArrayExten.UnitTest\\ArrayExtensionsTests.cs",
+              "RelativeToolTip": "UnitTests\\ArrayExten.UnitTest\\ArrayExtensionsTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T15:37:19.962Z"
+              "WhenOpened": "2025-03-22T21:45:20.006Z"
             }
           ]
         }
