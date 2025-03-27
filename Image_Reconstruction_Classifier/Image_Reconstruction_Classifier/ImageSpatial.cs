@@ -98,7 +98,7 @@ namespace Image_Reconstruction_Classifier
                 }
             }
 
-            Console.WriteLine("Spartial Poler Completed.");
+            Console.WriteLine("Spatial Pooler Completed.");
         }
 
         public static void ProcessTestImagesSpatial()

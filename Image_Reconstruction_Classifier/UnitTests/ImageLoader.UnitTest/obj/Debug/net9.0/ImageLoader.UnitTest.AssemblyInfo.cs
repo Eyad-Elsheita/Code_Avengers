@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImageLoader.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1312aea8bb53b09955072f6ad74373e03de88dc7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2daaa6d8ae18c40878ade6cdf17c82406b400fcd")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImageLoader.UnitTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImageLoader.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

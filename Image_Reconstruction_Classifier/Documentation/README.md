@@ -1,7 +1,7 @@
 # Image Reconstruction Using HTM and KNN
 
-## Overview
-This project explores image reconstruction using Hierarchical Temporal Memory (HTM) and K-Nearest Neighbors (KNN) classifiers. The dataset consists of 10,000 training images and 2,000 test images from the Fashion-MNIST dataset. The images are binarized, vectorized, processed through a spatial pooler, and classified using HTM and KNN. We also explore combining both classifiers for improved accuracy.
+## Abstract
+Efficient image storage and reconstruction are critical in the era of increasing digital content. Traditional image storage methods require significant memory, making retrieval costly and inefficient. This paper presents a novel image reconstruction framework that compresses images into Sparse Distributed Representations (SDRs) using a biologically inspired approach based on Hierarchical Temporal Memory (HTM). The system employs K-Nearest Neighbors (KNN) and HTM-based classifiers to reconstruct images with high accuracy while significantly reducing storage requirements. The framework is trained on 10,000 images and tested on 2,000 images, achieving robust reconstruction with minimal data loss. Leveraging the NeoCortex API for SDR generation, this methodology optimizes storage efficiency without compromising image fidelity. The proposed approach has the potential to revolutionize cloud storage, AI-powered image enhancement, and digital content management by offering an ultra-efficient yet accurate image compression and retrieval system.
 
 ## Solution Architecture
 The workflow of the project follows these key steps:
@@ -14,7 +14,7 @@ The workflow of the project follows these key steps:
 6. **Combination of Classifiers**: Merge results from HTM and KNN using Gaussian weighting and neighboring cell interactions.
 7. **Evaluation**: Compare reconstructed images with original images using cosine similarity.
 8. **Post-processing**: Apply a median filter to refine binary images.
-9. COnversion of Binary images to png images.
+9. Conversion of Binary images to png images.
 
 ### Architecture Diagram
 ![Solution Architecture](architecture.png)  
@@ -75,7 +75,8 @@ export Training_Image_Spatial="path/to/training_image_spatial"
    - Generate and save similarity statistics in excel sheets.
 
 ## Unit Testing & Documentation
-We are currently implementing unit testing for the core methods to ensure accuracy and reliability. Documentation will be provided soon to detail each component of the project.
+## Link to  Documentation [Link](https://github.com/Eyad-Elsheita/Code_Avengers/tree/development/Image_Reconstruction_Classifier/Documentation/README.md)
+## Link to  UnitTesting [Link](https://github.com/Eyad-Elsheita/Code_Avengers/tree/development/Image_Reconstruction_Classifier/UnitTests)
 
 ## Results
 | Classifier  | Vector Images (%) | Binary Images (%) |
