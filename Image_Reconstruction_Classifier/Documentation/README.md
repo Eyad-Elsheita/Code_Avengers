@@ -17,8 +17,8 @@ The workflow of the project follows these key steps:
 9. Conversion of Binary images to png images.
 
 ### Architecture Diagram
-![Solution Architecture](architecture.png)  
-Please refer to images architecture.png in project repository.
+![Solution Architecture](https://github.com/Eyad-Elsheita/Code_Avengers/tree/development/Image_Reconstruction_Classifier/Documentation)  
+Please refer to images Test Data Flowchart.png & Train Data Flowchart.png in project repository.
 
 ## Setup Instructions
 Follow these steps to reproduce the project:
