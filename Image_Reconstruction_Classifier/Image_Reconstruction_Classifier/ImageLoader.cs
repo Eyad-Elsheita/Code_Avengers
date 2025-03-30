@@ -6,114 +6,79 @@ namespace ImageProcessing
 {
     public class ImageLoader
     {
-        // Method to load image data from the folder
+        /// <summary>
+        /// Loads a specified number of image files from a folder.
+        /// Each image is represented as a flattened 1D binary array.
+        /// </summary>
+        /// <param name="folderPath">Path to the folder containing the image .txt files.</param>
+        /// <param name="numberOfFiles">The number of files to load.</param>
+        /// <returns>A jagged array where each element is a binary image array.</returns>
         public static int[][] LoadImageData(string folderPath, int numberOfFiles)
         {
             try
             {
-                // Get all the .txt files in the folder
+                // Retrieve up to 'numberOfFiles' .txt files from the directory
                 var filePaths = Directory.GetFiles(folderPath, "*.txt").Take(numberOfFiles).ToArray();
 
-                // Initialize the image data array
-                int[][] imageData = new int[filePaths.Length][];
-
-                // Load the images from each file
-                for (int i = 0; i < filePaths.Length; i++)
-                {
-                    imageData[i] = LoadImage(filePaths[i]);
-                }
-
-                return imageData;
+                // Load each image file and store it as a 1D binary array
+                return filePaths.Select(LoadImage).ToArray();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error loading images: {ex.Message}");
-                return new int[0][];
+                return Array.Empty<int[]>(); // Return an empty array to prevent crashes
             }
         }
 
-        // Method to load an individual image from a file and flatten it
+        /// <summary>
+        /// Loads an individual binary image from a .txt file and flattens it into a 1D array.
+        /// </summary>
+        /// <param name="filePath">Path to the .txt file containing the image.</param>
+        /// <returns>A 1D binary array representing the image.</returns>
         public static int[] LoadImage(string filePath)
         {
             try
             {
-                // Read the content of the text file (binary values)
-                string[] lines = File.ReadAllLines(filePath);
-
-                // Convert the content to a binary array, flattening it to a 1D array
-                var imageData = lines.SelectMany(line => line.Select(c => c == '1' ? 1 : 0)).ToArray();
-
-                return imageData;
+                // Read all lines from the text file (assuming each row represents a line of binary values)
+                return File.ReadAllLines(filePath)
+                           .SelectMany(line => line.Select(c => c == '1' ? 1 : 0)) // Convert '1' to 1 and everything else to 0
+                           .ToArray();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error loading image from {filePath}: {ex.Message}");
-                return new int[0];
+                return Array.Empty<int>(); // Return an empty array if the file cannot be read
             }
         }
 
-        // Method to save the image data to a file (flattened in one row)
-        //public static void SaveImageDataToFile(int[] imageData, string filePath)
-        //{
-        //    try
-        //    {
-        //        // Check if filePath is null or empty before proceeding
-        //        if (string.IsNullOrEmpty(filePath))
-        //        {
-        //            Console.WriteLine("Error: File path is null or empty.");
-        //            return;
-        //        }
-
-        //        // Get the directory path; ensure it's not null by using the null-coalescing operator
-        //        string directoryPath = Path.GetDirectoryName(filePath) ?? string.Empty;
-
-        //        // Ensure the directory exists (it won't if directoryPath is empty)
-        //        if (!string.IsNullOrEmpty(directoryPath))
-        //        {
-        //            Directory.CreateDirectory(directoryPath);
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Error: Invalid directory path.");
-        //            return;
-        //        }
-
-        //        // Save the binary image data to a text file (flattened in one row)
-        //        File.WriteAllText(filePath, string.Join(",", imageData.Select(i => i.ToString())));
-
-        //        Console.WriteLine($"Image data successfully saved to {filePath}");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error saving image data: {ex.Message}");
-        //    }
-        //}
-
+        /// <summary>
+        /// Saves a binary image array to a file, storing it in a single comma-separated row.
+        /// </summary>
+        /// <param name="imageData">A 1D array containing binary image data.</param>
+        /// <param name="filePath">The file path where the data will be saved.</param>
         public static void SaveImageDataToFile(int[] imageData, string filePath)
         {
             try
             {
-                // Check if filePath is null or empty
-                if (string.IsNullOrEmpty(filePath))
+                // Validate the file path to ensure it's not null or empty
+                if (string.IsNullOrWhiteSpace(filePath))
                 {
                     Console.WriteLine("Error: File path is null or empty.");
                     return;
                 }
 
-                // Get the directory path
+                // Get the directory of the file and ensure it exists
                 string directoryPath = Path.GetDirectoryName(filePath) ?? string.Empty;
-
-                // Ensure the directory exists if the directory path is not null or empty
                 if (!string.IsNullOrEmpty(directoryPath))
                 {
-                    Directory.CreateDirectory(directoryPath);
+                    Directory.CreateDirectory(directoryPath); // Create the directory if it doesn't exist
                 }
 
-                // Display the full file path ** 
+                // Display the full file path for debugging purposes
                 Console.WriteLine($"Saving file to: {Path.GetFullPath(filePath)}");
 
-                // Save the binary image data to the file (flattened in one row)
-                File.WriteAllText(filePath, string.Join(",", imageData.Select(i => i.ToString())));
+                // Convert the binary array into a comma-separated string and write to file
+                File.WriteAllText(filePath, string.Join(",", imageData));
 
                 Console.WriteLine($"Image data successfully saved to {filePath}");
             }
@@ -122,9 +87,5 @@ namespace ImageProcessing
                 Console.WriteLine($"Error saving image data: {ex.Message}");
             }
         }
-
-
-
-
     }
 }

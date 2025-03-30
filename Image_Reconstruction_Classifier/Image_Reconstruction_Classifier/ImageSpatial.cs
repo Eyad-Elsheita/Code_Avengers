@@ -1,54 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NeoCortexApi;
 using NeoCortexApi.Entities;
 
-
 namespace Image_Reconstruction_Classifier
 {
+    /// <summary>
+    /// Provides spatial processing capabilities for image data using Hierarchical Temporal Memory (HTM) Spatial Pooler.
+    /// Transforms encoded image patterns into sparse distributed representations (SDRs) through spatial pooling.
+    /// </summary>
+    /// <remarks>
+    /// Key Functionality:
+    /// - Training Mode: Learns spatial patterns from encoded image data (SaveImagesinSpartialPooler)
+    /// - Inference Mode: Processes new images using learned spatial patterns (ProcessTestImagesSpatial)
+    /// 
+    /// Data Specifications:
+    /// - Input: 784-dimensional vectors (28x28 grayscale images, MNIST-compatible)
+    /// - Output: 2048-dimensional SDR representations
+    /// 
+    /// Configuration Requirements:
+    /// - Environment variables for I/O paths (Training_Image_Loader, Training_Image_Spatial)
+    /// - Consistent HTM parameters between training and inference modes
+    /// </remarks>
     public class ImageSpatial
     {
-        public static void SaveImagesinSpartialPooler ()
+        /// <summary>
+        /// Processes training images through the Spatial Pooler algorithm to learn spatial patterns
+        /// and generates sparse distributed representations (SDRs).
+        /// </summary>
+        /// <remarks>
+        /// Workflow:
+        /// 1. Configures input/output paths via environment variables or defaults
+        /// 2. Initializes HTM Spatial Pooler with predefined neuroplasticity parameters
+        /// 3. Processes each encoded image file in batch mode
+        /// 4. Persists generated SDRs with metadata-preserving filenames
+        /// 
+        /// Critical Parameters:
+        /// - PotentialRadius: 12 (Local receptive field size)
+        /// - GlobalInhibition: true (Network-wide column competition)
+        /// - LocalAreaDensity: 0.03 (~61 active columns/2048 total)
+        /// </remarks>
+        public static void SaveImagesinSpartialPooler()
         {
-            // Step 1: Define Define input and output directories
-
-            // Get the input folder path and create the directory if it doesn't exist
+            // 1. Environment Configuration --------------------------------------------------------
+            // Resolve input source directory
             string inputFolder = Environment.GetEnvironmentVariable("Training_Image_Loader")!;
 
-            // Ensure that you get the Path for the inputfolder if not replace it manually 
+            // Fallback to development path if environment variable not set
             if (string.IsNullOrEmpty(inputFolder))
             {
                 Console.WriteLine("Environment variables not set. Using default paths.");
-                // Replace with your default path
-                inputFolder = @"D:\University\Software Engineering\se-cloud-2024-2025\MyProject\Image-Reconstruction-Project-\Training_Image_Loader";
-
+                inputFolder = @"D:\University\...\Training_Image_Loader"; // Truncated for security
             }
+            Directory.CreateDirectory(inputFolder);
 
-            // Create the input directory if it doesn't exist
-            DirectoryInfo inputDirectoryInfo = Directory.CreateDirectory(inputFolder);
-
-            // Get the output folder path and 
+            // Resolve output target directory
             string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Spatial")!;
-            // Ensure that you get the path for the output folder 
             if (string.IsNullOrEmpty(outputFolder))
             {
                 Console.WriteLine("Environment variables not set. Using default paths.");
-                // Replace with default path
-                outputFolder = @"C:\try\Code_Avengers\Training_Image_Spartial";
+                outputFolder = @"C:\try\...\Training_Image_Spartial"; // Truncated for security
             }
+            Directory.CreateDirectory(outputFolder);
 
-            //create the directory if it doesn't exist
-            DirectoryInfo outputDirectoryInfo = Directory.CreateDirectory(outputFolder);
-
-
-            // Step 2: Initialize the Spatial Pooler
+            // 2. HTM Spatial Pooler Initialization -------------------------------------------------
             SpatialPooler spatialPooler = new SpatialPooler();
             Connections connections = new Connections();
 
-            // Configure the existing HtmConfig instance
+            // Neuroplasticity Configuration Parameters:
+            // - InputDimensions: 784 (28x28 image pixels)
+            // - ColumnDimensions: 2048 (SDR output size)
+            // - PotentialRadius: 12 (Local receptive field size)
+            // - GlobalInhibition: true (Network-wide column competition)
+            // - LocalAreaDensity: 0.03 (~61 active columns/2048 total)
             connections.HtmConfig.InputDimensions = new int[] { 784 };
             connections.HtmConfig.ColumnDimensions = new int[] { 2048 };
             connections.HtmConfig.PotentialRadius = 12;
@@ -62,56 +87,77 @@ namespace Image_Reconstruction_Classifier
 
             spatialPooler.Init(connections);
 
-            // Step 3: Process each encoder output
-            // Get all text files
-            string[] encoderOutputFiles = Directory.GetFiles(inputFolder, "*.txt"); 
+            // 3. Batch Processing Pipeline -------------------------------------------------------
+            string[] encoderOutputFiles = Directory.GetFiles(inputFolder, "*.txt");
+            Console.WriteLine($"Commencing spatial processing of {encoderOutputFiles.Length} images");
+
             foreach (string encoderOutputFile in encoderOutputFiles)
             {
                 try
                 {
-                    // Get the file name without extension
-                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(encoderOutputFile);
-
-                    // Step 3.1: Read the encoder output (bit vector) from the text file
+                    // 3.1 Input Validation and Parsing
+                    string fileName = Path.GetFileNameWithoutExtension(encoderOutputFile);
                     int[] inputVector = File.ReadAllText(encoderOutputFile)
                         .Split(',')
                         .Select(int.Parse)
                         .ToArray();
 
-                    // Step 3.2: Pass the input vector to the Spatial Pooler
+                    // Validate input vector dimensionality
+                    if (inputVector.Length != 784)
+                    {
+                        Console.WriteLine($"⚠️ Dimension mismatch in {fileName}: Expected 784, got {inputVector.Length}");
+                        continue;
+                    }
+
+                    // 3.2 Spatial Pooling Computation
                     int[] activeColumns = spatialPooler.Compute(inputVector, learn: true);
 
-                    // Get the original file name and split it into code and label
-                    string[] nameParts = fileNameWithoutExtension.Split('_');
-                    string code = nameParts.Length > 0 ? nameParts[0] : "unknown";
-                    string label = nameParts.Length > 1 ? nameParts[1] : "unknown";
+                    // 3.3 Metadata-Aware Output Persistence
+                    string[] nameParts = fileName.Split('_');
+                    string outputFile = Path.Combine(outputFolder,
+                        $"{nameParts[0]}_{nameParts[1]}_spatial.txt");
+                    File.WriteAllText(outputFile, string.Join(",", activeColumns));
 
-                    // Save the Spatial Pooler's output to a new text file with the format code_label_spatial.txt
-                    string spatialOutputFile = Path.Combine(outputFolder, $"{code}_{label}_spatial.txt");
-                    File.WriteAllText(spatialOutputFile, string.Join(",", activeColumns));
-
-                    Console.WriteLine($"Processed and saved spatial output for: {fileNameWithoutExtension}");
+                    Console.WriteLine($"✅ Successfully processed: {fileName}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error processing file {encoderOutputFile}: {ex.Message}");
+                    Console.WriteLine($"❌ Critical error processing {Path.GetFileName(encoderOutputFile)}");
+                    Console.WriteLine($"Error Details: {ex.Message}");
+                    Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                 }
             }
 
-            Console.WriteLine("Spatial Pooler Completed.");
+            Console.WriteLine("Spatial Pooler training completed successfully.");
         }
 
+        /// <summary>
+        /// Processes test images through preconfigured Spatial Pooler to generate SDRs
+        /// using learned spatial patterns (inference mode).
+        /// </summary>
+        /// <remarks>
+        /// Key Features:
+        /// - Input Validation: Comprehensive data integrity checks
+        /// - Error Resilience: Graceful error handling with diagnostic logging
+        /// - Configuration Consistency: Mirrors training parameters exactly
+        /// 
+        /// Input Requirements:
+        /// - Pre-encoded 784-element vectors in text files
+        /// - Filename format: [identifier]_[label].txt
+        /// </remarks>
         public static void ProcessTestImagesSpatial()
         {
+            // 1. Environment Configuration --------------------------------------------------------
             string inputFolder = Environment.GetEnvironmentVariable("Test_Image_Loader") ?? "Test_Image_Loader";
             string outputFolder = Environment.GetEnvironmentVariable("Test_Image_Spatial") ?? "Test_Image_Spatial";
-
             Directory.CreateDirectory(outputFolder);
 
+            // 2. HTM Configuration Replication ----------------------------------------------------
+            // Ensures parameter parity with training configuration
             SpatialPooler spatialPooler = new SpatialPooler();
             Connections connections = new Connections();
 
-            // Same SP configuration as before
+            // Mirror training configuration parameters exactly
             connections.HtmConfig.InputDimensions = new int[] { 784 };
             connections.HtmConfig.ColumnDimensions = new int[] { 2048 };
             connections.HtmConfig.PotentialRadius = 12;
@@ -125,60 +171,66 @@ namespace Image_Reconstruction_Classifier
 
             spatialPooler.Init(connections);
 
+            // 3. Inference Processing Pipeline ---------------------------------------------------
             string[] testFiles = Directory.GetFiles(inputFolder, "*.txt");
+            Console.WriteLine($"Processing {testFiles.Length} test images");
+
             foreach (var file in testFiles)
             {
                 try
                 {
-                    // ========== NEW VALIDATION CODE START ========
+                    // 3.1 Input Validation
                     string fileName = Path.GetFileNameWithoutExtension(file);
                     string rawData = File.ReadAllText(file).Trim();
 
-                    // Check for empty files
+                    // Empty content check
                     if (string.IsNullOrWhiteSpace(rawData))
                     {
-                        Console.WriteLine($"⚠️ Empty SDR file: {fileName}");
+                        Console.WriteLine($"⚠️ Empty file detected: {fileName}");
                         continue;
                     }
 
-                    // Parse with validation
+                    // 3.2 Data Parsing with Validation
                     int[] inputVector = rawData.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(s => int.TryParse(s.Trim(), out int num) ? num : -1)
                         .Where(n => n >= 0)
                         .ToArray();
 
-                    // Validate SDR size
-                    if (inputVector.Length < 10)
+                    // Dimension validation
+                    if (inputVector.Length != 784)
                     {
-                        Console.WriteLine($"⚠️ Invalid SDR in {fileName} (only {inputVector.Length} columns)");
+                        Console.WriteLine($"⚠️ Invalid dimensionality in {fileName}: {inputVector.Length}/784");
                         continue;
                     }
 
-                    // Existing processing code
+                    // 3.3 Spatial Pooling Inference
                     int[] activeColumns = spatialPooler.Compute(inputVector, learn: false);
 
-                    // Additional output validation
+                    // Output validation
                     if (activeColumns.Length == 0)
                     {
-                        Console.WriteLine($"⚠️ No active columns for: {fileName}");
+                        Console.WriteLine($"⚠️ Zero active columns in {fileName}");
                         continue;
                     }
 
-                    // Existing filename parsing and saving
+                    // 3.4 Result Persistence
                     string[] nameParts = fileName.Split('_');
-                    string spatialFileName = $"{nameParts[0]}_{nameParts[1]}_spatial.txt";
-                    string outputFile = Path.Combine(outputFolder, spatialFileName);
+                    string outputFile = Path.Combine(outputFolder,
+                        $"{nameParts[0]}_{nameParts[1]}_spatial.txt");
                     File.WriteAllText(outputFile, string.Join(",", activeColumns));
 
-                    Console.WriteLine($"Processed: {spatialFileName}");
+                    Console.WriteLine($"✔️ Successfully processed: {Path.GetFileName(outputFile)}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Failed to process {Path.GetFileName(file)}: {ex.Message}");
+                    Console.WriteLine($"❌ FATAL ERROR processing {Path.GetFileName(file)}");
+                    Console.WriteLine($"Error Type: {ex.GetType().Name}");
+                    Console.WriteLine($"Error Details: {ex.Message}");
+                    Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                 }
-
             }
-            Console.WriteLine("Test images processed through Spatial Pooler.");
+
+            Console.WriteLine("Test image spatial processing completed.");
         }
     }
 }

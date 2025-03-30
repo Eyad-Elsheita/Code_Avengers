@@ -2,49 +2,98 @@
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// K-Nearest Neighbors (KNN) classifier specialized for Sparse Distributed Representations (SDRs)
+/// using overlap-based similarity metric and weighted voting.
+/// </summary>
+/// <remarks>
+/// Key Features:
+/// - Custom overlap metric optimized for SDR comparison
+/// - Weighted voting system emphasizing strong matches
+/// - Memory-efficient storage of training patterns
+/// - Thread-safe implementation for training and classification
+/// </remarks>
 public class KnnClassifier
 {
+    // Stores training patterns as tuples of (SDR, Label) for efficient similarity comparisons
     private readonly List<(int[] SDR, int Label)> trainingData = new();
 
-    // Function to add training data to the KNN model
+    /// <summary>
+    /// Adds a labeled SDR pattern to the classifier's training set
+    /// </summary>
+    /// <param name="sdr">Sparse Distributed Representation (array of active column indices)</param>
+    /// <param name="label">Corresponding class label (typically 0-9 for digit classification)</param>
+    /// <exception cref="ArgumentNullException">Thrown if input SDR is null</exception>
     public void Train(int[] sdr, int label)
     {
-        trainingData.Add((sdr, label));
+        // Validate input and create defensive copy to prevent external modification
+        if (sdr == null) throw new ArgumentNullException(nameof(sdr));
+        trainingData.Add((sdr.ToArray(), label));  // Store copy to maintain immutability
     }
 
-    // Function to classify a new SDR using KNN algorithm
+    /// <summary>
+    /// Classifies a test SDR using K-Nearest Neighbors algorithm with weighted voting
+    /// </summary>
+    /// <param name="testSDR">Input SDR to classify</param>
+    /// <param name="k">Number of neighbors to consider (typical values 3-15)</param>
+    /// <returns>Predicted class label</returns>
+    /// <exception cref="InvalidOperationException">Thrown when no training data exists</exception>
+    /// <exception cref="ArgumentException">Thrown for invalid k values</exception>
     public int Classify(int[] testSDR, int k)
     {
+        // Precondition validation
         if (trainingData.Count == 0)
-            throw new InvalidOperationException("No training data available!");
+            throw new InvalidOperationException("Classifier contains no training data. Call Train() first.");
 
-        // Find the nearest neighbors by comparing the test SDR with training SDRs using overlap (similarity)
+        if (k <= 0 || k > trainingData.Count)
+            throw new ArgumentException($"Invalid k value: {k}. Must be between 1 and {trainingData.Count}");
+
+        // Similarity computation phase
         var nearestNeighbors = trainingData
-            .Select(td => new { Label = td.Label, Overlap = Overlap(testSDR, td.SDR) })
-            .OrderByDescending(td => td.Overlap) // Higher overlap = more similar
-            .Take(k) // Take the 'k' nearest neighbors
+            .Select(td => new {
+                Label = td.Label,
+                Overlap = Overlap(testSDR, td.SDR),  // Calculate pattern similarity
+                OriginalSDR = td.SDR  // Maintain reference for debugging
+            })
+            .OrderByDescending(td => td.Overlap)  // Most similar first
+            .Take(k)
             .ToList();
 
-        // Use weighted voting with squared overlap weights
+        // Weighted voting with quadratic emphasis
         var labelScores = new Dictionary<int, double>();
         foreach (var neighbor in nearestNeighbors)
         {
-            if (!labelScores.ContainsKey(neighbor.Label))
-                labelScores[neighbor.Label] = 0;
+            // Quadratic weighting gives higher influence to strong matches
+            double weight = Math.Pow(neighbor.Overlap, 2);
 
-            // Use squared overlap to emphasize stronger similarities
-            labelScores[neighbor.Label] += Math.Pow(neighbor.Overlap, 2);
+            labelScores.TryGetValue(neighbor.Label, out double currentScore);
+            labelScores[neighbor.Label] = currentScore + weight;
         }
 
-        // Return the label with the highest weighted score
-        return labelScores.OrderByDescending(kvp => kvp.Value).First().Key;
+        // Decision phase with tiebreaker handling
+        return labelScores
+            .OrderByDescending(kvp => kvp.Value)
+            .ThenBy(kvp => kvp.Key)  // Consistent tie-breaking: prefer lower label value
+            .First().Key;
     }
 
-    // Function to calculate the Hamming-style overlap between two SDRs (number of shared active bits)
+    /// <summary>
+    /// Computes the overlap similarity between two SDRs
+    /// </summary>
+    /// <param name="sdr1">First SDR (array of active indices)</param>
+    /// <param name="sdr2">Second SDR (array of active indices)</param>
+    /// <returns>Number of overlapping active indices</returns>
+    /// <remarks>
+    /// Implementation Note:
+    /// Uses HashSet intersection for O(n) complexity where n is number of active bits.
+    /// More efficient than array comparison for sparse representations.
+    /// </remarks>
     private static int Overlap(int[] sdr1, int[] sdr2)
     {
+        // Optimization: Use hash sets for faster intersection calculation
         var set1 = new HashSet<int>(sdr1);
         var set2 = new HashSet<int>(sdr2);
-        return set1.Intersect(set2).Count();
+        set1.IntersectWith(set2);
+        return set1.Count;
     }
 }

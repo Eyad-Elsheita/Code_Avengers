@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImageFilter.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2daaa6d8ae18c40878ade6cdf17c82406b400fcd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+991f505a919d3797790d580d8e59e094b79d6932")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImageFilter.UnitTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImageFilter.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

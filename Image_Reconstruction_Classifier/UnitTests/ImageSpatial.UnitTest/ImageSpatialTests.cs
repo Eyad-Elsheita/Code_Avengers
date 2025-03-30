@@ -6,116 +6,142 @@ using Image_Reconstruction_Classifier;
 
 namespace ImageReconstructionTests
 {
+    /// <summary>
+    /// Comprehensive unit tests for validating Spatial Pooler functionality
+    /// in image reconstruction pipelines.
+    /// </summary>
+    /// <remarks>
+    /// Test Coverage Includes:
+    /// - Training pipeline validation
+    /// - Inference pipeline validation
+    /// - Edge case handling (empty files, invalid data)
+    /// - Environment configuration resilience
+    /// 
+    /// Test Isolation:
+    /// - Uses dedicated test directories
+    /// - Automatic cleanup after each test
+    /// - Independent environment configuration
+    /// </remarks>
     [TestClass]
     public class ImageSpatialTests
     {
+        // Environment configuration constants
         private const string TestImageLoader = "Test_Image_Loader";
         private const string TestImageSpatial = "Test_Image_Spatial";
 
-        // === Helper Method to Clean and Setup Directories ===
+        /// <summary>
+        /// Prepares clean test directories and validates their creation
+        /// </summary>
+        /// <param name="inputFolder">Input directory path</param>
+        /// <param name="outputFolder">Output directory path</param>
         private void PrepareTestFolders(string inputFolder, string outputFolder)
         {
+            // Clean existing directories
             if (Directory.Exists(inputFolder)) Directory.Delete(inputFolder, true);
             if (Directory.Exists(outputFolder)) Directory.Delete(outputFolder, true);
 
-            Directory.CreateDirectory(inputFolder);  // Ensure the input folder is created
-            Directory.CreateDirectory(outputFolder); // Ensure the output folder is created
+            // Create fresh directories
+            Directory.CreateDirectory(inputFolder);
+            Directory.CreateDirectory(outputFolder);
 
-            // Log folder creation status
-            Console.WriteLine($"Input folder exists: {Directory.Exists(inputFolder)}");
-            Console.WriteLine($"Output folder exists: {Directory.Exists(outputFolder)}");
+            // Diagnostic output
+            Console.WriteLine($"[Setup] Input folder status: {Directory.Exists(inputFolder)}");
+            Console.WriteLine($"[Setup] Output folder status: {Directory.Exists(outputFolder)}");
         }
 
+        /// <summary>
+        /// Validates training pipeline execution with properly configured environment
+        /// and valid input data
+        /// </summary>
         [TestMethod]
         public void Test_SaveImagesinSpartialPooler_WithValidEnvironmentVariables()
         {
             // Arrange
             var inputFolder = @"C:\MockInput";
             var outputFolder = @"C:\MockOutput";
-
             PrepareTestFolders(inputFolder, outputFolder);
 
+            // Configure environment
             Environment.SetEnvironmentVariable("Training_Image_Loader", inputFolder);
             Environment.SetEnvironmentVariable("Training_Image_Spatial", outputFolder);
 
-            // Create mock input file
+            // Create valid test input (784-element vector)
             var mockFile = Path.Combine(inputFolder, "mock_encoder_output.txt");
-            File.WriteAllText(mockFile, string.Join(",", Enumerable.Repeat(1, 784))); // Mock 28x28 image
+            File.WriteAllText(mockFile, string.Join(",", Enumerable.Repeat(1, 784)));
 
             // Act
             ImageSpatial.SaveImagesinSpartialPooler();
 
             // Assert
             var outputFiles = Directory.GetFiles(outputFolder, "*_spatial.txt");
-            Assert.AreEqual(1, outputFiles.Length, "Spatial output file should be created.");
-            Assert.IsTrue(File.Exists(outputFiles[0]), "Spatial file is missing.");
+            Assert.AreEqual(1, outputFiles.Length, "Incorrect number of output files");
+            Assert.IsTrue(File.Exists(outputFiles[0]), "Output file missing");
 
             // Cleanup
             PrepareTestFolders(inputFolder, outputFolder);
         }
 
+        /// <summary>
+        /// Validates proper handling of empty input files during inference processing
+        /// </summary>
         [TestMethod]
         public void Test_ProcessTestImagesSpatial_EmptyFilesAreSkipped()
         {
             // Arrange
             var inputFolder = @"C:\MockTestInput_Empty";
             var outputFolder = @"C:\MockTestOutput_Empty";
-
             PrepareTestFolders(inputFolder, outputFolder);
 
+            // Set test-specific environment
             Environment.SetEnvironmentVariable("Test_Image_Loader", inputFolder);
             Environment.SetEnvironmentVariable("Test_Image_Spatial", outputFolder);
 
-            // Create only an empty file
+            // Create empty test file
             var emptyFile = Path.Combine(inputFolder, "empty_test_file.txt");
-            File.WriteAllText(emptyFile, ""); // Write an empty file
+            File.WriteAllText(emptyFile, string.Empty);
 
             // Act
             ImageSpatial.ProcessTestImagesSpatial();
 
             // Assert
             var outputFiles = Directory.GetFiles(outputFolder, "*_spatial.txt");
-            Assert.AreEqual(0, outputFiles.Length, "No output files should be created for empty input.");
+            Assert.AreEqual(0, outputFiles.Length, "Empty input should produce no output");
 
             // Cleanup
             PrepareTestFolders(inputFolder, outputFolder);
         }
 
+        /// <summary>
+        /// Validates complete processing pipeline for valid test images,
+        /// including input validation, spatial processing, and output generation
+        /// </summary>
         [TestMethod]
         public void Test_ProcessTestImagesSpatial_ValidFilesAreProcessed()
         {
             // Arrange
             var inputFolder = @"C:\MockTestInput_Valid";
             var outputFolder = @"C:\MockTestOutput_Valid";
-
-            // Ensure directories are cleaned and prepared
             PrepareTestFolders(inputFolder, outputFolder);
 
+            // Configure test environment
             Environment.SetEnvironmentVariable(TestImageLoader, inputFolder);
             Environment.SetEnvironmentVariable(TestImageSpatial, outputFolder);
 
-            // ===== Create Mock Input File Containing 784 Values =====
+            // Create valid test data (784-element MNIST-style input)
             var validFile = Path.Combine(inputFolder, "valid_test_file.txt");
-            string imageData = string.Join(",", Enumerable.Repeat(1, 784)); // Mocking a 28x28 image
-            File.WriteAllText(validFile, imageData); // Create the mock file
-            // =====================================================
+            File.WriteAllText(validFile, string.Join(",", Enumerable.Repeat(1, 784)));
 
-            // Ensure the file is created
-            Console.WriteLine($"File created at: {validFile}");
-            Assert.IsTrue(File.Exists(validFile), "Test file was not created!");
+            // Validate test setup
+            Assert.IsTrue(File.Exists(validFile), "Test input creation failed");
 
             // Act
             ImageSpatial.ProcessTestImagesSpatial();
 
-            // Log the output folder contents before the assertion
+            // Assert
             var outputFiles = Directory.GetFiles(outputFolder, "*_spatial.txt");
-
-            // Log output files found
-            Console.WriteLine($"Found {outputFiles.Length} spatial files in the output directory.");
-
-            // Assert: Ensure exactly 1 spatial file exists
-            Assert.AreEqual(1, outputFiles.Length, "Valid input should produce one spatial file.");
-            Assert.IsTrue(File.Exists(outputFiles[0]), "Spatial file is missing.");
+            Console.WriteLine($"[Diagnostic] Found {outputFiles.Length} output files");
+            Assert.AreEqual(1, outputFiles.Length, "Incorrect output count");
+            Assert.IsTrue(File.Exists(outputFiles[0]), "Output file verification failed");
 
             // Cleanup
             PrepareTestFolders(inputFolder, outputFolder);
