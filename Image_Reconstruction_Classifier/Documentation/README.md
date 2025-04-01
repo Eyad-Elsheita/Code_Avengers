@@ -8,7 +8,7 @@ The proposed approach has the potential to revolutionize cloud storage, AI-power
 
 ---
 
-## Unit Testing & Documentation
+## Link to  Project  [Link](https://github.com/Eyad-Elsheita/Code_Avengers/tree/development/Image_Reconstruction_Classifier)
 ## Link to  Documentation [Link](https://github.com/Eyad-Elsheita/Code_Avengers/tree/development/Image_Reconstruction_Classifier/Documentation/README.md)
 ## Link to  UnitTesting [Link](https://github.com/Eyad-Elsheita/Code_Avengers/tree/development/Image_Reconstruction_Classifier/UnitTests)
 
@@ -120,10 +120,11 @@ The framework is designed to be scalable, allowing for easy adaptation to large 
 ## Project Archeticture overview 
 
 - Training pipeline
-
-
+![Train Data Flowchart](https://github.com/user-attachments/assets/bb03d363-7bd8-4110-8563-c770b624db27)
+**Figure 1:** Training Pipleline
 - Test pipeline
-
+![Test Data Flowchart](https://github.com/user-attachments/assets/b9ce829b-8e03-4325-9579-41240728ad71)
+**Figure 2:** Test Pipleline
 
 ## Image Preprocessing and Feature Extraction
 
@@ -262,13 +263,14 @@ Results and similarity statistics are stored in Excel spreadsheets using the `Ex
 ## Results
 
 ### Comparative Performance Analysis
-**Table 1:** Reconstruction metrics across classifiers (2,000 test images)
 
-| Classifier  | Vector Images (%) | Binary Images (%)|  Reconstruction Time (ms) 
-|-------------|------------------|-------------------|---------------------------|
-| KNN         | 83.39            | 87.00             | 74
-| HTM         | 85.90            | 87.28             | 112
-| Combined    | 86.22            | 88.12             | 89
+| Classifier  | Vector Images (%) | Binary Images (%)| StdDev Vector Similarity (%)| StdDev Binary Similarity (%)  | Reconstruction Time (ms) 
+|-------------|------------------|-------------------|-----------------------------|-------------------------------|---------------------------|
+| KNN         | 83.39            | 87.00             |     10.06                   |    7.63                       |  74                       |         
+| HTM         | 85.90            | 87.28             |     7.96                    |    7.38                       | 112                       |
+| Combined    | 86.22            | 88.12             |     8.06                    |    7.05                       |  89                       |
+
+**Table 1:** Reconstruction metrics across classifiers (2,000 test images)
 
 *Key comparative observations:*  
 • Fusion achieves 2.83% higher vector similarity than KNN 
@@ -277,8 +279,9 @@ Results and similarity statistics are stored in Excel spreadsheets using the `Ex
 
 ### Reconstruction Accuracy Distribution (Fusion Classifier)
 
-![Box Plot of Similarity Scores](assets/boxplot.png)  
-**Figure 1:** Distribution of similarity scores for fusion classifier  
+![similarity result 2](https://github.com/user-attachments/assets/b073c1bf-14cb-4f9f-97ac-fa199be6e36f)
+
+**Figure 3:** Distribution of similarity scores for fusion classifier  
 
 *The box plot shows:*
 - **Vector Similarity:**  
@@ -294,8 +297,9 @@ Results and similarity statistics are stored in Excel spreadsheets using the `Ex
 
 ### Score Frequency Analysis
 
-![Histogram of Similarity Scores](assets/histogram.png) 
-**Figure 2:** Frequency distribution of fusion classifier scores
+![similarity_result_1](https://github.com/user-attachments/assets/ed3da198-8326-4cd2-b8fe-a24cd07ff1b0)
+
+**Figure 4:** Frequency distribution of fusion classifier scores
 
 *Key characteristics:*  
 - **Modal Class:** 85%-90% bin contains 34% of samples  
@@ -311,6 +315,7 @@ Results and similarity statistics are stored in Excel spreadsheets using the `Ex
 |-------------------|-------|----------|------|-------|
 | Vector Similarity | 86.22% | 8%      | 58%  | 98%   |
 | Binary Similarity | 88.12% | 7%      | 50%  | 99.1% |
+**Table 2:** Reconstruction metrics of fusion classifier (2,000 test images)
 
 *Key performance highlights:*
 1. **Consistency:** 92% of test images fell within ±1σ of mean scores
@@ -321,14 +326,15 @@ Results and similarity statistics are stored in Excel spreadsheets using the `Ex
 
 The project includes a suite of unit tests to ensure the correctness of key components such as image processing, classifier training, and image reconstruction. Below is an example summary of the unit test results:
 
-```
--------------------------------------------------
-Unit Test Results:
--------------------------------------------------
 
--------------------------------------------------
-All tests passed successfully.
-```
+### Unit Test Results:
+
+![unit_test_result](https://github.com/user-attachments/assets/b97f391a-4fe9-4be9-b2a2-02aacc8c0756)
+
+Figure 5: Test results
+
+As seen in Figure 5 All tests passed successfully.
+
 
 ---
 
