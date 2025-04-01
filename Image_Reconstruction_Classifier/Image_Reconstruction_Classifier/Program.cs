@@ -2,6 +2,7 @@
 using ImageProcessing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -17,6 +18,9 @@ class Program
     /// <param name="args">Command-line arguments (not used).</param>
     static void Main(string[] args)
     {
+        // Start the stopwatch to measure total runtime
+        Stopwatch stopwatch = Stopwatch.StartNew();
+
         // ==================================================
         // ======== PREPROCESSING & TRAINING SETUP ==========
         // ==================================================
@@ -479,6 +483,13 @@ class Program
         ExcelHelper.SaveSimilarityStatistics(combinedTestSimilarities,
             Path.Combine(similarityStatisticsFolder, "Combined_Test_Similarity_Statistics.xlsx"));
         Console.WriteLine("Test dataset processing completed.");
+
+        // Stop the stopwatch after all processing is complete
+        stopwatch.Stop();
+        Console.WriteLine("Total execution time: " + stopwatch.Elapsed);
+
+        // Optional: wait for user input to keep the console open (for debugging)
+        Console.ReadLine();
     }
 
     /// <summary>
