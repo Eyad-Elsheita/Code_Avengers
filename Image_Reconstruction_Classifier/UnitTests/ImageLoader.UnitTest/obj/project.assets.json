@@ -4098,6 +4098,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Azure.Storage.Blobs >= 12.29.0",
       "HtmImageEncoder >= 1.0.1",
       "ImageBinarizer >= 1.6.0",
       "Image_Reconstruction_Classifier >= 1.0.0",
@@ -4165,6 +4166,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Azure.Storage.Blobs": {
+            "target": "Package",
+            "version": "[12.29.0, )"
+          },
           "HtmImageEncoder": {
             "target": "Package",
             "version": "[1.0.1, )"
