@@ -604,3 +604,8 @@ C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstructi
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.pdb
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.genruntimeconfig.cache
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\ref\Knn_UnitTest.dll
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.csproj.AssemblyReference.cache
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.AssemblyInfoInputs.cache
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.AssemblyInfo.cs
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\Knn_UnitTests\obj\Debug\net9.0\Knn_UnitTest.csproj.CoreCompileInputs.cache

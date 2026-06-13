@@ -806,3 +806,8 @@ C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstructi
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.pdb
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.genruntimeconfig.cache
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\ref\HTM.UnitTest.dll
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.csproj.AssemblyReference.cache
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.AssemblyInfoInputs.cache
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.AssemblyInfo.cs
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\HTM.UnitTest\obj\Debug\net9.0\HTM.UnitTest.csproj.CoreCompileInputs.cache

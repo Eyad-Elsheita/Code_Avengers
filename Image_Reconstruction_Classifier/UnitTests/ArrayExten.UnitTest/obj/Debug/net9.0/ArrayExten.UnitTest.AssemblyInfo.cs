@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArrayExten.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+991f505a919d3797790d580d8e59e094b79d6932")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+feaf906a7e1292fe3b27ce80665f53fbd975cd8e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArrayExten.UnitTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArrayExten.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

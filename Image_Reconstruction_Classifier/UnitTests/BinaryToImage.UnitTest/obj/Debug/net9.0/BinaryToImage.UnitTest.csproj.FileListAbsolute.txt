@@ -604,3 +604,8 @@ C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstructi
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.pdb
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.genruntimeconfig.cache
 C:\Users\Admin\source\repos\se-cloud-2024-2025\MyWork\Project\Image-Reconstruction-Project\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\ref\BinaryToImage.UnitTest.dll
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.csproj.AssemblyReference.cache
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.AssemblyInfoInputs.cache
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.AssemblyInfo.cs
+D:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier\UnitTests\BinaryToImage.UnitTest\obj\Debug\net9.0\BinaryToImage.UnitTest.csproj.CoreCompileInputs.cache
