@@ -20,15 +20,18 @@
 
 ## Sprint 2 (June 15–28)
 
-**Goal: Core Experiment Wired to Cloud Storage**
+**Goal: Bug Fixes + Core Experiment Wired to Cloud Storage**
 
+- Fix ConvertImagesToBinary — use parameters with env var fallback, not the other way around
+- Fix the index mismatch between spatial files and imageData array
+- Fix hardcoded dev machine fallback paths in ImageSpatial.cs and Program.cs
 - Implement `DownloadInputFile` — pull training images from blob storage
 - Implement `UploadResultFile` — push result images back to blob
 - Implement `UploadExperimentResult` — write `ExperimentResult` record to table storage
 - Wire the existing HTM/KNN unit test as the experiment body inside `IExperiment`
 - Set up logging concept: define `LogInfo`, `LogError`, `LogDebug`, `Log`
 
-**Deliverable:** Experiment runs locally end-to-end — reads from queue, downloads, trains, uploads
+**Deliverable:** Bugs fixed, Experiment runs locally end-to-end — reads from queue, downloads, trains, uploads
 
 ---
 
