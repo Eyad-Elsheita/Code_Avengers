@@ -93,6 +93,10 @@
             "SkiaSharp.NativeAssets.Linux.NoDependencies": {
               "target": "Package",
               "version": "[3.119.4, )"
+            },
+            "System.Memory": {
+              "target": "Package",
+              "version": "[4.5.5, )"
             }
           },
           "imports": [
