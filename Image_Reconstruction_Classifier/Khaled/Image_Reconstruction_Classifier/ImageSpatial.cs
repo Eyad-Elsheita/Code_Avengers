@@ -45,23 +45,14 @@ namespace Image_Reconstruction_Classifier
         {
             // 1. Environment Configuration --------------------------------------------------------
             // Resolve input source directory
-            string inputFolder = Environment.GetEnvironmentVariable("Training_Image_Loader")!;
-
-            // Fallback to development path if environment variable not set
-            if (string.IsNullOrEmpty(inputFolder))
-            {
-                Console.WriteLine("Environment variables not set. Using default paths.");
-                inputFolder = @"D:\University\...\Training_Image_Loader"; // Truncated for security
-            }
-            Directory.CreateDirectory(inputFolder);
+            string inputFolder = Environment.GetEnvironmentVariable("Training_Image_Loader")
+                ?? throw new InvalidOperationException("Environment variable 'Training_Image_Loader' is not set.");
 
             // Resolve output target directory
-            string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Spatial")!;
-            if (string.IsNullOrEmpty(outputFolder))
-            {
-                Console.WriteLine("Environment variables not set. Using default paths.");
-                outputFolder = @"C:\try\...\Training_Image_Spartial"; // Truncated for security
-            }
+            string outputFolder = Environment.GetEnvironmentVariable("Training_Image_Spatial")
+                ?? throw new InvalidOperationException("Environment variable 'Training_Image_Spatial' is not set.");
+
+            Directory.CreateDirectory(inputFolder);
             Directory.CreateDirectory(outputFolder);
 
             // 2. HTM Spatial Pooler Initialization -------------------------------------------------
@@ -105,7 +96,7 @@ namespace Image_Reconstruction_Classifier
                     // Validate input vector dimensionality
                     if (inputVector.Length != 784)
                     {
-                        Console.WriteLine($"⚠️ Dimension mismatch in {fileName}: Expected 784, got {inputVector.Length}");
+                        Console.WriteLine($"Dimension mismatch in {fileName}: Expected 784, got {inputVector.Length}");
                         continue;
                     }
 
@@ -118,11 +109,11 @@ namespace Image_Reconstruction_Classifier
                         $"{nameParts[0]}_{nameParts[1]}_spatial.txt");
                     File.WriteAllText(outputFile, string.Join(",", activeColumns));
 
-                    Console.WriteLine($"✅ Successfully processed: {fileName}");
+                    Console.WriteLine($"Successfully processed: {fileName}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Critical error processing {Path.GetFileName(encoderOutputFile)}");
+                    Console.WriteLine($"Critical error processing {Path.GetFileName(encoderOutputFile)}");
                     Console.WriteLine($"Error Details: {ex.Message}");
                     Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                 }
@@ -148,8 +139,12 @@ namespace Image_Reconstruction_Classifier
         public static void ProcessTestImagesSpatial()
         {
             // 1. Environment Configuration --------------------------------------------------------
-            string inputFolder = Environment.GetEnvironmentVariable("Test_Image_Loader") ?? "Test_Image_Loader";
-            string outputFolder = Environment.GetEnvironmentVariable("Test_Image_Spatial") ?? "Test_Image_Spatial";
+            string inputFolder = Environment.GetEnvironmentVariable("Test_Image_Loader")
+                ?? throw new InvalidOperationException("Environment variable 'Test_Image_Loader' is not set.");
+
+            string outputFolder = Environment.GetEnvironmentVariable("Test_Image_Spatial")
+                ?? throw new InvalidOperationException("Environment variable 'Test_Image_Spatial' is not set.");
+
             Directory.CreateDirectory(outputFolder);
 
             // 2. HTM Configuration Replication ----------------------------------------------------
@@ -186,7 +181,7 @@ namespace Image_Reconstruction_Classifier
                     // Empty content check
                     if (string.IsNullOrWhiteSpace(rawData))
                     {
-                        Console.WriteLine($"⚠️ Empty file detected: {fileName}");
+                        Console.WriteLine($"Empty file detected: {fileName}");
                         continue;
                     }
 
@@ -199,7 +194,7 @@ namespace Image_Reconstruction_Classifier
                     // Dimension validation
                     if (inputVector.Length != 784)
                     {
-                        Console.WriteLine($"⚠️ Invalid dimensionality in {fileName}: {inputVector.Length}/784");
+                        Console.WriteLine($"Invalid dimensionality in {fileName}: {inputVector.Length}/784");
                         continue;
                     }
 
@@ -209,7 +204,7 @@ namespace Image_Reconstruction_Classifier
                     // Output validation
                     if (activeColumns.Length == 0)
                     {
-                        Console.WriteLine($"⚠️ Zero active columns in {fileName}");
+                        Console.WriteLine($"Zero active columns in {fileName}");
                         continue;
                     }
 
@@ -219,11 +214,11 @@ namespace Image_Reconstruction_Classifier
                         $"{nameParts[0]}_{nameParts[1]}_spatial.txt");
                     File.WriteAllText(outputFile, string.Join(",", activeColumns));
 
-                    Console.WriteLine($"✔️ Successfully processed: {Path.GetFileName(outputFile)}");
+                    Console.WriteLine($"Successfully processed: {Path.GetFileName(outputFile)}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ FATAL ERROR processing {Path.GetFileName(file)}");
+                    Console.WriteLine($"FATAL ERROR processing {Path.GetFileName(file)}");
                     Console.WriteLine($"Error Type: {ex.GetType().Name}");
                     Console.WriteLine($"Error Details: {ex.Message}");
                     Console.WriteLine($"Stack Trace: {ex.StackTrace}");
