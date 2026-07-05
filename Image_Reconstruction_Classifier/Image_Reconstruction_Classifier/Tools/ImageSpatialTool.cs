@@ -143,8 +143,157 @@ namespace Image_Reconstruction_Classifier.Tools
             }
         }
 
-        // Placeholder — single image methods and helpers coming in next commit
-        private Task ProcessSingleBlobTraining(string b, BlobContainerClient i, BlobContainerClient o, SpatialPooler sp) => Task.CompletedTask;
-        private Task ProcessSingleBlobInference(string b, BlobContainerClient i, BlobContainerClient o, SpatialPooler sp) => Task.CompletedTask;
+        // ============================================================
+        // METHOD 3: Process a Single Image by Blob Name (Training)
+        // ============================================================
+        [McpServerTool, Description("Run a single encoded image vector through the HTM Spatial Pooler in training mode and upload the resulting SDR to the output container.")]
+        public async Task<string> TrainSingleImage(
+            [Description("Name of the .txt blob in the input container")] string blobName)
+        {
+            try
+            {
+                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
+                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+
+                await outputContainer.CreateIfNotExistsAsync();
+
+                var (spatialPooler, _) = InitializeSpatialPooler();
+                await ProcessSingleBlobTraining(blobName, inputContainer, outputContainer, spatialPooler);
+
+                return $"Successfully trained on: {blobName}";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error training on {blobName}: {ex.Message}");
+                throw;
+            }
+        }
+
+        // ============================================================
+        // METHOD 4: Process a Single Image by Blob Name (Inference)
+        // ============================================================
+        [McpServerTool, Description("Run a single encoded test image vector through the HTM Spatial Pooler in inference mode and upload the resulting SDR to the output container.")]
+        public async Task<string> InferSingleImage(
+            [Description("Name of the .txt blob in the input container")] string blobName)
+        {
+            try
+            {
+                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
+                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+
+                await outputContainer.CreateIfNotExistsAsync();
+
+                var (spatialPooler, _) = InitializeSpatialPooler();
+                await ProcessSingleBlobInference(blobName, inputContainer, outputContainer, spatialPooler);
+
+                return $"Successfully ran inference on: {blobName}";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during inference on {blobName}: {ex.Message}");
+                throw;
+            }
+        }
+
+        // ============================================================
+        // HELPER: Download → Spatial Pool (Training) → Upload
+        // ============================================================
+        private async Task ProcessSingleBlobTraining(
+            string blobName,
+            BlobContainerClient inputContainer,
+            BlobContainerClient outputContainer,
+            SpatialPooler spatialPooler)
+        {
+            string tempInputPath = Path.Combine(_tempFolder, blobName);
+            string fileName = Path.GetFileNameWithoutExtension(blobName);
+            string[] nameParts = fileName.Split('_');
+            string outputFileName = $"{nameParts[0]}_{nameParts[1]}_spatial.txt";
+            string tempOutputPath = Path.Combine(_tempFolder, outputFileName);
+
+            try
+            {
+                // Step 1 — Download encoded vector from Azure
+                var inputBlob = inputContainer.GetBlobClient(blobName);
+                await inputBlob.DownloadToAsync(tempInputPath);
+
+                // Step 2 — Parse and validate input vector
+                string rawData = File.ReadAllText(tempInputPath).Trim();
+                if (string.IsNullOrWhiteSpace(rawData))
+                    throw new InvalidDataException($"Empty file: {blobName}");
+
+                int[] inputVector = rawData.Split(',')
+                    .Select(int.Parse)
+                    .ToArray();
+
+                if (inputVector.Length != 784)
+                    throw new InvalidDataException($"Dimension mismatch in {fileName}: Expected 784, got {inputVector.Length}");
+
+                // Step 3 — Run Spatial Pooler in training mode
+                int[] activeColumns = spatialPooler.Compute(inputVector, learn: true);
+
+                // Step 4 — Save SDR result and upload to Azure
+                File.WriteAllText(tempOutputPath, string.Join(",", activeColumns));
+                var outputBlob = outputContainer.GetBlobClient(outputFileName);
+                await outputBlob.UploadAsync(tempOutputPath, overwrite: true);
+            }
+            finally
+            {
+                if (File.Exists(tempInputPath)) File.Delete(tempInputPath);
+                if (File.Exists(tempOutputPath)) File.Delete(tempOutputPath);
+            }
+        }
+
+        // ============================================================
+        // HELPER: Download → Spatial Pool (Inference) → Upload
+        // ============================================================
+        private async Task ProcessSingleBlobInference(
+            string blobName,
+            BlobContainerClient inputContainer,
+            BlobContainerClient outputContainer,
+            SpatialPooler spatialPooler)
+        {
+            string tempInputPath = Path.Combine(_tempFolder, blobName);
+            string fileName = Path.GetFileNameWithoutExtension(blobName);
+            string[] nameParts = fileName.Split('_');
+            string outputFileName = $"{nameParts[0]}_{nameParts[1]}_spatial.txt";
+            string tempOutputPath = Path.Combine(_tempFolder, outputFileName);
+
+            try
+            {
+                // Step 1 — Download encoded vector from Azure
+                var inputBlob = inputContainer.GetBlobClient(blobName);
+                await inputBlob.DownloadToAsync(tempInputPath);
+
+                // Step 2 — Parse and validate input vector
+                string rawData = File.ReadAllText(tempInputPath).Trim();
+                if (string.IsNullOrWhiteSpace(rawData))
+                    throw new InvalidDataException($"Empty file: {blobName}");
+
+                int[] inputVector = rawData
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => int.TryParse(s.Trim(), out int num) ? num : -1)
+                    .Where(n => n >= 0)
+                    .ToArray();
+
+                if (inputVector.Length != 784)
+                    throw new InvalidDataException($"Invalid dimensionality in {fileName}: {inputVector.Length}/784");
+
+                // Step 3 — Run Spatial Pooler in inference mode (no learning)
+                int[] activeColumns = spatialPooler.Compute(inputVector, learn: false);
+
+                if (activeColumns.Length == 0)
+                    throw new InvalidOperationException($"Zero active columns produced for {fileName}");
+
+                // Step 4 — Save SDR result and upload to Azure
+                File.WriteAllText(tempOutputPath, string.Join(",", activeColumns));
+                var outputBlob = outputContainer.GetBlobClient(outputFileName);
+                await outputBlob.UploadAsync(tempOutputPath, overwrite: true);
+            }
+            finally
+            {
+                if (File.Exists(tempInputPath)) File.Delete(tempInputPath);
+                if (File.Exists(tempOutputPath)) File.Delete(tempOutputPath);
+            }
+        }
     }
 }
