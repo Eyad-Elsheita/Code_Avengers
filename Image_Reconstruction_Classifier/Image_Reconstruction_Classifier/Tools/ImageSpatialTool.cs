@@ -40,5 +40,111 @@ namespace Image_Reconstruction_Classifier.Tools
             spatialPooler.Init(connections);
             return (spatialPooler, connections);
         }
+
+        // ============================================================
+        // METHOD 1: Run Spatial Pooler Training on Azure Blob Input
+        // ============================================================
+        [McpServerTool, Description("Download encoded image vectors from Azure input container, run them through the HTM Spatial Pooler in training mode, and upload the resulting SDRs to the output container.")]
+        public async Task<string> TrainSpatialPooler(
+            [Description("Max number of images to process (default 100)")] int maxImages = 100)
+        {
+            try
+            {
+                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
+                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+
+                await outputContainer.CreateIfNotExistsAsync();
+
+                var (spatialPooler, _) = InitializeSpatialPooler();
+
+                int processed = 0;
+                int skipped = 0;
+
+                await foreach (var blobItem in inputContainer.GetBlobsAsync())
+                {
+                    if (processed >= maxImages) break;
+
+                    if (!blobItem.Name.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                    {
+                        skipped++;
+                        continue;
+                    }
+
+                    try
+                    {
+                        await ProcessSingleBlobTraining(blobItem.Name, inputContainer, outputContainer, spatialPooler);
+                        processed++;
+                        Console.WriteLine($"Successfully processed (training): {blobItem.Name}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error processing {blobItem.Name}: {ex.Message}");
+                        skipped++;
+                    }
+                }
+
+                return $"Training complete. Processed: {processed}, Skipped: {skipped}";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during spatial pooler training: {ex.Message}");
+                throw;
+            }
+        }
+
+        // ============================================================
+        // METHOD 2: Run Spatial Pooler Inference on Azure Blob Input
+        // ============================================================
+        [McpServerTool, Description("Download encoded test image vectors from Azure input container, run them through the HTM Spatial Pooler in inference mode (no learning), and upload the resulting SDRs to the output container.")]
+        public async Task<string> RunSpatialPoolerInference(
+            [Description("Max number of test images to process (default 100)")] int maxImages = 100)
+        {
+            try
+            {
+                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
+                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+
+                await outputContainer.CreateIfNotExistsAsync();
+
+                var (spatialPooler, _) = InitializeSpatialPooler();
+
+                int processed = 0;
+                int skipped = 0;
+
+                await foreach (var blobItem in inputContainer.GetBlobsAsync())
+                {
+                    if (processed >= maxImages) break;
+
+                    if (!blobItem.Name.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                    {
+                        skipped++;
+                        continue;
+                    }
+
+                    try
+                    {
+                        await ProcessSingleBlobInference(blobItem.Name, inputContainer, outputContainer, spatialPooler);
+                        processed++;
+                        Console.WriteLine($"Successfully processed (inference): {blobItem.Name}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error processing {blobItem.Name}: {ex.Message}");
+                        skipped++;
+                    }
+                }
+
+                return $"Inference complete. Processed: {processed}, Skipped: {skipped}";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during spatial pooler inference: {ex.Message}");
+                throw;
+            }
+        }
+
+        // Placeholder — single image methods and helpers coming in next commit
+        private Task ProcessSingleBlobTraining(string b, BlobContainerClient i, BlobContainerClient o, SpatialPooler sp) => Task.CompletedTask;
+        private Task ProcessSingleBlobInference(string b, BlobContainerClient i, BlobContainerClient o, SpatialPooler sp) => Task.CompletedTask;
     }
 }
