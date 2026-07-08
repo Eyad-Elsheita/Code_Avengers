@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImageSpatial.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+945f5c06a475ecce9319fc29b8a7aaeda49f5f2c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8f7b6d35ad8b74ae66ba8e15eb75fe03d2d449a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImageSpatial.UnitTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImageSpatial.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

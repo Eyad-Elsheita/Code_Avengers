@@ -13,7 +13,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -28,12 +28,16 @@
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "SixLabors.ImageSharp.targets",
               "DocumentMoniker": "C:\\Users\\Eyad_\\.nuget\\packages\\sixlabors.imagesharp\\4.0.0\\build\\SixLabors.ImageSharp.targets",
               "ToolTip": "C:\\Users\\Eyad_\\.nuget\\packages\\sixlabors.imagesharp\\4.0.0\\build\\SixLabors.ImageSharp.targets",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwCQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAABoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2026-06-22T20:59:04.347Z",
               "EditorCaption": ""

@@ -557,24 +557,20 @@
           }
         }
       },
-      "SixLabors.ImageSharp/4.0.0": {
+      "SixLabors.ImageSharp/3.1.12": {
         "type": "package",
-        "dependencies": {
-          "System.IO.Hashing": "8.0.0"
-        },
         "compile": {
-          "lib/net8.0/SixLabors.ImageSharp.dll": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/SixLabors.ImageSharp.dll": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "build/SixLabors.ImageSharp.props": {},
-          "build/SixLabors.ImageSharp.targets": {}
+          "build/SixLabors.ImageSharp.props": {}
         }
       },
       "SkiaSharp/3.119.4": {
@@ -1808,22 +1804,19 @@
         "sixlabors.fonts.nuspec"
       ]
     },
-    "SixLabors.ImageSharp/4.0.0": {
-      "sha512": "6Ft5sclM1t5bY+P0SsLLGwXIAgmDASFFD9hD0tlEcfFCU8Yj9nR7ZzaqCL/p+SIfqoe8jLKFHD7LFPRJPGXZ5w==",
+    "SixLabors.ImageSharp/3.1.12": {
+      "sha512": "iAg6zifihXEFS/t7fiHhZBGAdCp3FavsF4i2ZIDp0JfeYeDVzvmlbY1CNhhIKimaIzrzSi5M/NBFcWvZT2rB/A==",
       "type": "package",
-      "path": "sixlabors.imagesharp/4.0.0",
+      "path": "sixlabors.imagesharp/3.1.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "build/SixLabors.ImageSharp.props",
-        "build/SixLabors.ImageSharp.targets",
-        "build/net472/SixLabors.Licensing.dll",
-        "build/net8.0/SixLabors.Licensing.dll",
-        "lib/net8.0/SixLabors.ImageSharp.dll",
-        "lib/net8.0/SixLabors.ImageSharp.xml",
+        "lib/net6.0/SixLabors.ImageSharp.dll",
+        "lib/net6.0/SixLabors.ImageSharp.xml",
         "sixlabors.imagesharp.128.png",
-        "sixlabors.imagesharp.4.0.0.nupkg.sha512",
+        "sixlabors.imagesharp.3.1.12.nupkg.sha512",
         "sixlabors.imagesharp.nuspec"
       ]
     },
@@ -2483,7 +2476,7 @@
       "ModelContextProtocol >= 1.4.0",
       "NeoCortexApi >= 1.1.5",
       "Newtonsoft.Json >= 13.0.4",
-      "SixLabors.ImageSharp >= 4.0.0",
+      "SixLabors.ImageSharp >= 3.1.12",
       "SkiaSharp >= 3.119.4",
       "SkiaSharp.NativeAssets.Linux.NoDependencies >= 3.119.4",
       "System.Memory >= 4.5.5"
@@ -2573,7 +2566,7 @@
           },
           "SixLabors.ImageSharp": {
             "target": "Package",
-            "version": "[4.0.0, )"
+            "version": "[3.1.12, )"
           },
           "SkiaSharp": {
             "target": "Package",

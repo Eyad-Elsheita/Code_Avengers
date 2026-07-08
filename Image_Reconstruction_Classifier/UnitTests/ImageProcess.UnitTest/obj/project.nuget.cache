@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "I1Hl7MzMnUU=",
+  "dgSpecHash": "4fY1nmxnfuc=",
   "success": true,
   "projectFilePath": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\UnitTests\\ImageProcess.UnitTest\\ImageProcess.UnitTest.csproj",
   "expectedPackageFiles": [
@@ -50,7 +50,7 @@
     "C:\\Users\\Eyad_\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
     "C:\\Users\\Eyad_\\.nuget\\packages\\rbush.signed\\4.0.0\\rbush.signed.4.0.0.nupkg.sha512",
     "C:\\Users\\Eyad_\\.nuget\\packages\\sixlabors.fonts\\1.0.0\\sixlabors.fonts.1.0.0.nupkg.sha512",
-    "C:\\Users\\Eyad_\\.nuget\\packages\\sixlabors.imagesharp\\4.0.0\\sixlabors.imagesharp.4.0.0.nupkg.sha512",
+    "C:\\Users\\Eyad_\\.nuget\\packages\\sixlabors.imagesharp\\3.1.12\\sixlabors.imagesharp.3.1.12.nupkg.sha512",
     "C:\\Users\\Eyad_\\.nuget\\packages\\skiasharp\\3.119.4\\skiasharp.3.119.4.nupkg.sha512",
     "C:\\Users\\Eyad_\\.nuget\\packages\\skiasharp.nativeassets.linux.nodependencies\\3.119.4\\skiasharp.nativeassets.linux.nodependencies.3.119.4.nupkg.sha512",
     "C:\\Users\\Eyad_\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.119.4\\skiasharp.nativeassets.macos.3.119.4.nupkg.sha512",

@@ -14,7 +14,7 @@
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)sixlabors.imagesharp\4.0.0\build\SixLabors.ImageSharp.props" Condition="Exists('$(NuGetPackageRoot)sixlabors.imagesharp\4.0.0\build\SixLabors.ImageSharp.props')" />
+    <Import Project="$(NuGetPackageRoot)sixlabors.imagesharp\3.1.12\build\SixLabors.ImageSharp.props" Condition="Exists('$(NuGetPackageRoot)sixlabors.imagesharp\3.1.12\build\SixLabors.ImageSharp.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.testing.platform\1.4.1\buildTransitive\net8.0\Microsoft.Testing.Platform.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testing.platform\1.4.1\buildTransitive\net8.0\Microsoft.Testing.Platform.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.testing.platform.msbuild\1.4.1\buildTransitive\net8.0\Microsoft.Testing.Platform.MSBuild.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testing.platform.msbuild\1.4.1\buildTransitive\net8.0\Microsoft.Testing.Platform.MSBuild.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.testing.extensions.telemetry\1.4.1\buildTransitive\net8.0\Microsoft.Testing.Extensions.Telemetry.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testing.extensions.telemetry\1.4.1\buildTransitive\net8.0\Microsoft.Testing.Extensions.Telemetry.props')" />

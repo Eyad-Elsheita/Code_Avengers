@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {}
+    "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Khaled\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {}
   },
   "projects": {
-    "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
+    "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Khaled\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
+        "projectUniqueName": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Khaled\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
         "projectName": "Image_Reconstruction_Classifier",
-        "projectPath": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
+        "projectPath": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Khaled\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier.csproj",
         "packagesPath": "C:\\Users\\Eyad_\\.nuget\\packages\\",
-        "outputPath": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Image_Reconstruction_Classifier\\obj\\",
+        "outputPath": "D:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Khaled\\Image_Reconstruction_Classifier\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -84,7 +84,7 @@
             },
             "SixLabors.ImageSharp": {
               "target": "Package",
-              "version": "[4.0.0, )"
+              "version": "[3.1.12, )"
             },
             "SkiaSharp": {
               "target": "Package",
