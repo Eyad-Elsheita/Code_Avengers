@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Daenet.Binarizer;
 using Daenet.Binarizer.Entities;
 using ModelContextProtocol.Server;
-using Azure.Storage.Blobs.Models;
 
 namespace Image_Reconstruction_Classifier.Tools
 {
@@ -11,8 +11,8 @@ namespace Image_Reconstruction_Classifier.Tools
     public class ImageProcessorTool
     {
         private readonly BlobServiceClient _blobServiceClient;
-        private const string InputContainer = "input";
-        private const string OutputContainer = "output";
+        private const string TrainContainer = "train";
+        private const string TestContainer = "test";
         private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageProcessing");
 
         public ImageProcessorTool(BlobServiceClient blobServiceClient)
@@ -22,28 +22,24 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 1: Convert All Images in Azure Input Container
+        // METHOD 1: Convert All Images in Container
         // ============================================================
-        [McpServerTool, Description("Download PNG images from Azure input container, binarize them, and upload results to output container.")]
+        [McpServerTool, Description("Download PNG images from Azure container, binarize them, and upload results back to same container.")]
         public async Task<string> ConvertImagesToBinary(
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Max number of images to process (default 100)")] int maxImages = 100)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
-
-                // Ensure output container exists
-                await outputContainer.CreateIfNotExistsAsync();
-
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
                 int processed = 0;
                 int skipped = 0;
 
-                await foreach (var blobItem in inputContainer.GetBlobsAsync())
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: null))
                 {
                     if (processed >= maxImages) break;
 
-                    // Only process PNG files
                     if (!blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                     {
                         skipped++;
@@ -52,7 +48,7 @@ namespace Image_Reconstruction_Classifier.Tools
 
                     try
                     {
-                        await ProcessSingleBlob(blobItem.Name, inputContainer, outputContainer);
+                        await ProcessSingleBlob(blobItem.Name, containerClient);
                         processed++;
                         Console.WriteLine($"✅ Processed: {blobItem.Name}");
                     }
@@ -75,18 +71,15 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 2: Binarize a Single Image by Blob Name
         // ============================================================
-        [McpServerTool, Description("Download a single PNG image from Azure, binarize it, and upload to output container.")]
+        [McpServerTool, Description("Download a single PNG image from Azure, binarize it, and upload back to same container.")]
         public async Task<string> BinarizeImage(
-            [Description("Name of the PNG blob in the input container")] string blobName)
+            [Description("Container name: 'train' or 'test'")] string containerName,
+            [Description("Name of the PNG blob e.g. '3_552.png'")] string blobName)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
-
-                await outputContainer.CreateIfNotExistsAsync();
-                await ProcessSingleBlob(blobName, inputContainer, outputContainer);
-
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+                await ProcessSingleBlob(blobName, containerClient);
                 return $"✅ Successfully binarized: {blobName}";
             }
             catch (Exception ex)
@@ -101,21 +94,18 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         [McpServerTool, Description("Binarize all images of a specific object type (e.g. '3' processes all 3_*.png files).")]
         public async Task<string> ProcessBatch(
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Object type prefix to filter (0-9 for digits)")] string objectType,
             [Description("Max number of images to process")] int maxImages = 100)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
-
-                await outputContainer.CreateIfNotExistsAsync();
-
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
                 int processed = 0;
                 int skipped = 0;
 
-                await foreach (var blobItem in inputContainer.GetBlobsAsync()
-                )
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: $"{objectType}_"))
                 {
                     if (processed >= maxImages) break;
 
@@ -127,7 +117,7 @@ namespace Image_Reconstruction_Classifier.Tools
 
                     try
                     {
-                        await ProcessSingleBlob(blobItem.Name, inputContainer, outputContainer);
+                        await ProcessSingleBlob(blobItem.Name, containerClient);
                         processed++;
                         Console.WriteLine($"✅ Processed: {blobItem.Name}");
                     }
@@ -148,14 +138,12 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // HELPER: Download → Binarize → Upload
+        // HELPER: Download → Binarize → Upload back to same container
         // ============================================================
         private async Task ProcessSingleBlob(
             string blobName,
-            BlobContainerClient inputContainer,
-            BlobContainerClient outputContainer)
+            BlobContainerClient containerClient)
         {
-            // Build temp file paths
             string tempInputPath = Path.Combine(_tempFolder, blobName);
             string fileName = Path.GetFileNameWithoutExtension(blobName);
             string outputFileName = $"{fileName}_binarized.txt";
@@ -164,7 +152,7 @@ namespace Image_Reconstruction_Classifier.Tools
             try
             {
                 // Step 1 — Download PNG from Azure
-                var inputBlob = inputContainer.GetBlobClient(blobName);
+                var inputBlob = containerClient.GetBlobClient(blobName);
                 await inputBlob.DownloadToAsync(tempInputPath);
 
                 // Step 2 — Binarize using existing ImageBinarizer
@@ -179,13 +167,12 @@ namespace Image_Reconstruction_Classifier.Tools
                 var imageBinarizer = new ImageBinarizer(binarizerParams);
                 imageBinarizer.Run();
 
-                // Step 3 — Upload result to output container
-                var outputBlob = outputContainer.GetBlobClient(outputFileName);
+                // Step 3 — Upload binarized result back to same container
+                var outputBlob = containerClient.GetBlobClient(outputFileName);
                 await outputBlob.UploadAsync(tempOutputPath, overwrite: true);
             }
             finally
             {
-                // Cleanup temp files
                 if (File.Exists(tempInputPath)) File.Delete(tempInputPath);
                 if (File.Exists(tempOutputPath)) File.Delete(tempOutputPath);
             }
