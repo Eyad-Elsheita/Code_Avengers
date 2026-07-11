@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using ImageProcessing;
 using ModelContextProtocol.Server;
 
@@ -11,28 +9,58 @@ namespace Image_Reconstruction_Classifier.Tools
     [McpServerToolType]
     public class ImageLoaderTool
     {
+        private readonly BlobServiceClient _blobServiceClient;
+        private const string TrainContainer = "train";
+        private const string TestContainer = "test";
+        private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageLoader");
+
+        public ImageLoaderTool(BlobServiceClient blobServiceClient)
+        {
+            _blobServiceClient = blobServiceClient;
+            Directory.CreateDirectory(_tempFolder);
+        }
+
         // ============================================================
-        // METHOD 1: Load Images from Local Filesystem
+        // METHOD 1: Load Multiple Images from Azure Blob
         // ============================================================
-        [McpServerTool, Description("Load images from local filesystem folder. Returns flattened image arrays.")]
-        public async Task<int[][]> LoadImagesFromLocal(
-            [Description("Path to folder containing image files")] string folderPath,
+        [McpServerTool, Description("Load images from Azure Blob Storage. Use 'train' for training images or 'test' for test images.")]
+        public async Task<int[][]> LoadImagesFromBlob(
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("How many images to load (max 10000)")] int numberOfImages)
         {
             try
             {
-                if (!Directory.Exists(folderPath))
-                    throw new DirectoryNotFoundException($"Folder not found: {folderPath}");
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+                var imageList = new List<int[]>();
+                int count = 0;
 
-                if (numberOfImages <= 0 || numberOfImages > 10000)
-                    throw new ArgumentException("numberOfImages must be between 1 and 10000");
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: null))
+                {
+                    if (count >= numberOfImages) break;
 
-                int[][] imageData = await Task.Run(() =>
-                    ImageLoader.LoadImageData(folderPath, numberOfImages)
-                );
+                    // Only load PNG files
+                    if (!blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                        continue;
 
-                Console.WriteLine($"✅ Loaded {imageData.Length} images from {folderPath}");
-                return imageData;
+                    string tempPath = Path.Combine(_tempFolder, blobItem.Name);
+                    try
+                    {
+                        var blobClient = containerClient.GetBlobClient(blobItem.Name);
+                        await blobClient.DownloadToAsync(tempPath);
+
+                        int[] imageData = await Task.Run(() => ImageLoader.LoadImage(tempPath));
+                        imageList.Add(imageData);
+                        count++;
+                    }
+                    finally
+                    {
+                        if (File.Exists(tempPath)) File.Delete(tempPath);
+                    }
+                }
+
+                Console.WriteLine($"✅ Loaded {imageList.Count} images from '{containerName}'");
+                return imageList.ToArray();
             }
             catch (Exception ex)
             {
@@ -42,50 +70,62 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 2: Load Single Image from Local Filesystem
+        // METHOD 2: Load Single Image from Azure Blob
         // ============================================================
-        [McpServerTool, Description("Load a single image file from local filesystem. Returns as flattened integer array.")]
-        public async Task<int[]> LoadSingleImageFromLocal(
-            [Description("Full path to the image file")] string filePath)
+        [McpServerTool, Description("Load a single image from Azure Blob Storage by name.")]
+        public async Task<int[]> LoadSingleImageFromBlob(
+            [Description("Container name: 'train' or 'test'")] string containerName,
+            [Description("Blob name e.g. '3_552.png'")] string blobName)
         {
             try
             {
-                if (!File.Exists(filePath))
-                    throw new FileNotFoundException($"File not found: {filePath}");
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+                var blobClient = containerClient.GetBlobClient(blobName);
 
-                int[] imageData = await Task.Run(() =>
-                    ImageLoader.LoadImage(filePath)
-                );
+                if (!await blobClient.ExistsAsync())
+                    throw new FileNotFoundException($"Blob not found: {blobName}");
 
-                Console.WriteLine($"✅ Loaded single image: {Path.GetFileName(filePath)}");
-                return imageData;
+                string tempPath = Path.Combine(_tempFolder, blobName);
+                try
+                {
+                    await blobClient.DownloadToAsync(tempPath);
+                    int[] imageData = await Task.Run(() => ImageLoader.LoadImage(tempPath));
+
+                    Console.WriteLine($"✅ Loaded single image: {blobName}");
+                    return imageData;
+                }
+                finally
+                {
+                    if (File.Exists(tempPath)) File.Delete(tempPath);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error loading image: {ex.Message}");
+                Console.WriteLine($"❌ Error loading single image: {ex.Message}");
                 throw;
             }
         }
 
         // ============================================================
-        // METHOD 3: List Available Images in Folder
+        // METHOD 3: List Available Images in Container
         // ============================================================
-        [McpServerTool, Description("List all available image files in a folder.")]
+        [McpServerTool, Description("List all PNG image blobs in a container.")]
         public async Task<List<string>> ListAvailableImages(
-            [Description("Path to folder containing images")] string folderPath)
+            [Description("Container name: 'train' or 'test'")] string containerName)
         {
             try
             {
-                if (!Directory.Exists(folderPath))
-                    throw new DirectoryNotFoundException($"Folder not found: {folderPath}");
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+                var fileList = new List<string>();
 
-                var fileList = await Task.Run(() =>
-                    Directory.GetFiles(folderPath, "*.txt")
-                        .Select(Path.GetFileName)
-                        .ToList()
-                );
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: null))
+                {
+                    if (blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                        fileList.Add(blobItem.Name);
+                }
 
-                Console.WriteLine($"✅ Found {fileList.Count} image files in {folderPath}");
+                Console.WriteLine($"✅ Found {fileList.Count} images in '{containerName}'");
                 return fileList;
             }
             catch (Exception ex)
@@ -96,22 +136,25 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 4: Get Image Count
+        // METHOD 4: Get Image Count in Container
         // ============================================================
-        [McpServerTool, Description("Get count of image files in a folder.")]
+        [McpServerTool, Description("Get count of PNG images in a container.")]
         public async Task<int> GetImageCount(
-            [Description("Path to folder")] string folderPath)
+            [Description("Container name: 'train' or 'test'")] string containerName)
         {
             try
             {
-                if (!Directory.Exists(folderPath))
-                    throw new DirectoryNotFoundException($"Folder not found: {folderPath}");
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+                int count = 0;
 
-                int count = await Task.Run(() =>
-                    Directory.GetFiles(folderPath, "*.txt").Length
-                );
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: null))
+                {
+                    if (blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                        count++;
+                }
 
-                Console.WriteLine($"✅ Found {count} images in {folderPath}");
+                Console.WriteLine($"✅ Found {count} images in '{containerName}'");
                 return count;
             }
             catch (Exception ex)
@@ -122,30 +165,46 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 5: Load Images by Object Type
+        // METHOD 5: Load Images by Object Type from Azure Blob
         // ============================================================
-        [McpServerTool, Description("Load images filtered by object type (0-9). Useful for object-specific training.")]
+        [McpServerTool, Description("Load images filtered by object type (0-9) from Azure Blob. E.g. objectType '3' loads all 3_*.png files.")]
         public async Task<int[][]> LoadImagesByObjectType(
-            [Description("Path to folder containing images")] string folderPath,
-            [Description("Object type to filter by (0-9 for digits)")] string objectType,
+            [Description("Container name: 'train' or 'test'")] string containerName,
+            [Description("Object type 0-9")] string objectType,
             [Description("How many images to load")] int numberOfImages)
         {
             try
             {
-                if (!Directory.Exists(folderPath))
-                    throw new DirectoryNotFoundException($"Folder not found: {folderPath}");
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+                var imageList = new List<int[]>();
+                int count = 0;
 
-                int[][] imageData = await Task.Run(() =>
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: $"{objectType}_"))
                 {
-                    var filePaths = Directory.GetFiles(folderPath, $"{objectType}_*.txt")
-                        .Take(numberOfImages)
-                        .ToArray();
+                    if (count >= numberOfImages) break;
 
-                    return filePaths.Select(ImageLoader.LoadImage).ToArray();
-                });
+                    if (!blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                        continue;
 
-                Console.WriteLine($"✅ Loaded {imageData.Length} images of type '{objectType}'");
-                return imageData;
+                    string tempPath = Path.Combine(_tempFolder, blobItem.Name);
+                    try
+                    {
+                        var blobClient = containerClient.GetBlobClient(blobItem.Name);
+                        await blobClient.DownloadToAsync(tempPath);
+
+                        int[] imageData = await Task.Run(() => ImageLoader.LoadImage(tempPath));
+                        imageList.Add(imageData);
+                        count++;
+                    }
+                    finally
+                    {
+                        if (File.Exists(tempPath)) File.Delete(tempPath);
+                    }
+                }
+
+                Console.WriteLine($"✅ Loaded {imageList.Count} images of type '{objectType}' from '{containerName}'");
+                return imageList.ToArray();
             }
             catch (Exception ex)
             {
