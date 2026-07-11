@@ -106,5 +106,86 @@ namespace Image_Reconstruction_Classifier.Tools
                 throw;
             }
         }
+
+        // ============================================================
+        // METHOD 4: Batch Compare and Upload Results to Azure
+        // ============================================================
+        [McpServerTool, Description("Calculate similarity metrics for a batch of original and reconstructed image pairs and upload a summary result file to the Azure output container.")]
+        public async Task<string> BatchCompareAndUpload(
+            [Description("Array of flattened binary original images")] int[][] originals,
+            [Description("Array of flattened binary reconstructed images")] int[][] reconstructed,
+            [Description("Array of image names matching the order of originals and reconstructed")] string[] imageNames,
+            [Description("Output blob name for the results file, e.g. 'similarity_results.txt'")] string outputBlobName)
+        {
+            try
+            {
+                if (originals.Length != reconstructed.Length || originals.Length != imageNames.Length)
+                    throw new ArgumentException("Originals, reconstructed, and imageNames arrays must all be the same length.");
+
+                var lines = new List<string>
+                {
+                    "Image Name,Cosine Similarity,Binary Similarity (%)"
+                };
+
+                for (int i = 0; i < originals.Length; i++)
+                {
+                    double cosine = ImageSimilarity.CalculateCosineSimilarity(originals[i], reconstructed[i]);
+                    int matchingPixels = originals[i].Zip(reconstructed[i], (o, r) => o == r ? 1 : 0).Sum();
+                    double binary = (double)matchingPixels / originals[i].Length * 100.0;
+
+                    lines.Add($"{imageNames[i]},{cosine:F4},{binary:F2}");
+                    Console.WriteLine($"Compared {imageNames[i]}: Cosine={cosine:F4}, Binary={binary:F2}%");
+                }
+
+                // Save results to temp file and upload to Azure
+                string tempOutputPath = Path.Combine(_tempFolder, outputBlobName);
+                try
+                {
+                    File.WriteAllLines(tempOutputPath, lines);
+
+                    var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+                    await outputContainer.CreateIfNotExistsAsync();
+
+                    var blobClient = outputContainer.GetBlobClient(outputBlobName);
+                    await blobClient.UploadAsync(tempOutputPath, overwrite: true);
+
+                    return $"Batch complete. {originals.Length} pairs compared. Results uploaded as '{outputBlobName}'";
+                }
+                finally
+                {
+                    if (File.Exists(tempOutputPath)) File.Delete(tempOutputPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in batch comparison: {ex.Message}");
+                throw;
+            }
+        }
+
+        // ============================================================
+        // METHOD 5: Convert Image to Binary Matrix String
+        // ============================================================
+        [McpServerTool, Description("Convert a flattened binary image array into a formatted 2D matrix string for visualization or debugging.")]
+        public Task<string> ConvertToBinaryMatrix(
+            [Description("Flattened binary image array")] int[] imageArray,
+            [Description("Row size (width) of the square image")] int rowSize)
+        {
+            try
+            {
+                if (imageArray == null)
+                    throw new ArgumentNullException(nameof(imageArray), "Image array cannot be null.");
+
+                string matrix = ImageSimilarity.ConvertToBinaryMatrix(imageArray, rowSize);
+
+                Console.WriteLine($"Binary matrix generated for {rowSize}x{rowSize} image");
+                return Task.FromResult(matrix);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error converting to binary matrix: {ex.Message}");
+                throw;
+            }
+        }
     }
 }
