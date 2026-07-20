@@ -26,6 +26,7 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         [McpServerTool, Description("Convert a binary (0/1) integer array into a PNG image and upload it to the Azure output container.")]
         public async Task<string> ConvertBinaryToImage(
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Flattened binary array (0s and 1s) representing the image")] int[] binaryImage,
             [Description("Width of the image in pixels")] int width,
             [Description("Height of the image in pixels")] int height,
