@@ -8,7 +8,8 @@ namespace Image_Reconstruction_Classifier.Tools
     public class ImageSimilarityTool
     {
         private readonly BlobServiceClient _blobServiceClient;
-        private const string OutputContainer = "output";
+        private const string TrainContainer = "train";
+        private const string TestContainer = "test";
         private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageSimilarity");
 
         public ImageSimilarityTool(BlobServiceClient blobServiceClient)
@@ -112,6 +113,7 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         [McpServerTool, Description("Calculate similarity metrics for a batch of original and reconstructed image pairs and upload a summary result file to the Azure output container.")]
         public async Task<string> BatchCompareAndUpload(
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Array of flattened binary original images")] int[][] originals,
             [Description("Array of flattened binary reconstructed images")] int[][] reconstructed,
             [Description("Array of image names matching the order of originals and reconstructed")] string[] imageNames,
@@ -147,7 +149,7 @@ namespace Image_Reconstruction_Classifier.Tools
                     await outputContainer.CreateIfNotExistsAsync();
 
                     var blobClient = outputContainer.GetBlobClient(outputBlobName);
-                    await blobClient.UploadAsync(tempOutputPath, overwrite: true);
+                    // await blobClient.UploadAsync(tempOutputPath, overwrite: true);
 
                     return $"Batch complete. {originals.Length} pairs compared. Results uploaded as '{outputBlobName}'";
                 }
