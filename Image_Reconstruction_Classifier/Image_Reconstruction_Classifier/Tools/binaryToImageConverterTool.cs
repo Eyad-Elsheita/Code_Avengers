@@ -9,7 +9,10 @@ namespace Image_Reconstruction_Classifier.Tools
     public class BinaryToImageConverterTool
     {
         private readonly BlobServiceClient _blobServiceClient;
-        private const string OutputContainer = "output";
+        // Azure contianers  
+        private const string TrainContainer = "train";
+        private const string TestContainer = "test";
+        
         private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageReconstruction");
 
         public BinaryToImageConverterTool(BlobServiceClient blobServiceClient)
