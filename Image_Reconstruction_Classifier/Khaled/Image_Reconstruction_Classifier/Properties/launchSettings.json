@@ -3,9 +3,11 @@
     "Image_Reconstruction_Classifier": {
       "commandName": "Project",
       "environmentVariables": {
-        "Training_Image_Binary": "d:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Binary",
-        "Training_Image_Loader": "d:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Loader",
-        "Training_Image_Spatial": "d:\\University\\Cloud_Computing\\se-cloud-2025-2026\\MyCloudProject\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Spartial"
+        "Training_Image_Binary": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Binary",
+        "Training_Image_Loader": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Loader",
+        "Training_Image_Spatial": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Spartial",
+        "Test_Image_Loader": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Test\\Test_Image_Loader",
+        "Similarity_Statistics": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Results\\Similarity statistics"
       }
     }
   }

@@ -1,0 +1,20 @@
+Fix crashes in test image reconstruction pipeline
+
+- Update Azure Blob SDK calls with required cancellationToken parameter
+  (ImageLoaderTool.cs, ImageprocessingTool.cs)
+- Fix launchSettings.json to use local machine paths instead of
+  classmate's hardcoded paths (Training_Image_Binary, Training_Image_Loader,
+  Training_Image_Spatial, Test_Image_Loader, Similarity_Statistics)
+- Guard against out-of-bounds array access in HTM reconstruction when
+  training examples have mismatched image lengths (HtmClassifier.cs)
+- Skip test images with missing/invalid corresponding data instead of
+  crashing the full pipeline (Program.cs, line ~267)
+- Add stack trace logging to test image error handler for easier debugging
+- Manually verified sample test images (e.g. 0_1169) are valid, ruling
+  out corrupted source data as root cause
+
+Note: root cause of index mismatch still not fully isolated — likely
+in test preprocessing steps using hardcoded relative paths instead of
+configured folder paths. Current fix makes
+the pipeline resilient by skipping affected images and logging them,
+rather than fixing the underlying path inconsistency.

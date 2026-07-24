@@ -459,7 +459,8 @@ class Program
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error processing test image {originalFileName}: {ex.Message}");
+                    Logger.LogError($"Error processing test image {originalFileName}: {ex.Message}");
+                    Logger.LogError(ex.StackTrace ?? "No stack trace available");
                 }
             }
         }

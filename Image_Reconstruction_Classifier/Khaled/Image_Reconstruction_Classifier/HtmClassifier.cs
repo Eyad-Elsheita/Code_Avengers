@@ -107,7 +107,7 @@ namespace Image_Reconstruction_Classifier
                 double weight = Math.Pow(scored.Overlap, 2); // Squared weight
 
                 // For each pixel in the original input, add the weighted pixel value to the accumulator.
-                for (int i = 0; i < imageLength; i++)
+                for (int i = 0; i < imageLength && i < scored.Example.OriginalInput.Length; i++)
                 {
                     pixelSums[i] += scored.Example.OriginalInput[i] * weight;
                 }
