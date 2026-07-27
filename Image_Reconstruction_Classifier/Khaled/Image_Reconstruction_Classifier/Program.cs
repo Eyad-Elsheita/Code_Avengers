@@ -264,6 +264,11 @@ class Program
                     // -------------------------------
                     int[] htmTestReconstructed = htmClassifierForType.GetPredictedInputValues(testSdr, 3);
                     SaveReconstructedImages(htmTestReconstructed, originalFileName, htmTestBinaryFolder, htmTestVectorFolder);
+                    if (item.index >= testImageData.Length || testImageData[item.index] == null || testImageData[item.index].Length == 0)
+                    {
+                        Logger.LogError($"Skipping {originalFileName}: no valid test image data at index {item.index} (testImageData has {testImageData.Length} entries).");
+                        continue;
+                    }
                     double htmVectorSim = ImageSimilarity.CalculateCosineSimilarity(testImageData[item.index], htmTestReconstructed);
                     double htmBinarySim = CalculateBinarizedImageSimilarity(testImageData[item.index], htmTestReconstructed);
                     htmTestSimilarities.Add(new SimilarityData
