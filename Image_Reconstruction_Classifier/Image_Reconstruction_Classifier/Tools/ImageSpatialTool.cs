@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using ModelContextProtocol.Server;
 using NeoCortexApi;
 using NeoCortexApi.Entities;
@@ -10,8 +11,9 @@ namespace Image_Reconstruction_Classifier.Tools
     public class ImageSpatialTool
     {
         private readonly BlobServiceClient _blobServiceClient;
-        private const string InputContainer = "input";
-        private const string OutputContainer = "output";
+        // Change 1: renamed constants
+        private const string TrainContainer = "train";
+        private const string TestContainer = "test";
         private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageSpatial");
 
         public ImageSpatialTool(BlobServiceClient blobServiceClient)
@@ -20,7 +22,7 @@ namespace Image_Reconstruction_Classifier.Tools
             Directory.CreateDirectory(_tempFolder);
         }
 
-        // Shared HTM Spatial Pooler initialization to avoid duplication
+        // Shared HTM Spatial Pooler initialization — UNCHANGED
         private static (SpatialPooler, Connections) InitializeSpatialPooler()
         {
             SpatialPooler spatialPooler = new SpatialPooler();
@@ -42,28 +44,32 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 1: Run Spatial Pooler Training on Azure Blob Input
+        // METHOD 1: Train Spatial Pooler on Container
         // ============================================================
         [McpServerTool, Description("Download encoded image vectors from Azure input container, run them through the HTM Spatial Pooler in training mode, and upload the resulting SDRs to the output container.")]
         public async Task<string> TrainSpatialPooler(
+            // Change 2: added containerName parameter
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Max number of images to process (default 100)")] int maxImages = 100)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+                // Change 3: single containerClient instead of input/output
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
-                await outputContainer.CreateIfNotExistsAsync();
-
+                // Change 4: removed CreateIfNotExistsAsync
                 var (spatialPooler, _) = InitializeSpatialPooler();
 
                 int processed = 0;
                 int skipped = 0;
 
-                await foreach (var blobItem in inputContainer.GetBlobsAsync())
+                // Change 5: fixed GetBlobsAsync parameters
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: null))
                 {
                     if (processed >= maxImages) break;
 
+                    // UNCHANGED: original .txt filter
                     if (!blobItem.Name.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
                     {
                         skipped++;
@@ -72,7 +78,8 @@ namespace Image_Reconstruction_Classifier.Tools
 
                     try
                     {
-                        await ProcessSingleBlobTraining(blobItem.Name, inputContainer, outputContainer, spatialPooler);
+                        // Change 6: single containerClient in helper call
+                        await ProcessSingleBlobTraining(blobItem.Name, containerClient, spatialPooler);
                         processed++;
                         Console.WriteLine($"Successfully processed (training): {blobItem.Name}");
                     }
@@ -93,28 +100,32 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 2: Run Spatial Pooler Inference on Azure Blob Input
+        // METHOD 2: Run Spatial Pooler Inference on Container
         // ============================================================
         [McpServerTool, Description("Download encoded test image vectors from Azure input container, run them through the HTM Spatial Pooler in inference mode (no learning), and upload the resulting SDRs to the output container.")]
         public async Task<string> RunSpatialPoolerInference(
+            // Change 2: added containerName parameter
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Max number of test images to process (default 100)")] int maxImages = 100)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+                // Change 3: single containerClient
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
-                await outputContainer.CreateIfNotExistsAsync();
-
+                // Change 4: removed CreateIfNotExistsAsync
                 var (spatialPooler, _) = InitializeSpatialPooler();
 
                 int processed = 0;
                 int skipped = 0;
 
-                await foreach (var blobItem in inputContainer.GetBlobsAsync())
+                // Change 5: fixed GetBlobsAsync parameters
+                await foreach (var blobItem in containerClient.GetBlobsAsync(
+                    BlobTraits.None, BlobStates.All, prefix: null))
                 {
                     if (processed >= maxImages) break;
 
+                    // UNCHANGED: original .txt filter
                     if (!blobItem.Name.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
                     {
                         skipped++;
@@ -123,7 +134,8 @@ namespace Image_Reconstruction_Classifier.Tools
 
                     try
                     {
-                        await ProcessSingleBlobInference(blobItem.Name, inputContainer, outputContainer, spatialPooler);
+                        // Change 6: single containerClient in helper call
+                        await ProcessSingleBlobInference(blobItem.Name, containerClient, spatialPooler);
                         processed++;
                         Console.WriteLine($"Successfully processed (inference): {blobItem.Name}");
                     }
@@ -144,21 +156,24 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 3: Process a Single Image by Blob Name (Training)
+        // METHOD 3: Train Single Image
         // ============================================================
         [McpServerTool, Description("Run a single encoded image vector through the HTM Spatial Pooler in training mode and upload the resulting SDR to the output container.")]
         public async Task<string> TrainSingleImage(
+            // Change 2: added containerName parameter
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Name of the .txt blob in the input container")] string blobName)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+                // Change 3: single containerClient
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
-                await outputContainer.CreateIfNotExistsAsync();
-
+                // Change 4: removed CreateIfNotExistsAsync
                 var (spatialPooler, _) = InitializeSpatialPooler();
-                await ProcessSingleBlobTraining(blobName, inputContainer, outputContainer, spatialPooler);
+
+                // Change 6: single containerClient in helper call
+                await ProcessSingleBlobTraining(blobName, containerClient, spatialPooler);
 
                 return $"Successfully trained on: {blobName}";
             }
@@ -170,21 +185,24 @@ namespace Image_Reconstruction_Classifier.Tools
         }
 
         // ============================================================
-        // METHOD 4: Process a Single Image by Blob Name (Inference)
+        // METHOD 4: Infer Single Image
         // ============================================================
         [McpServerTool, Description("Run a single encoded test image vector through the HTM Spatial Pooler in inference mode and upload the resulting SDR to the output container.")]
         public async Task<string> InferSingleImage(
+            // Change 2: added containerName parameter
+            [Description("Container name: 'train' or 'test'")] string containerName,
             [Description("Name of the .txt blob in the input container")] string blobName)
         {
             try
             {
-                var inputContainer = _blobServiceClient.GetBlobContainerClient(InputContainer);
-                var outputContainer = _blobServiceClient.GetBlobContainerClient(OutputContainer);
+                // Change 3: single containerClient
+                var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
-                await outputContainer.CreateIfNotExistsAsync();
-
+                // Change 4: removed CreateIfNotExistsAsync
                 var (spatialPooler, _) = InitializeSpatialPooler();
-                await ProcessSingleBlobInference(blobName, inputContainer, outputContainer, spatialPooler);
+
+                // Change 6: single containerClient in helper call
+                await ProcessSingleBlobInference(blobName, containerClient, spatialPooler);
 
                 return $"Successfully ran inference on: {blobName}";
             }
@@ -198,10 +216,10 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // HELPER: Download → Spatial Pool (Training) → Upload
         // ============================================================
+        // Change 7: single containerClient parameter
         private async Task ProcessSingleBlobTraining(
             string blobName,
-            BlobContainerClient inputContainer,
-            BlobContainerClient outputContainer,
+            BlobContainerClient containerClient,
             SpatialPooler spatialPooler)
         {
             string tempInputPath = Path.Combine(_tempFolder, blobName);
@@ -212,11 +230,10 @@ namespace Image_Reconstruction_Classifier.Tools
 
             try
             {
-                // Step 1 — Download encoded vector from Azure
-                var inputBlob = inputContainer.GetBlobClient(blobName);
+                // UNCHANGED: download, parse, validate, compute, upload logic
+                var inputBlob = containerClient.GetBlobClient(blobName);
                 await inputBlob.DownloadToAsync(tempInputPath);
 
-                // Step 2 — Parse and validate input vector
                 string rawData = File.ReadAllText(tempInputPath).Trim();
                 if (string.IsNullOrWhiteSpace(rawData))
                     throw new InvalidDataException($"Empty file: {blobName}");
@@ -228,12 +245,10 @@ namespace Image_Reconstruction_Classifier.Tools
                 if (inputVector.Length != 784)
                     throw new InvalidDataException($"Dimension mismatch in {fileName}: Expected 784, got {inputVector.Length}");
 
-                // Step 3 — Run Spatial Pooler in training mode
                 int[] activeColumns = spatialPooler.Compute(inputVector, learn: true);
 
-                // Step 4 — Save SDR result and upload to Azure
                 File.WriteAllText(tempOutputPath, string.Join(",", activeColumns));
-                var outputBlob = outputContainer.GetBlobClient(outputFileName);
+                var outputBlob = containerClient.GetBlobClient(outputFileName);
                 await outputBlob.UploadAsync(tempOutputPath, overwrite: true);
             }
             finally
@@ -246,10 +261,10 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // HELPER: Download → Spatial Pool (Inference) → Upload
         // ============================================================
+        // Change 7: single containerClient parameter
         private async Task ProcessSingleBlobInference(
             string blobName,
-            BlobContainerClient inputContainer,
-            BlobContainerClient outputContainer,
+            BlobContainerClient containerClient,
             SpatialPooler spatialPooler)
         {
             string tempInputPath = Path.Combine(_tempFolder, blobName);
@@ -260,11 +275,10 @@ namespace Image_Reconstruction_Classifier.Tools
 
             try
             {
-                // Step 1 — Download encoded vector from Azure
-                var inputBlob = inputContainer.GetBlobClient(blobName);
+                // UNCHANGED: original inference parsing logic
+                var inputBlob = containerClient.GetBlobClient(blobName);
                 await inputBlob.DownloadToAsync(tempInputPath);
 
-                // Step 2 — Parse and validate input vector
                 string rawData = File.ReadAllText(tempInputPath).Trim();
                 if (string.IsNullOrWhiteSpace(rawData))
                     throw new InvalidDataException($"Empty file: {blobName}");
@@ -278,15 +292,13 @@ namespace Image_Reconstruction_Classifier.Tools
                 if (inputVector.Length != 784)
                     throw new InvalidDataException($"Invalid dimensionality in {fileName}: {inputVector.Length}/784");
 
-                // Step 3 — Run Spatial Pooler in inference mode (no learning)
                 int[] activeColumns = spatialPooler.Compute(inputVector, learn: false);
 
                 if (activeColumns.Length == 0)
                     throw new InvalidOperationException($"Zero active columns produced for {fileName}");
 
-                // Step 4 — Save SDR result and upload to Azure
                 File.WriteAllText(tempOutputPath, string.Join(",", activeColumns));
-                var outputBlob = outputContainer.GetBlobClient(outputFileName);
+                var outputBlob = containerClient.GetBlobClient(outputFileName);
                 await outputBlob.UploadAsync(tempOutputPath, overwrite: true);
             }
             finally
