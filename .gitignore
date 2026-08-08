@@ -30,3 +30,4 @@ mono_crash.*
 .DS_Store
 Thumbs.db
 Image_Reconstruction_Classifier/Khaled/MyCloudProject/appsettings.Development.json
+Image_Reconstruction_Classifier/Khaled/Test_Images_Reconstructed_*/

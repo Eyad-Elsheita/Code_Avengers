@@ -11,7 +11,8 @@
         "Test_Image_Loader": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Test\\Test_Image_Loader",
         "Test_Image_Spatial": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Test\\Test_Image_Spatial",
         "Similarity_Statistics": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Results\\Similarity statistics",
-        "Test_Images_Reconstructed_Combined": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Results\\Combined_Classifier"
+        "Test_Images_Reconstructed_Combined": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Results\\Combined_Classifier",
+		"Training_Image_Sample": "D:\\Eyad-Repo\\Code_Avengers\\Image_Reconstruction_Classifier\\Data\\Training\\Training_Image_Sample"
       }
     }
   }
