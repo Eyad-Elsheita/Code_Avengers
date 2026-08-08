@@ -36,7 +36,7 @@ namespace Image_Reconstruction_Classifier.Tools
                 int skipped = 0;
 
                 await foreach (var blobItem in containerClient.GetBlobsAsync(
-                    BlobTraits.None, BlobStates.All, prefix: null))
+                    BlobTraits.None, BlobStates.All, null, CancellationToken.None))
                 {
                     if (processed >= maxImages) break;
 
@@ -105,7 +105,7 @@ namespace Image_Reconstruction_Classifier.Tools
                 int skipped = 0;
 
                 await foreach (var blobItem in containerClient.GetBlobsAsync(
-                    BlobTraits.None, BlobStates.All, prefix: $"{objectType}_"))
+                    BlobTraits.None, BlobStates.All, $"{objectType}_", CancellationToken.None))
                 {
                     if (processed >= maxImages) break;
 

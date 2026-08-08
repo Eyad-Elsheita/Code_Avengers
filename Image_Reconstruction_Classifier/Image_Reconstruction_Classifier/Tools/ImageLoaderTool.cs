@@ -35,11 +35,10 @@ namespace Image_Reconstruction_Classifier.Tools
                 int count = 0;
 
                 await foreach (var blobItem in containerClient.GetBlobsAsync(
-                    BlobTraits.None, BlobStates.All, prefix: null))
+                    BlobTraits.None, BlobStates.All, null, CancellationToken.None))
                 {
                     if (count >= numberOfImages) break;
 
-                    // Only load PNG files
                     if (!blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                         continue;
 
@@ -119,7 +118,7 @@ namespace Image_Reconstruction_Classifier.Tools
                 var fileList = new List<string>();
 
                 await foreach (var blobItem in containerClient.GetBlobsAsync(
-                    BlobTraits.None, BlobStates.All, prefix: null))
+                    BlobTraits.None, BlobStates.All, null, CancellationToken.None))
                 {
                     if (blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                         fileList.Add(blobItem.Name);
@@ -148,7 +147,7 @@ namespace Image_Reconstruction_Classifier.Tools
                 int count = 0;
 
                 await foreach (var blobItem in containerClient.GetBlobsAsync(
-                    BlobTraits.None, BlobStates.All, prefix: null))
+                    BlobTraits.None, BlobStates.All, null, CancellationToken.None))
                 {
                     if (blobItem.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                         count++;
@@ -180,7 +179,7 @@ namespace Image_Reconstruction_Classifier.Tools
                 int count = 0;
 
                 await foreach (var blobItem in containerClient.GetBlobsAsync(
-                    BlobTraits.None, BlobStates.All, prefix: $"{objectType}_"))
+                    BlobTraits.None, BlobStates.All, $"{objectType}_", CancellationToken.None))
                 {
                     if (count >= numberOfImages) break;
 
