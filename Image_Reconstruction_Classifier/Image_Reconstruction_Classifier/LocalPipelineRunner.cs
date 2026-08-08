@@ -7,16 +7,18 @@ using System.IO;
 using System.Linq;
 
 /// <summary>
-/// Main program for image reconstruction using HTM and KNN classifiers.
-/// This program performs image preprocessing, training, testing, and post-processing.
+/// Original local-folder image reconstruction pipeline using HTM and KNN classifiers.
+/// Kept for reference/local testing; the app's real entry point is now Program.cs,
+/// which hosts the Azure Blob Storage-backed MCP server. Call Run(args) to execute
+/// this pipeline against local folders instead.
 /// </summary>
-class Program
+class LocalPipelineRunner
 {
     /// <summary>
-    /// Main entry point of the application.
+    /// Entry point of the local batch pipeline.
     /// </summary>
     /// <param name="args">Command-line arguments (not used).</param>
-    static void Main(string[] args)
+    public static void Run(string[] args)
     {
         // Start the stopwatch to measure total runtime
         Stopwatch stopwatch = Stopwatch.StartNew();
