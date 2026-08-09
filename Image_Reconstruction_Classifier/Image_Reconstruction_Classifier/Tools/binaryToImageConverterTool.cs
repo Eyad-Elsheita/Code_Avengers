@@ -50,7 +50,7 @@ namespace Image_Reconstruction_Classifier.Tools
                     var blobClient = containerClient.GetBlobClient(outputBlobName);
                     await blobClient.UploadAsync(tempOutputPath, overwrite: true);
 
-                    Console.WriteLine($"✅ Reconstructed image uploaded: {outputBlobName}");
+                    CloudLogger.LogInfo("BinaryToImageConverterTool", $"Reconstructed image uploaded: {outputBlobName}");
                     return $"✅ Image saved to '{containerName}' as '{outputBlobName}'";
                 }
                 finally
@@ -60,7 +60,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error converting binary to image: {ex.Message}");
+                CloudLogger.LogError("BinaryToImageConverterTool", "Error converting binary to image", ex);
                 throw;
             }
         }
@@ -105,7 +105,7 @@ namespace Image_Reconstruction_Classifier.Tools
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Failed image {i}: {ex.Message}");
+                    CloudLogger.LogError("BinaryToImageConverterTool", $"Failed image {i}", ex);
                     failCount++;
                 }
             }

@@ -1,4 +1,5 @@
 using Azure.Storage.Blobs;
+using Image_Reconstruction_Classifier;
 using Image_Reconstruction_Classifier.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,12 +37,11 @@ try
     builder.Services.AddSingleton<ImageSimilarityTool>();
     builder.Services.AddSingleton<ImageFilterTool>();
 
-    Console.Error.WriteLine("Started Image Reconstruction MCP server");
+    CloudLogger.Log("Program", "Started Image Reconstruction MCP server");
     await builder.Build().RunAsync();
 }
 catch (Exception ex)
 {
-    Console.Error.WriteLine("Application startup failed.");
-    Console.Error.WriteLine(ex.ToString());
+    CloudLogger.LogError("Program", "Application startup failed", ex);
     throw;
 }

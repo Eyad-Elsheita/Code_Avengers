@@ -50,11 +50,11 @@ namespace Image_Reconstruction_Classifier.Tools
                     {
                         await ProcessSingleBlob(blobItem.Name, containerClient);
                         processed++;
-                        Console.WriteLine($"✅ Processed: {blobItem.Name}");
+                        CloudLogger.LogDebug("ImageProcessorTool", $"Processed: {blobItem.Name}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"❌ Error processing {blobItem.Name}: {ex.Message}");
+                        CloudLogger.LogError("ImageProcessorTool", $"Error processing {blobItem.Name}", ex);
                         skipped++;
                     }
                 }
@@ -63,7 +63,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                CloudLogger.LogError("ImageProcessorTool", "Error", ex);
                 throw;
             }
         }
@@ -84,7 +84,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error binarizing {blobName}: {ex.Message}");
+                CloudLogger.LogError("ImageProcessorTool", $"Error binarizing {blobName}", ex);
                 throw;
             }
         }
@@ -119,11 +119,11 @@ namespace Image_Reconstruction_Classifier.Tools
                     {
                         await ProcessSingleBlob(blobItem.Name, containerClient);
                         processed++;
-                        Console.WriteLine($"✅ Processed: {blobItem.Name}");
+                        CloudLogger.LogDebug("ImageProcessorTool", $"Processed: {blobItem.Name}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"❌ Error processing {blobItem.Name}: {ex.Message}");
+                        CloudLogger.LogError("ImageProcessorTool", $"Error processing {blobItem.Name}", ex);
                         skipped++;
                     }
                 }
@@ -132,7 +132,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error in batch: {ex.Message}");
+                CloudLogger.LogError("ImageProcessorTool", "Error in batch", ex);
                 throw;
             }
         }

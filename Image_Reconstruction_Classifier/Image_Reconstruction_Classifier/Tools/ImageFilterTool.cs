@@ -25,12 +25,12 @@ namespace Image_Reconstruction_Classifier.Tools
 
                 int[] filtered = ImageFilter.ApplyMedianFilter(image, width, height);
 
-                Console.WriteLine($"✅ Applied median filter to {width}x{height} image");
+                CloudLogger.LogInfo("ImageFilterTool", $"Applied median filter to {width}x{height} image");
                 return Task.FromResult(filtered);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error applying median filter: {ex.Message}");
+                CloudLogger.LogError("ImageFilterTool", "Error applying median filter", ex);
                 throw;
             }
         }

@@ -36,12 +36,12 @@ namespace Image_Reconstruction_Classifier.Tools
 
                 double similarity = ImageSimilarity.CalculateCosineSimilarity(original, reconstructed);
 
-                Console.WriteLine($"✅ Cosine similarity: {similarity:F4}");
+                CloudLogger.LogInfo("ImageSimilarityTool", $"Cosine similarity: {similarity:F4}");
                 return Task.FromResult(similarity);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error calculating cosine similarity: {ex.Message}");
+                CloudLogger.LogError("ImageSimilarityTool", "Error calculating cosine similarity", ex);
                 throw;
             }
         }
@@ -65,12 +65,12 @@ namespace Image_Reconstruction_Classifier.Tools
                 int matchingPixels = original.Zip(reconstructed, (o, r) => o == r ? 1 : 0).Sum();
                 double similarity = (double)matchingPixels / original.Length * 100.0;
 
-                Console.WriteLine($"✅ Binary similarity: {similarity:F2}%");
+                CloudLogger.LogInfo("ImageSimilarityTool", $"Binary similarity: {similarity:F2}%");
                 return Task.FromResult(similarity);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error calculating binary similarity: {ex.Message}");
+                CloudLogger.LogError("ImageSimilarityTool", "Error calculating binary similarity", ex);
                 throw;
             }
         }
@@ -98,12 +98,12 @@ namespace Image_Reconstruction_Classifier.Tools
                 double binarySimilarity = (double)matchingPixels / original.Length * 100.0;
 
                 string result = $"Image: {imageName} | Cosine: {cosineSimilarity:F4} | Binary: {binarySimilarity:F2}%";
-                Console.WriteLine($"✅ {result}");
+                CloudLogger.LogInfo("ImageSimilarityTool", result);
                 return Task.FromResult(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error comparing images: {ex.Message}");
+                CloudLogger.LogError("ImageSimilarityTool", "Error comparing images", ex);
                 throw;
             }
         }
@@ -136,7 +136,7 @@ namespace Image_Reconstruction_Classifier.Tools
                     double binary = (double)matchingPixels / originals[i].Length * 100.0;
 
                     lines.Add($"{imageNames[i]},{cosine:F4},{binary:F2}");
-                    Console.WriteLine($"✅ Compared {imageNames[i]}: Cosine={cosine:F4}, Binary={binary:F2}%");
+                    CloudLogger.LogDebug("ImageSimilarityTool", $"Compared {imageNames[i]}: Cosine={cosine:F4}, Binary={binary:F2}%");
                 }
 
                 string tempOutputPath = Path.Combine(_tempFolder, outputBlobName);
@@ -157,7 +157,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error in batch comparison: {ex.Message}");
+                CloudLogger.LogError("ImageSimilarityTool", "Error in batch comparison", ex);
                 throw;
             }
         }
@@ -177,12 +177,12 @@ namespace Image_Reconstruction_Classifier.Tools
 
                 string matrix = ImageSimilarity.ConvertToBinaryMatrix(imageArray, rowSize);
 
-                Console.WriteLine($"✅ Binary matrix generated for {rowSize}x{rowSize} image");
+                CloudLogger.LogInfo("ImageSimilarityTool", $"Binary matrix generated for {rowSize}x{rowSize} image");
                 return Task.FromResult(matrix);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error converting to binary matrix: {ex.Message}");
+                CloudLogger.LogError("ImageSimilarityTool", "Error converting to binary matrix", ex);
                 throw;
             }
         }

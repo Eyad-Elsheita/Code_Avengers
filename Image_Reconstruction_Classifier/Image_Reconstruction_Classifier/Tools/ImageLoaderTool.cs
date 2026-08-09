@@ -58,12 +58,12 @@ namespace Image_Reconstruction_Classifier.Tools
                     }
                 }
 
-                Console.WriteLine($"✅ Loaded {imageList.Count} images from '{containerName}'");
+                CloudLogger.LogInfo("ImageLoaderTool", $"Loaded {imageList.Count} images from '{containerName}'");
                 return imageList.ToArray();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error loading images: {ex.Message}");
+                CloudLogger.LogError("ImageLoaderTool", "Error loading images", ex);
                 throw;
             }
         }
@@ -90,7 +90,7 @@ namespace Image_Reconstruction_Classifier.Tools
                     await blobClient.DownloadToAsync(tempPath);
                     int[] imageData = await Task.Run(() => ImageLoader.LoadImage(tempPath));
 
-                    Console.WriteLine($"✅ Loaded single image: {blobName}");
+                    CloudLogger.LogInfo("ImageLoaderTool", $"Loaded single image: {blobName}");
                     return imageData;
                 }
                 finally
@@ -100,7 +100,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error loading single image: {ex.Message}");
+                CloudLogger.LogError("ImageLoaderTool", "Error loading single image", ex);
                 throw;
             }
         }
@@ -124,12 +124,12 @@ namespace Image_Reconstruction_Classifier.Tools
                         fileList.Add(blobItem.Name);
                 }
 
-                Console.WriteLine($"✅ Found {fileList.Count} images in '{containerName}'");
+                CloudLogger.LogInfo("ImageLoaderTool", $"Found {fileList.Count} images in '{containerName}'");
                 return fileList;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error listing images: {ex.Message}");
+                CloudLogger.LogError("ImageLoaderTool", "Error listing images", ex);
                 throw;
             }
         }
@@ -153,12 +153,12 @@ namespace Image_Reconstruction_Classifier.Tools
                         count++;
                 }
 
-                Console.WriteLine($"✅ Found {count} images in '{containerName}'");
+                CloudLogger.LogInfo("ImageLoaderTool", $"Found {count} images in '{containerName}'");
                 return count;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error getting image count: {ex.Message}");
+                CloudLogger.LogError("ImageLoaderTool", "Error getting image count", ex);
                 throw;
             }
         }
@@ -202,12 +202,12 @@ namespace Image_Reconstruction_Classifier.Tools
                     }
                 }
 
-                Console.WriteLine($"✅ Loaded {imageList.Count} images of type '{objectType}' from '{containerName}'");
+                CloudLogger.LogInfo("ImageLoaderTool", $"Loaded {imageList.Count} images of type '{objectType}' from '{containerName}'");
                 return imageList.ToArray();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error loading filtered images: {ex.Message}");
+                CloudLogger.LogError("ImageLoaderTool", "Error loading filtered images", ex);
                 throw;
             }
         }

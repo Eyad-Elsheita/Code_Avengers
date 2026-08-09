@@ -73,11 +73,11 @@ namespace Image_Reconstruction_Classifier.Tools
                     {
                         await ProcessSingleBlobTraining(blobItem.Name, containerClient, spatialPooler);
                         processed++;
-                        Console.WriteLine($"Successfully processed (training): {blobItem.Name}");
+                        CloudLogger.LogDebug("ImageSpatialTool", $"Successfully processed (training): {blobItem.Name}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error processing {blobItem.Name}: {ex.Message}");
+                        CloudLogger.LogError("ImageSpatialTool", $"Error processing {blobItem.Name}", ex);
                         skipped++;
                     }
                 }
@@ -86,7 +86,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error during spatial pooler training: {ex.Message}");
+                CloudLogger.LogError("ImageSpatialTool", "Error during spatial pooler training", ex);
                 throw;
             }
         }
@@ -122,11 +122,11 @@ namespace Image_Reconstruction_Classifier.Tools
                     {
                         await ProcessSingleBlobInference(blobItem.Name, containerClient, spatialPooler);
                         processed++;
-                        Console.WriteLine($"Successfully processed (inference): {blobItem.Name}");
+                        CloudLogger.LogDebug("ImageSpatialTool", $"Successfully processed (inference): {blobItem.Name}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error processing {blobItem.Name}: {ex.Message}");
+                        CloudLogger.LogError("ImageSpatialTool", $"Error processing {blobItem.Name}", ex);
                         skipped++;
                     }
                 }
@@ -135,7 +135,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error during spatial pooler inference: {ex.Message}");
+                CloudLogger.LogError("ImageSpatialTool", "Error during spatial pooler inference", ex);
                 throw;
             }
         }
@@ -157,7 +157,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error training on {blobName}: {ex.Message}");
+                CloudLogger.LogError("ImageSpatialTool", $"Error training on {blobName}", ex);
                 throw;
             }
         }
@@ -179,7 +179,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error during inference on {blobName}: {ex.Message}");
+                CloudLogger.LogError("ImageSpatialTool", $"Error during inference on {blobName}", ex);
                 throw;
             }
         }

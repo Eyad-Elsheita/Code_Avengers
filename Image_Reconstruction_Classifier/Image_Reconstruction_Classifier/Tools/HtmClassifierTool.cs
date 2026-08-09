@@ -59,11 +59,11 @@ namespace Image_Reconstruction_Classifier.Tools
                     {
                         await TrainOnSingleBlob(blobItem.Name, containerClient, classifier);
                         trained++;
-                        Console.WriteLine($"✅ Trained on: {blobItem.Name}");
+                        CloudLogger.LogDebug("HtmClassifierTool", $"Trained on: {blobItem.Name}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"❌ Error training on {blobItem.Name}: {ex.Message}");
+                        CloudLogger.LogError("HtmClassifierTool", $"Error training on {blobItem.Name}", ex);
                         skipped++;
                     }
                 }
@@ -72,7 +72,7 @@ namespace Image_Reconstruction_Classifier.Tools
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error during HTM training: {ex.Message}");
+                CloudLogger.LogError("HtmClassifierTool", "Error during HTM training", ex);
                 throw;
             }
         }
@@ -131,12 +131,12 @@ namespace Image_Reconstruction_Classifier.Tools
                     if (File.Exists(tempOutputPath)) File.Delete(tempOutputPath);
                 }
 
-                Console.WriteLine($"✅ Reconstructed and uploaded: {outputBlobName}");
+                CloudLogger.LogInfo("HtmClassifierTool", $"Reconstructed and uploaded: {outputBlobName}");
                 return reconstructed;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error reconstructing image: {ex.Message}");
+                CloudLogger.LogError("HtmClassifierTool", "Error reconstructing image", ex);
                 throw;
             }
         }
