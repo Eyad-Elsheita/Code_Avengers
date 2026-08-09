@@ -14,6 +14,7 @@ try
         ?? throw new InvalidOperationException("AZURE_STORAGE_CONNECTION_STRING is not set.");
 
     builder.Services.AddSingleton(new BlobServiceClient(blobConnectionString));
+    builder.Services.AddSingleton(new ResultStorageService(blobConnectionString));
     builder.Services.AddHttpClient();
 
     // Register all tools
