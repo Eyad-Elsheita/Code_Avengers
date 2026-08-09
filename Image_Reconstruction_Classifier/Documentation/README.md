@@ -51,6 +51,8 @@ Required Libraries:
 - ImageBinarizer: For converting images into binarized formats.
 - SkiaSharp: For robust image processing and manipulation.
 - SixLabors.ImageSharp: For additional image handling capabilities.
+- ModelContextProtocol (MCP SDK): Exposes each pipeline stage as an MCP tool, callable over STDIO or HTTP.
+- Azure.Storage.Blobs: For reading/writing images and intermediate files to the `train`/`test` blob containers.
 
 ### Running the Project
 
@@ -66,6 +68,12 @@ Required Libraries:
    ```bash
    dotnet run --project "Path/To/Your/Project/YourProject.csproj"
    ```
+
+4. **Run as an MCP Server:**  
+   The project also runs as an MCP server exposing each pipeline stage (load, binarize, spatial pool, train/reconstruct, filter, similarity) as a callable tool over STDIO or HTTP. An MCP client can then trigger a stage directly, e.g. `TrainClassifier(containerName: "train", objectType: "3")`.
+
+5. **Run via Docker / Azure:**  
+   A `Dockerfile` builds the server on `.NET 9.0` (multi-stage: `dotnet/sdk:9.0` → `dotnet/runtime:9.0`). The image is pushed to Azure Container Registry and deployed to Azure App Service, where it's reachable by an MCP client. See **Figure 2b** below for the full runtime architecture.
 
 ---
 
@@ -125,6 +133,15 @@ The framework is designed to be scalable, allowing for easy adaptation to large 
 - Test pipeline
 ![Test Data Flowchart](https://github.com/user-attachments/assets/b9ce829b-8e03-4325-9579-41240728ad71)
 **Figure 2:** Test Pipleline
+
+### System / Runtime Architecture
+
+The two flowcharts above describe the data-processing pipeline (how an image moves from raw input to reconstructed output). The diagram below describes the *runtime* architecture — how that pipeline is actually deployed and triggered on Azure.
+
+![System Architecture Diagram](architecture-diagram.png)
+**Figure 2b:** System architecture — an MCP client triggers a specific pipeline stage directly via an MCP tool call (STDIO or HTTP transport), the tool itself reads/writes Azure Blob Storage (`train` and `test` containers only), and trained HTM classifiers are held in an in-memory dictionary for the lifetime of the server process.
+
+**Note on deployment:** No Azure Queue Storage or Table Storage is used. Triggering is a direct, synchronous MCP tool call rather than a queue-based message, and there is currently no persisted store for trained classifier state — a server restart requires retraining. The server is packaged via Docker (multi-stage build on `.NET 9.0`), pushed to Azure Container Registry, and deployed to Azure App Service, where it is reachable by an MCP client.
 
 ## Image Preprocessing and Feature Extraction
 
