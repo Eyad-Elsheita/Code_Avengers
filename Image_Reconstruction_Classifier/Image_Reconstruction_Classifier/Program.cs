@@ -8,12 +8,6 @@ using ModelContextProtocol.Server;
 
 try
 {
-    if (args.Length > 0 && args[0] == "--agent")
-    {
-        await ImageReconstructionAgent.RunAsync();
-        return;
-    }
-
     var builder = WebApplication.CreateBuilder(args);
 
     // Give the server a predictable local address unless the host (e.g. Azure App Service) already sets one.
@@ -54,7 +48,7 @@ try
     var app = builder.Build();
     app.MapMcp();
 
-    CloudLogger.Log("Program", $"Started Image Reconstruction MCP server at {string.Join(", ", app.Urls)}");
+    CloudLogger.Log("Program", "Starting Image Reconstruction MCP server");
     await app.RunAsync();
 }
 catch (Exception ex)

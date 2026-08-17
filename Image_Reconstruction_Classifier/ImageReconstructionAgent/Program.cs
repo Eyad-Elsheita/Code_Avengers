@@ -12,9 +12,9 @@ try
     string model = Environment.GetEnvironmentVariable("OPENAI_CHAT_MODEL_NAME")
         ?? "gpt-4o-mini";
 
-    // MCP server URL — your Azure App Service
+    // Defaults to the local MCP server; set MCP_SERVER_URL to point at the Azure-hosted one instead.
     string mcpServerUrl = Environment.GetEnvironmentVariable("MCP_SERVER_URL")
-        ?? "https://image-reconstruction-app.azurewebsites.net";
+        ?? "http://localhost:5280";
 
     Console.WriteLine($"Connecting to MCP server at {mcpServerUrl}");
 
