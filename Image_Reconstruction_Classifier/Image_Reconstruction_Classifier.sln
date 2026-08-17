@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImgSimilarity.UnitTest", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knn_UnitTest", "UnitTests\Knn_UnitTests\Knn_UnitTest.csproj", "{03F82A3A-8846-496D-A62D-F657769B707E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageReconstructionAgent", "ImageReconstructionAgent\ImageReconstructionAgent.csproj", "{EC009319-8FCD-4579-A4CF-743963EB41CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{03F82A3A-8846-496D-A62D-F657769B707E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03F82A3A-8846-496D-A62D-F657769B707E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03F82A3A-8846-496D-A62D-F657769B707E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC009319-8FCD-4579-A4CF-743963EB41CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC009319-8FCD-4579-A4CF-743963EB41CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC009319-8FCD-4579-A4CF-743963EB41CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC009319-8FCD-4579-A4CF-743963EB41CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,8 @@ Global
 		{26C020B1-C521-4DDD-97CC-D86B06EE7372} = {AD8E2E2A-96F5-483F-A06F-EF0D94ED9E67}
 		{FEB17495-45F5-4EBE-A8E1-3868E116ADD6} = {AD8E2E2A-96F5-483F-A06F-EF0D94ED9E67}
 		{03F82A3A-8846-496D-A62D-F657769B707E} = {AD8E2E2A-96F5-483F-A06F-EF0D94ED9E67}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C904CAEC-162E-47BD-887D-83D18343A7CB}
 	EndGlobalSection
 EndGlobal

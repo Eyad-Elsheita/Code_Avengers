@@ -33,3 +33,4 @@ Image_Reconstruction_Classifier/Khaled/MyCloudProject/appsettings.Development.js
 Image_Reconstruction_Classifier/Khaled/Test_Images_Reconstructed_*/
 # Secrets
 azure.env
+*.env
