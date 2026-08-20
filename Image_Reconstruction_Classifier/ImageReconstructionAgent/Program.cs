@@ -1,16 +1,16 @@
-﻿using Microsoft.Extensions.AI;
+using Anthropic;
 using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
 using ModelContextProtocol.Client;
-using OpenAI;
 
 try
 {
-    // Get OpenAI credentials
-    string apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY")
-        ?? throw new InvalidOperationException("OPENAI_API_KEY is not set.");
+    // Get Anthropic credentials
+    string apiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+        ?? throw new InvalidOperationException("ANTHROPIC_API_KEY is not set.");
 
-    string model = Environment.GetEnvironmentVariable("OPENAI_CHAT_MODEL_NAME")
-        ?? "gpt-4o-mini";
+    string model = Environment.GetEnvironmentVariable("CLAUDE_MODEL_NAME")
+        ?? "claude-opus-5";
 
     // Defaults to the local MCP server; set MCP_SERVER_URL to point at the Azure-hosted one instead.
     string mcpServerUrl = Environment.GetEnvironmentVariable("MCP_SERVER_URL")
@@ -39,9 +39,8 @@ try
     List<AITool> aiTools = [.. tools.Cast<AITool>()];
 
     AIAgent agent =
-        new OpenAIClient(apiKey)
-            .GetChatClient(model)
-            .AsIChatClient()
+        new AnthropicClient { ApiKey = apiKey }
+            .AsIChatClient(model)
             .AsAIAgent(
                 instructions: """
                     You are an image reconstruction assistant.

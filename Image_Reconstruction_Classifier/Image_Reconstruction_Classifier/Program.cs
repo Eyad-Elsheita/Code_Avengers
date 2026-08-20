@@ -10,10 +10,11 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-    // Give the server a predictable local address unless the host (e.g. Azure App Service) already sets one.
+    // Bind to all interfaces on a predictable port unless the host (e.g. Azure App Service) already sets one.
+    // Binding to "localhost" would make the server unreachable from outside a container.
     if (Environment.GetEnvironmentVariable("ASPNETCORE_URLS") is null)
     {
-        builder.WebHost.UseUrls("http://localhost:5280");
+        builder.WebHost.UseUrls("http://0.0.0.0:5280");
     }
 
     // Azure Blob Storage connection

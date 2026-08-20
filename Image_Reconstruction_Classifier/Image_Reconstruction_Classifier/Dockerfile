@@ -5,9 +5,10 @@ COPY . .
 
 RUN dotnet publish "Image_Reconstruction_Classifier.csproj" -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/runtime:9.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
 COPY --from=build /app/publish .
 
+EXPOSE 5280
 ENTRYPOINT ["dotnet", "Image_Reconstruction_Classifier.dll"]
