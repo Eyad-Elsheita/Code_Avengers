@@ -1,0 +1,3 @@
+PS E:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier> [System.Environment]::SetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING", "<redacted>", "User")
+PS E:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier> [System.Environment]::SetEnvironmentVariable("MCP_SERVER_URL", "https://image-reconstruction-application-gadkh2grhtfug8cp.germanywestcentral-01.azurewebsites.net", "User")
+PS E:\University\Cloud_Computing\se-cloud-2025-2026\MyCloudProject\Code_Avengers\Image_Reconstruction_Classifier> [System.Environment]::SetEnvironmentVariable("OPENAI_API_KEY", "<redacted>", "User")
