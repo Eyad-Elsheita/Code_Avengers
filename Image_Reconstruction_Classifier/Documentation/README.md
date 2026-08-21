@@ -4,7 +4,7 @@ An HTM + KNN image reconstruction pipeline exposed as a set of Model Context Pro
 
 ## Architecture
 
-![Deployed architecture diagram](Image_Reconstruction_Classifier/Documentation/Main%20Architeture.jpeg)
+![Deployed architecture diagram](https://github.com/Eyad-Elsheita/Code_Avengers/blob/development/Image_Reconstruction_Classifier/Documentation/Main%20Architeture.jpeg)
 
 An AI agent client calls MCP tools on the containerized MCP server (Azure App Service), which reads/writes Fashion-MNIST images and persisted classifier models to Azure Blob Storage's `train` and `test` containers, and writes per-reconstruction similarity metrics to the `ReconstructionResults` table in Azure Table Storage via `ResultStorageService`.
 
