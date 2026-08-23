@@ -96,4 +96,29 @@ public class KnnClassifier
         set1.IntersectWith(set2);
         return set1.Count;
     }
+
+    /// <summary>Export training data as DTOs for JSON serialization</summary>
+    public List<KnnTrainingDto> ExportTrainingData()
+    {
+        return trainingData.Select(td => new KnnTrainingDto
+        {
+            SDR = td.SDR,
+            Label = td.Label
+        }).ToList();
+    }
+
+    /// <summary>Import training data from DTOs after loading from blob</summary>
+    public void ImportTrainingData(List<KnnTrainingDto> data)
+    {
+        trainingData.Clear();
+        foreach (var dto in data)
+            trainingData.Add((dto.SDR.ToArray(), dto.Label));
+    }
+}
+
+/// <summary>DTO for JSON-serializing a single KNN training example.</summary>
+public class KnnTrainingDto
+{
+    public int[] SDR { get; set; } = Array.Empty<int>();
+    public int Label { get; set; }
 }

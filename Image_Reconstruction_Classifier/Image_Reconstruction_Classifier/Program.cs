@@ -33,6 +33,7 @@ try
         .WithTools<ImageProcessorTool>()
         .WithTools<ImageSpatialTool>()
         .WithTools<HtmClassifierTool>()
+        .WithTools<KnnClassifierTool>()
         .WithTools<BinaryToImageConverterTool>()
         .WithTools<ImageSimilarityTool>()
         .WithTools<ImageFilterTool>();
@@ -42,6 +43,7 @@ try
     builder.Services.AddSingleton<ImageProcessorTool>();
     builder.Services.AddSingleton<ImageSpatialTool>();
     builder.Services.AddSingleton<HtmClassifierTool>();
+    builder.Services.AddSingleton<KnnClassifierTool>();
     builder.Services.AddSingleton<BinaryToImageConverterTool>();
     builder.Services.AddSingleton<ImageSimilarityTool>();
     builder.Services.AddSingleton<ImageFilterTool>();
