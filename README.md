@@ -88,7 +88,9 @@ docker run -p 8080:8080 \
   image-reconstruction-mcp
 ```
 
-**Current Azure deployment:** this project runs on Azure App Service for Containers (Linux), pulling `imgreconstructionacr.azurecr.io/image-reconstruction-mcp:v2` from Azure Container Registry via the App Service's system-assigned Managed Identity (granted the `AcrPull` role) — no registry credentials are stored in the app. `WEBSITES_PORT` and `AZURE_STORAGE_CONNECTION_STRING` are set as App Service application settings. To redeploy, build and push a new image tag to that registry and update the Web App's container settings, or check with whoever manages the resource group for the exact release process.
+**Current Azure deployment:** this project runs on Azure App Service for Containers (Linux) as the Web App `image-reconstruction-application` (App Service plan `AnnApiPlan`, Basic B1) in resource group `RG-ImageReconstruction` (Germany West Central), pulling `imgreconstructioncr.azurecr.io/image-reconstruction-mcp:v1` from Azure Container Registry via the App Service's system-assigned Managed Identity (granted the `AcrPull` role) — no registry credentials are stored in the app. Blob/Table Storage is the `imgreconstructionstr` storage account in the same resource group. `WEBSITES_PORT` and `AZURE_STORAGE_CONNECTION_STRING` are set as App Service application settings. To redeploy, build and push a new image tag to that registry and update the Web App's container settings, or check with whoever manages the resource group for the exact release process.
+
+**Verified against the live deployment:** the Azure Portal currently reports this Web App's runtime status as "Issues Detected" — disclosed here rather than omitted. Despite that, pointing `ImageReconstructionAgent` at the live endpoint and asking it a real question works end-to-end (see the captured transcript in Section 5 below), confirming the deployed service actually reads Blob Storage data through the full agent → MCP server → Blob Storage path.
 
 ## 5. Running the Agent
 
@@ -103,20 +105,36 @@ export MCP_SERVER_URL="http://localhost:5280"   # or your Azure endpoint
 dotnet run --project ImageReconstructionAgent
 ```
 
-On startup the agent connects to the MCP server, lists the tools it discovered, and drops you into an interactive prompt:
+On startup the agent connects to the MCP server, lists the tools it discovered, and drops you into an interactive prompt. Below is an actual captured session against the live Azure-hosted server (`MCP_SERVER_URL` pointed at `https://image-reconstruction-application-gadkh2grhtfug8cp.germanywestcentral-01.azurewebsites.net`), lightly trimmed:
 
 ```
+Connecting to MCP server at https://image-reconstruction-application-gadkh2grhtfug8cp.germanywestcentral-01.azurewebsites.net
+Connected to MCP server
+
+Loaded 25 tools:
+  - calculate_cosine_similarity
+  - save_reconstructed_image
+  - get_image_count
+  - apply_median_filter
+  - train_classifier
+  - process_batch
+  - ... (25 total)
+
 === Image Reconstruction Agent ===
 Type 'exit' to quit.
 ==================================
 
-You: Train the HTM classifier on object type 3 using the train container
-Agent: ...
-You: Reconstruct a test image of type 3 and give me its similarity score
-Agent: ...
+You: how many images we have in train container
+Agent: There are 10,000 images in the train container.
 You: exit
 ```
 
-Type natural-language requests; the agent picks which of the seven MCP tools to call. Type `exit` (or send a blank line) to end the session.
+Type natural-language requests; the agent picks which of the loaded MCP tools to call. Type `exit` (or send a blank line) to end the session.
 
+## 6. Known rough edges
 
+Documented here rather than silently fixed, since these are genuine, verifiable artifacts of the current codebase rather than assumptions:
+
+- `Tools/ImageprocessingTool.cs` and `Tools/binaryToImageConverterTool.cs` break the project's otherwise consistent PascalCase file-naming convention.
+- The local-only `Training_Image_Spatial` variable's *value* (not the variable name itself, which is spelled correctly) points at a folder literally named `Training_Image_Spartial` in one developer's local path — cosmetic, but worth renaming if that folder is ever recreated elsewhere.
+- There is no `.sln` file; the two projects are built and run independently.
