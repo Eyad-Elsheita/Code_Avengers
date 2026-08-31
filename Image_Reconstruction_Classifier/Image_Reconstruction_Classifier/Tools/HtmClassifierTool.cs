@@ -6,6 +6,11 @@ using ModelContextProtocol.Server;
 
 namespace Image_Reconstruction_Classifier.Tools
 {
+    /// <summary>
+    /// MCP tool that trains one <see cref="MyHtmClassifier"/> per object type from paired
+    /// spatial-SDR / binarized-original blobs, and reconstructs images from their SDR using
+    /// the trained classifier for their type.
+    /// </summary>
     [McpServerToolType]
     public class HtmClassifierTool
     {
@@ -19,6 +24,10 @@ namespace Image_Reconstruction_Classifier.Tools
         private readonly Dictionary<string, MyHtmClassifier> _classifiers = new();
         private int _trainingKeyCounter = 0;
 
+        /// <summary>
+        /// Creates the tool with the Azure Blob Storage client used to read and write blobs.
+        /// </summary>
+        /// <param name="blobServiceClient">Client for the storage account holding the 'train'/'test' containers.</param>
         public HtmClassifierTool(BlobServiceClient blobServiceClient)
         {
             _blobServiceClient = blobServiceClient;
@@ -28,6 +37,14 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 1: Train HTM Classifier on a Single Object Type
         // ============================================================
+        /// <summary>
+        /// Trains (or continues training) the classifier for <paramref name="objectType"/> from
+        /// up to <paramref name="maxImages"/> paired spatial-SDR / binarized-original blobs.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="objectType">Object type 0-9 to train.</param>
+        /// <param name="maxImages">Maximum number of training examples to use.</param>
+        /// <returns>A summary string with the object type and trained/skipped counts.</returns>
         [McpServerTool, Description("Train the HTM classifier for a specific object type (0-9) using spatial SDR blobs ('{type}_*_spatial.txt') paired with their matching binarized original images ('{type}_*_binarized.txt') from the container.")]
         public async Task<string> TrainClassifier(
             [Description("Container name: 'train' or 'test'")] string containerName,
@@ -80,6 +97,12 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 2: Train All Object Types (0-9)
         // ============================================================
+        /// <summary>
+        /// Calls <see cref="TrainClassifier"/> once for each object type '0' through '9'.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="maxImagesPerType">Maximum number of training examples to use per object type.</param>
+        /// <returns>The per-type training summaries, joined with " | ".</returns>
         [McpServerTool, Description("Train HTM classifiers for all object types (0-9) using the container's spatial SDR and binarized image blobs.")]
         public async Task<string> TrainAllObjectTypes(
             [Description("Container name: 'train' or 'test'")] string containerName,
@@ -98,6 +121,17 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 3: Reconstruct an Image from its Spatial SDR
         // ============================================================
+        /// <summary>
+        /// Downloads the SDR at <paramref name="spatialBlobName"/>, reconstructs its pixels using
+        /// the trained classifier for <paramref name="objectType"/>, and uploads the result as
+        /// '{name}_htm_reconstructed.txt'.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="objectType">Object type 0-9; must already be trained via <see cref="TrainClassifier"/>.</param>
+        /// <param name="spatialBlobName">Name of the spatial SDR blob, e.g. '3_552_spatial.txt'.</param>
+        /// <param name="k">Number of nearest training examples to use for reconstruction.</param>
+        /// <returns>The reconstructed flattened binary pixel array.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when no classifier has been trained for <paramref name="objectType"/>.</exception>
         [McpServerTool, Description("Reconstruct an image from its spatial SDR blob using the trained HTM classifier for its object type, and upload the reconstructed pixel vector back to the container as '{name}_htm_reconstructed.txt'.")]
         public async Task<int[]> ReconstructImage(
             [Description("Container name: 'train' or 'test'")] string containerName,
@@ -144,6 +178,10 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 4: List Object Types That Have a Trained Classifier
         // ============================================================
+        /// <summary>
+        /// Lists the object types that currently have a trained classifier in memory.
+        /// </summary>
+        /// <returns>The trained object types, sorted ascending.</returns>
         [McpServerTool, Description("List the object types that currently have a trained HTM classifier in memory.")]
         public Task<List<string>> GetTrainedObjectTypes()
         {

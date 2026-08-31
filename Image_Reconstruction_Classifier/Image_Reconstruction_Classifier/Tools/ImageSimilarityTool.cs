@@ -4,6 +4,11 @@ using ModelContextProtocol.Server;
 
 namespace Image_Reconstruction_Classifier.Tools
 {
+    /// <summary>
+    /// MCP tool that compares original and reconstructed binary images (cosine and pixel-wise
+    /// similarity) and persists comparison results to Azure Table Storage via
+    /// <see cref="ResultStorageService"/>.
+    /// </summary>
     [McpServerToolType]
     public class ImageSimilarityTool
     {
@@ -13,6 +18,11 @@ namespace Image_Reconstruction_Classifier.Tools
         private const string TestContainer = "test";
         private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageSimilarity");
 
+        /// <summary>
+        /// Creates the tool with the Azure clients used to write summary blobs and result rows.
+        /// </summary>
+        /// <param name="blobServiceClient">Client for the storage account holding the 'train'/'test' containers.</param>
+        /// <param name="resultStorageService">Service used to persist comparison results to Azure Table Storage.</param>
         public ImageSimilarityTool(
             BlobServiceClient blobServiceClient,
             ResultStorageService resultStorageService)
@@ -25,6 +35,14 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 1: Calculate Cosine Similarity Between Two Images
         // ============================================================
+        /// <summary>
+        /// Computes the cosine similarity between two equal-length flattened binary image arrays.
+        /// </summary>
+        /// <param name="original">Flattened binary array of the original image.</param>
+        /// <param name="reconstructed">Flattened binary array of the reconstructed image.</param>
+        /// <returns>A value between 0 and 1, where 1 means identical.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when either array is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the arrays have different lengths.</exception>
         [McpServerTool, Description("Calculate the cosine similarity between an original and a reconstructed binary image. Returns a value between 0 and 1 where 1 means identical.")]
         public Task<double> CalculateCosineSimilarity(
             [Description("Flattened binary array of the original image")] int[] original,
@@ -53,6 +71,15 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 2: Calculate Binary (Pixel-wise) Similarity
         // ============================================================
+        /// <summary>
+        /// Computes the percentage of matching pixels between two equal-length flattened binary
+        /// image arrays.
+        /// </summary>
+        /// <param name="original">Flattened binary array of the original image.</param>
+        /// <param name="reconstructed">Flattened binary array of the reconstructed image.</param>
+        /// <returns>The percentage of matching pixels, from 0 to 100.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when either array is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the arrays have different lengths.</exception>
         [McpServerTool, Description("Calculate the pixel-wise binary similarity between an original and a reconstructed image. Returns the percentage of matching pixels (0 to 100).")]
         public Task<double> CalculateBinarySimilarity(
             [Description("Flattened binary array of the original image")] int[] original,
@@ -82,6 +109,19 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 3: Compare Both Metrics at Once
         // ============================================================
+        /// <summary>
+        /// Computes both cosine and binary similarity for a single image pair and persists the
+        /// result via <see cref="ResultStorageService.SaveResultAsync"/>.
+        /// </summary>
+        /// <param name="original">Flattened binary array of the original image.</param>
+        /// <param name="reconstructed">Flattened binary array of the reconstructed image.</param>
+        /// <param name="imageName">Label or name for this image, e.g. '3_001'.</param>
+        /// <param name="objectType">Object type 0-9.</param>
+        /// <param name="method">Reconstruction method used: 'HTM', 'KNN', or 'Combined'.</param>
+        /// <param name="reconstructedBlobName">Name of the reconstructed blob in Azure.</param>
+        /// <returns>A summary string with the image name and both similarity scores.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when either image array is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the arrays have different lengths.</exception>
         [McpServerTool, Description("Calculate both cosine and binary similarity in a single call, and save the result to Azure Table Storage. Returns a summary string.")]
         public async Task<string> CompareImages(
             [Description("Flattened binary array of the original image")] int[] original,
@@ -124,6 +164,21 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 4: Batch Compare and Upload Results to Azure
         // ============================================================
+        /// <summary>
+        /// Computes cosine and binary similarity for each image pair in the batch, persists each
+        /// result via <see cref="ResultStorageService.SaveResultAsync"/>, and uploads a CSV
+        /// summary blob.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="originals">Array of flattened binary original images.</param>
+        /// <param name="reconstructed">Array of flattened binary reconstructed images.</param>
+        /// <param name="imageNames">Array of image names.</param>
+        /// <param name="objectTypes">Array of object types (0-9) matching each image.</param>
+        /// <param name="method">Reconstruction method used: 'HTM', 'KNN', or 'Combined'.</param>
+        /// <param name="reconstructedBlobNames">Array of reconstructed blob names.</param>
+        /// <param name="outputBlobName">Output blob name for the CSV summary, e.g. 'similarity_results.txt'.</param>
+        /// <returns>A success message with the number of pairs compared and the output blob name.</returns>
+        /// <exception cref="ArgumentException">Thrown when the input arrays are not all the same length.</exception>
         [McpServerTool, Description("Calculate similarity metrics for a batch and save each result to Azure Table Storage.")]
         public async Task<string> BatchCompareAndUpload(
             [Description("Container name: 'train' or 'test'")] string containerName,
@@ -189,6 +244,13 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 5: Convert Image to Binary Matrix String
         // ============================================================
+        /// <summary>
+        /// Formats a flattened binary image array as a 2D matrix string for visualization or debugging.
+        /// </summary>
+        /// <param name="imageArray">Flattened binary image array.</param>
+        /// <param name="rowSize">Row size (width) of the image.</param>
+        /// <returns>The formatted matrix string.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="imageArray"/> is null.</exception>
         [McpServerTool, Description("Convert a flattened binary image array into a formatted 2D matrix string for visualization or debugging.")]
         public Task<string> ConvertToBinaryMatrix(
             [Description("Flattened binary image array")] int[] imageArray,

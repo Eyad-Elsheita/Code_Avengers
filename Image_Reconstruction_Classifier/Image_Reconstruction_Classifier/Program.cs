@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using ModelContextProtocol.Server;
 
+/// <summary>
+/// Entry point. Builds the ASP.NET Core host, wires up Azure Blob/Table Storage clients, and
+/// registers every Tools/*.cs class as both an MCP tool and a DI singleton, then serves them
+/// over HTTP via ModelContextProtocol.AspNetCore so the agent can reach them locally or in Azure.
+/// </summary>
 try
 {
     var builder = WebApplication.CreateBuilder(args);

@@ -6,6 +6,10 @@ using ModelContextProtocol.Server;
 
 namespace Image_Reconstruction_Classifier.Tools
 {
+    /// <summary>
+    /// MCP tool that reads PNG image blobs from Azure Blob Storage and converts them into
+    /// flattened binary pixel arrays for the reconstruction pipeline.
+    /// </summary>
     [McpServerToolType]
     public class ImageLoaderTool
     {
@@ -14,6 +18,10 @@ namespace Image_Reconstruction_Classifier.Tools
         private const string TestContainer = "test";
         private readonly string _tempFolder = Path.Combine(Path.GetTempPath(), "ImageLoader");
 
+        /// <summary>
+        /// Creates the tool with the Azure Blob Storage client used to read image blobs.
+        /// </summary>
+        /// <param name="blobServiceClient">Client for the storage account holding the 'train'/'test' containers.</param>
         public ImageLoaderTool(BlobServiceClient blobServiceClient)
         {
             _blobServiceClient = blobServiceClient;
@@ -23,6 +31,13 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 1: Load Multiple Images from Azure Blob
         // ============================================================
+        /// <summary>
+        /// Downloads up to <paramref name="numberOfImages"/> PNG blobs from the container and
+        /// converts each into a flattened binary pixel array.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="numberOfImages">Maximum number of images to load.</param>
+        /// <returns>The loaded images as an array of flattened pixel arrays.</returns>
         [McpServerTool, Description("Load images from Azure Blob Storage. Use 'train' for training images or 'test' for test images.")]
         public async Task<int[][]> LoadImagesFromBlob(
             [Description("Container name: 'train' or 'test'")] string containerName,
@@ -71,6 +86,13 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 2: Load Single Image from Azure Blob
         // ============================================================
+        /// <summary>
+        /// Downloads a single named PNG blob and converts it into a flattened binary pixel array.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="blobName">Blob name, e.g. '3_552.png'.</param>
+        /// <returns>The image as a flattened binary pixel array.</returns>
+        /// <exception cref="FileNotFoundException">Thrown when the blob does not exist in the container.</exception>
         [McpServerTool, Description("Load a single image from Azure Blob Storage by name.")]
         public async Task<int[]> LoadSingleImageFromBlob(
             [Description("Container name: 'train' or 'test'")] string containerName,
@@ -108,6 +130,11 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 3: List Available Images in Container
         // ============================================================
+        /// <summary>
+        /// Lists the names of all PNG blobs in a container.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <returns>The blob names of every PNG image found, in listing order.</returns>
         [McpServerTool, Description("List all PNG image blobs in a container.")]
         public async Task<List<string>> ListAvailableImages(
             [Description("Container name: 'train' or 'test'")] string containerName)
@@ -137,6 +164,11 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 4: Get Image Count in Container
         // ============================================================
+        /// <summary>
+        /// Counts the PNG blobs in a container.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <returns>The number of PNG blobs found.</returns>
         [McpServerTool, Description("Get count of PNG images in a container.")]
         public async Task<int> GetImageCount(
             [Description("Container name: 'train' or 'test'")] string containerName)
@@ -166,6 +198,14 @@ namespace Image_Reconstruction_Classifier.Tools
         // ============================================================
         // METHOD 5: Load Images by Object Type from Azure Blob
         // ============================================================
+        /// <summary>
+        /// Downloads up to <paramref name="numberOfImages"/> PNG blobs whose name is prefixed with
+        /// <paramref name="objectType"/> and converts each into a flattened binary pixel array.
+        /// </summary>
+        /// <param name="containerName">Container name: 'train' or 'test'.</param>
+        /// <param name="objectType">Object type prefix to filter by, e.g. '3' matches '3_*.png'.</param>
+        /// <param name="numberOfImages">Maximum number of images to load.</param>
+        /// <returns>The loaded images as an array of flattened pixel arrays.</returns>
         [McpServerTool, Description("Load images filtered by object type (0-9) from Azure Blob. E.g. objectType '3' loads all 3_*.png files.")]
         public async Task<int[][]> LoadImagesByObjectType(
             [Description("Container name: 'train' or 'test'")] string containerName,
