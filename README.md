@@ -2,14 +2,15 @@
 
 An HTM + KNN image reconstruction pipeline exposed as a set of Model Context Protocol (MCP) tools, backed by Azure Blob and Table Storage, and driven by an AI agent that can talk to either a local or an Azure-hosted instance of the server.
 
-The repository contains two independent .NET 9 projects (no shared solution file):
+The repository contains one solution, `Image_Reconstruction_Classifier.sln`, covering the MCP server project and its unit tests. `ImageReconstructionAgent` is a separate, standalone console project. it's built and run independently.
+
 
 ```
 .
 ├── Image_Reconstruction_Classifier/   # the MCP server ("Main proj")
 │   ├── Program.cs
 │   ├── Dockerfile
-│   ├── Tools/                         # the 7 MCP-callable tools
+│   ├── Tools/                         # the 8 MCP-callable tools
 │   └── ...
 └── ImageReconstructionAgent/          # the console AI agent ("Run Agents")
     └── Program.cs
@@ -17,7 +18,7 @@ The repository contains two independent .NET 9 projects (no shared solution file
 
 ## 1. What each project does
 
-**Image_Reconstruction_Classifier** is an ASP.NET Core app that hosts the reconstruction pipeline as an MCP server over HTTP. It exposes seven tools:
+**Image_Reconstruction_Classifier** is an ASP.NET Core app that hosts the reconstruction pipeline as an MCP server over HTTP. It exposes eight tools:
 
 | Tool | Responsibility |
 |---|---|
@@ -25,13 +26,14 @@ The repository contains two independent .NET 9 projects (no shared solution file
 | `ImageProcessorTool` | Binarizes raw grayscale images at a fixed pixel threshold. |
 | `ImageSpatialTool` | Runs the NeoCortexApi spatial pooler to produce each image's SDR. |
 | `HtmClassifierTool` | Trains/queries the HTM classifier and produces weighted-average pixel reconstructions. |
+| `KnnClassifierTool` | Trains/predicts with a KNN classifier over SDR overlap and weighted voting; persists trained state to and loads it from Blob Storage. |
 | `ImageSimilarityTool` | Computes cosine and binary similarity between original and reconstructed images. |
 | `ImageFilterTool` | Applies Gaussian-weighted local voting and median filtering to fuse candidate reconstructions. |
 | `BinaryToImageConverterTool` | Converts the fused binary reconstruction back into a viewable PNG. |
 
 Every tool reads its input from and writes its output back to the same Azure Blob container (`train` or `test`) — there's no local-filesystem step in this path. Reconstruction results (cosine/binary similarity per image) are additionally written to the `ReconstructionResults` table in Azure Table Storage via `ResultStorageService`.
 
-**ImageReconstructionAgent** is a console app that connects to the MCP server over HTTP, wraps the seven tools as `AITool`s, and hands them to an OpenAI chat model (`gpt-4o-mini` by default) via `Microsoft.Agents.AI`. You type natural-language instructions; the agent decides which tools to call.
+**ImageReconstructionAgent** is a console app that connects to the MCP server over HTTP, wraps the eight tools as `AITool`s, and hands them to an OpenAI chat model (`gpt-4o-mini` by default) via `Microsoft.Agents.AI`. You type natural-language instructions; the agent decides which tools to call.
 
 ## 2. Prerequisites
 
@@ -73,10 +75,11 @@ Every tool reads its input from and writes its output back to the same Azure Blo
 
 ```bash
 export AZURE_STORAGE_CONNECTION_STRING="<your connection string>"
-dotnet run --project Image_Reconstruction_Classifier
+cd Image_Reconstruction_Classifier/Image_Reconstruction_Classifier
+dotnet run 
 ```
 
-The server starts on `http://localhost:5280` (unless `ASPNETCORE_URLS` overrides it) and exposes the seven tools above over HTTP via `app.MapMcp()`.
+The server starts on `http://localhost:5280` (unless `ASPNETCORE_URLS` overrides it) and exposes the eight tools above over HTTP via `app.MapMcp()`.
 
 **With Docker:**
 
@@ -102,7 +105,8 @@ export OPENAI_API_KEY="<your OpenAI API key>"
 export OPENAI_CHAT_MODEL_NAME="gpt-4o-mini"
 export MCP_SERVER_URL="http://localhost:5280"   # or your Azure endpoint
 
-dotnet run --project ImageReconstructionAgent
+cd Image_Reconstruction_Classifier/ImageReconstructionAgent
+dotnet run 
 ```
 
 On startup the agent connects to the MCP server, lists the tools it discovered, and drops you into an interactive prompt. Below is an actual captured session against the live Azure-hosted server (`MCP_SERVER_URL` pointed at `https://image-reconstruction-application-gadkh2grhtfug8cp.germanywestcentral-01.azurewebsites.net`), lightly trimmed:
@@ -111,14 +115,14 @@ On startup the agent connects to the MCP server, lists the tools it discovered, 
 Connecting to MCP server at https://image-reconstruction-application-gadkh2grhtfug8cp.germanywestcentral-01.azurewebsites.net
 Connected to MCP server
 
-Loaded 25 tools:
+Loaded 29 tools:
   - calculate_cosine_similarity
   - save_reconstructed_image
   - get_image_count
   - apply_median_filter
   - train_classifier
   - process_batch
-  - ... (25 total)
+  - ... (29 total)
 
 === Image Reconstruction Agent ===
 Type 'exit' to quit.
@@ -137,4 +141,4 @@ Documented here rather than silently fixed, since these are genuine, verifiable 
 
 - `Tools/ImageprocessingTool.cs` and `Tools/binaryToImageConverterTool.cs` break the project's otherwise consistent PascalCase file-naming convention.
 - The local-only `Training_Image_Spatial` variable's *value* (not the variable name itself, which is spelled correctly) points at a folder literally named `Training_Image_Spartial` in one developer's local path — cosmetic, but worth renaming if that folder is ever recreated elsewhere.
-- There is no `.sln` file; the two projects are built and run independently.
+
