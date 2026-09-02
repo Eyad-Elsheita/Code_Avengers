@@ -141,9 +141,3 @@ You: exit
 ```
 
 Type natural-language requests; the agent picks which of the loaded MCP tools to call. Type `exit` (or send a blank line) to end the session.
-
-## 6. Known rough edges
-
-Documented here rather than silently fixed, since these are genuine, verifiable artifacts of the current codebase rather than assumptions:
-
-- The local-only `Training_Image_Spatial` variable's *value* (not the variable name itself, which is spelled correctly) points at a folder literally named `Training_Image_Spartial` in one developer's local path — cosmetic, but worth renaming if that folder is ever recreated elsewhere.
